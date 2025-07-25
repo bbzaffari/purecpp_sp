@@ -13,7 +13,7 @@ This repository provides detailed guidance on how to set up the environment, con
 - [Using Pre-trained Models](#use-pre-trained-models)
 - [Build Instructions](#how-to-build)
   - [Compile All Modules](#compile-all-at-once)
-  - [Compile Individually](#compile-one-at-time)
+  - [Compile Individually](#compile-one-at-a-time)
 - [Next Steps](#-next-steps)
 
 ---
@@ -73,7 +73,7 @@ sudo apt upgrade -y && \
 sudo apt install -y  build-essential nano wget \
     curl ninja-build cmake libopenblas-dev \
     libgflags-dev python3-dev libprotobuf-dev \
-    protobuf-compiler
+    protobuf-compiler unzip
 ````
 
 ---
@@ -98,10 +98,13 @@ pip install build conan cmake requests pybind11
 ````
 ---
 
-## 4. Execute the FAISS installation script
+## 4. Execute the FAISS and torch installation script 
 
 ```bash
+chmod +x  ./installers/install_torch_ubuntu.sh
+./installers/install_torch_ubuntu.sh
 chmod +x  ./installers/install_faiss_ubuntu.sh
+./installers/install_faiss_ubuntu.sh
 ````
 
 ---
@@ -117,9 +120,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 ```bash
 source ~/.cargo/env
 ````
-
 ---
-
 ## 6. Setting the Default Conan Profile
 
 To ensure Conan has a working default configuration, run:
@@ -170,7 +171,10 @@ find ~ -type d -wholename "*/.conan2/profiles"
 Once you’ve located the `default` profile, you shall edit it to explicitly set the following configuration:
 
 ```bash 
-cat << EOF > ~/.conan2/profiles/default 
+PROFILE_DIR=$(find ~ -type d -wholename "*/.conan2/profiles" | head -n 1 || true)
+[ -z "$PROFILE_DIR" ] && PROFILE_DIR="$HOME/.conan2/profiles" && mkdir -p "$PROFILE_DIR"
+
+cat << EOF > "$PROFILE_DIR/default"
 [settings]
 arch=x86_64
 build_type=Release
@@ -180,6 +184,8 @@ compiler.libcxx=libstdc++11
 compiler.version=11
 os=Linux
 EOF
+
+echo "Profile created in: $PROFILE_DIR/default"
 ````
 
 ---
@@ -271,7 +277,7 @@ chmod +x ./module_cmake.sh
 ./all_cmake.sh
 ```
 
-## Compile one at time
+## Compile one at a time
 ```
 ./module_cmake.sh <module>
 ```
