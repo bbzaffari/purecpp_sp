@@ -41,9 +41,9 @@ We welcome contributions to **PureCPP**! If you would like to contribute, please
 
 Ensure you have the following dependencies installed before building PureCPP:
 
-- **GCC/G++** 13.1
-- **CMake** 3.22
-- **Conan** 2
+- **GCC/G++** >= 13.1
+- **CMake**   >= 3.22
+- **Conan**   >= 2
 - **Rust**
 
 ---
