@@ -1,4 +1,4 @@
-![status](https://img.shields.io/badge/type-scratchpad-blue) (**SP** stands for Scratchpad):This repository is Bruno’s working notepad where all structural changes are designed and documented before being pushed to the official ecosystem.
+![status](https://img.shields.io/badge/type-scratchpad-blue) (**SP** stands for Scratchpad): This repository is Bruno’s working notepad where all structural changes are designed and documented before being pushed to the official ecosystem.
 # PureCPP framework
 **PureCPP is a powerful C++ backend architecture for RAG systems.**\
 Designed for maximum performance and scalability, it integrates vector search, ONNX models, and CUDA acceleration into a seamless, python integrated framework.\
