@@ -6,7 +6,7 @@ This repository provides detailed guidance on how to set up the environment, con
 
 ## 📚 Table of Contents
 All components are documented with clarity and explained in an educational way to support learning and reuse.
-🔍 To explore all of Bruno Bavaresco Zaffari’s contributions to the PureCpp [click here]([https://github.com/bbzaffari/purecpp](https://github.com/bbzaffari/Open-Source-RAG-Engine-System-with-Modular-Vector-Processing). 
+🔍 To explore all of Bruno Bavaresco Zaffari’s contributions to the PureCpp [click here](https://github.com/bbzaffari/Open-Source-RAG-Engine-System-with-Modular-Vector-Processing). 
 
 - [Introduction](#purecpp-framework)
 - [Documentation](#-documentation)
