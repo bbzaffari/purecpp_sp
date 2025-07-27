@@ -43,6 +43,7 @@ Ensure you have the following dependencies installed before building PureCPP:
 
 - **GCC/G++** >= 13.1
 - **CMake**   >= 3.22
+- **Python*** >= 3.8
 - **Conan**   >= 2
 - **Rust**
 
