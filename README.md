@@ -6,7 +6,7 @@ This repository provides detailed guidance on how to set up the environment, con
 
 ## 📚 Table of Contents
 🔍 Explore [all of Bruno Bavaresco Zaffari’s contributions (explained)](https://github.com/bbzaffari/Open-Source-RAG-Engine-System-with-Modular-Vector-Processing)
- related to the PureCpp framework.
+ related to this framework.
 - [Introduction](#purecpp-framework)
 - [Documentation](#-documentation)
 - [Contributing](#-contributing-to-purecpp)
@@ -17,7 +17,6 @@ This repository provides detailed guidance on how to set up the environment, con
   - [Compile All Modules](#compile-all-at-once)
   - [Compile Individually](#compile-one-at-a-time)
 - [Next Steps](#-next-steps)
-
 ---
 ---
 
