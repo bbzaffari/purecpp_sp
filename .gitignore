@@ -1,11 +1,11 @@
 .vscode/
-CMakeUserPresets.json
-CMakeLists.txt.user
-*/CMakeUserPresets.json 
-
-bkp/
-models/
 venv/
+bkp/
+
+**/CMakeUserPresets.json
+**/CMakeLists.txt.user
+**/CMakeUserPresets.json 
+
 
 **/build/
 **/*.egg-info
@@ -15,9 +15,7 @@ venv/
 **/*.zip
 
 **/conan.lock
-openai_api_key*
+**/openai_api_key*
 
-libs/libtorch/*
-# libs/openai-cpp/
-# libs/tokenizers-cpp/
 libs/faiss/
+models/
