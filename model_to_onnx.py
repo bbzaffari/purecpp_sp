@@ -4,27 +4,27 @@ import json
 from pathlib import Path
 
 
-BASE_DIR = os.path.join(os.path.dirname(__file__), "models") # Base dir 
+BASE_DIR = os.path.join(os.path.dirname(__file__), "models")  # Base directory
 
 
 def convert_feature_extraction_model(model_name):
-    print(f"\nConvertendo modelo de extração de características: {model_name}")
+    print(f"\nConverting feature extraction model: {model_name}")
     from optimum.onnxruntime import ORTModelForFeatureExtraction
     from transformers import AutoTokenizer
 
     dir_path = os.path.join(BASE_DIR, model_name)
     os.makedirs(dir_path, exist_ok=True)
-    print(f"Diretório criado para o modelo: {dir_path}")
+    print(f"Directory created for the model: {dir_path}")
 
     model = ORTModelForFeatureExtraction.from_pretrained(model_name, export=True)
     tokenizer = AutoTokenizer.from_pretrained(model_name)
 
     model.save_pretrained(dir_path)
     tokenizer.save_pretrained(dir_path)
-    print(f"Modelo de extração salvo em: {dir_path}")
+    print(f"Feature extraction model saved to: {dir_path}")
 
 def convert_token_classification_model(model_name, output_name):
-    print(f"\nConvertendo modelo de classificação de tokens: {model_name}")
+    print(f"\nConverting token classification model: {model_name}")
     from transformers import AutoModelForTokenClassification, AutoTokenizer, AutoConfig
     from transformers.onnx import export, FeaturesManager
 
@@ -32,16 +32,16 @@ def convert_token_classification_model(model_name, output_name):
     label_map = config.id2label
     dir_path = os.path.join(BASE_DIR, output_name)
     os.makedirs(dir_path, exist_ok=True)
-    print(f"Diretório criado para o modelo: {dir_path}")
+    print(f"Directory created for the model: {dir_path}")
 
     with open(os.path.join(dir_path, "label_map.json"), "w") as f:
         json.dump(label_map, f)
-    print(f"Label map salvo em: {os.path.join(dir_path, 'label_map.json')}")
+    print(f"Label map saved to: {os.path.join(dir_path, 'label_map.json')}")
 
     model = AutoModelForTokenClassification.from_pretrained(model_name)
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     tokenizer.save_pretrained(os.path.join(dir_path, "tokenizer"))
-    print(f"Tokenizador salvo em: {os.path.join(dir_path, 'tokenizer')}")
+    print(f"Tokenizer saved to: {os.path.join(dir_path, 'tokenizer')}")
 
     model_type = model.config.model_type
     feature = "token-classification"
@@ -51,22 +51,21 @@ def convert_token_classification_model(model_name, output_name):
     onnx_config = onnx_config(model.config)
 
     export(model=model, output=outpath, opset=14, preprocessor=tokenizer, config=onnx_config)
-    print(f"Modelo de classificação exportado para: {outpath}")
+    print(f"Token classification model exported to: {outpath}")
 
 
 # Main with argparse
 def main():
     global BASE_DIR
-    
-    parser = argparse.ArgumentParser(description="Conversor de modelos Hugging Face para ONNX")
-    parser.add_argument("-m", "--model", required=True, help="Nome do modelo Hugging Face (ex.: dslim/bert-base-NER)")
-    parser.add_argument("-o", "--output", required=True, help="Nome de saída para a pasta exportada")
-    parser.add_argument("--mode", choices=["feature", "token"], default="token", help="Modo de conversão: feature ou token")
-    parser.add_argument("--base_dir", default=BASE_DIR, help="Diretório base onde salvar os modelos")
+
+    parser = argparse.ArgumentParser(description="Hugging Face to ONNX model converter")
+    parser.add_argument("-m", "--model", required=True, help="Hugging Face model name (e.g., dslim/bert-base-NER)")
+    parser.add_argument("-o", "--output", required=True, help="Output name for the exported folder")
+    parser.add_argument("--mode", choices=["feature", "token"], default="token", help="Conversion mode: feature or token")
+    parser.add_argument("--base_dir", default=BASE_DIR, help="Base directory to save the models")
 
     args = parser.parse_args()
 
-   
     BASE_DIR = args.base_dir
 
     if args.mode == "feature":
