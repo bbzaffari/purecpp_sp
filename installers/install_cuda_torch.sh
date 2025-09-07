@@ -11,4 +11,4 @@ wget ${libtorch_cuda_url} -O ${libtorch_cuda_zip}
 
 unzip ${libtorch_cuda_zip}
 mv ./libtorch/* ../libs/libtorch/cuda
-rm -fr libtorch/ 
+
