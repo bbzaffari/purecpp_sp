@@ -104,6 +104,9 @@ pip install build conan cmake requests pybind11
 ```bash
 chmod +x  ./installers/install_torch_ubuntu.sh
 ./installers/install_torch_ubuntu.sh
+````
+
+```bash
 chmod +x  ./installers/install_faiss_ubuntu.sh
 ./installers/install_faiss_ubuntu.sh
 ````
@@ -124,70 +127,10 @@ source ~/.cargo/env
 ---
 ## 6. Setting the Default Conan Profile
 
-To ensure Conan has a working default configuration, run:
-
 ```bash
-conan profile detect --force
-````
-
-### What does this command do?
-
-* It **creates the folder**:
-
-  ```
-  ~/.conan2/
-  ```
-
-* It **generates the default profile file**:
-
-  ```
-  ~/.conan2/profiles/default
-  ```
-
-* It **automatically detects and writes** your system’s configuration, including:
-
-  * Operating system (`os`)
-  * Architecture (`arch`)
-  * Compiler (`compiler`, `compiler.version`, `compiler.cppstd`, `compiler.libcxx`)
-  * Build type (`build_type`)
-
-This is necessary for Conan to correctly resolve and build C++ dependencies on your system.
-
-### 🔍 Locating the profile file
-
-If you want to verify the path of the `default` profile, run:
-
-```bash
-find ~ -type d -wholename "*/.conan2/profiles"
+chmod x+ scripts/setting_conan_profile.sh
+./scripts/setting_conan_profile.sh
 ```
-
-> **Note:** By default, this will be under:
->
-> ```
-> /home/<user>/.conan2/profiles/
-> ```
-
-### Editing the profile
-
-Once you’ve located the `default` profile, you shall edit it to explicitly set the following configuration:
-
-```bash 
-PROFILE_DIR=$(find ~ -type d -wholename "*/.conan2/profiles" | head -n 1 || true)
-[ -z "$PROFILE_DIR" ] && PROFILE_DIR="$HOME/.conan2/profiles" && mkdir -p "$PROFILE_DIR"
-
-cat << EOF > "$PROFILE_DIR/default"
-[settings]
-arch=x86_64
-build_type=Release
-compiler=gcc
-compiler.cppstd=17
-compiler.libcxx=libstdc++11
-compiler.version=11
-os=Linux
-EOF
-
-echo "Profile created in: $PROFILE_DIR/default"
-````
 
 ---
 
@@ -251,7 +194,6 @@ python model_to_onnx.py -m="sentence-transformers/all-MiniLM-L6-v2" -o="sentence
 
 # How to build 
 
-
 This is a development version with an automatic pipline build system. Optimizing the process, making it easy to compile and test all five modules automatically in this development version.
 
 To compile and build, just use the provided scripts — no manual setup needed.
@@ -269,18 +211,17 @@ Each module (CMAKE_LIBS, CMAKE_META, CMAKE_EMBED, CMAKE_EXTRACT, CMAKE_CHUNKS_CL
 Before running the provided shell scripts, ensure they have the appropriate execution permissions. This step is essential to avoid permission errors during the build process, especially when working on Linux or macOS systems.
 
 ```bash
-chmod +x ./all_cmake.sh
-chmod +x ./module_cmake.sh
+chmod +x ./build.sh
 ````
 
 ## Compile all at once
 ```
-./all_cmake.sh
+./build.sh all
 ```
 
 ## Compile one at a time
 ```
-./module_cmake.sh <module>
+./build.sh <module>
 ```
 
 The resulting libraries will be placed inside [`Sandbox dir`](/Sandbox) :
