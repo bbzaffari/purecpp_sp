@@ -66,7 +66,7 @@ cd purecpp
 
 ## 2. Installing dependencies
 
-Run the following commands:
+### Run the following commands:
 - Ubuntu/Debian
 ```bash
 sudo apt update && \
