@@ -146,7 +146,7 @@ chmod x+ ./installers/setting_conan_profile.sh
 
 ### 🛠️ Hugging Face to **ONNX** Converter 
 
-**`models_to_onnx.py`**
+**`models/models_to_onnx.py`**
 
 This is a unified Python script to convert Hugging Face models into the ONNX format for optimized inference.
 
@@ -175,7 +175,9 @@ pip install torch transformers onnx onnxruntime optimum
 
 ---
 
-## 🚀 Examples
+## Examples
+
+> **In ./models/ run:**
 
 ```bash
 python model_to_onnx.py -m="dbmdz/bert-large-cased-finetuned-conll03-english" -o="bert-large-cased-finetuned-conll03-english"
@@ -188,7 +190,8 @@ python model_to_onnx.py -m="sentence-transformers/all-MiniLM-L6-v2" -o="sentence
 ## Output
 
 ```
-/models/ 
+/models/
+  ├── model_to_onnx.py 
   ├── sentence-transformers/all-MiniLM-L6-v2/ 
   │    ├── model.onnx (via optimum)
   │    └── tokenizer/ 
