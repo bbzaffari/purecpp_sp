@@ -1,21 +1,78 @@
-.vscode/
-venv/
-bkp/
-
-**/CMakeUserPresets.json
-**/CMakeLists.txt.user
-**/CMakeUserPresets.json 
 
 
-**/build/
-**/*.egg-info
-**/dist/
+
+
+### C++ ###
+# Prerequisites
+**/*.d
+
+# Compiled Object files
+**/*.slo
+**/*.lo
+**/*.o
+**/*.obj
+
+# Precompiled Headers
+**/*.gch
+**/*.pch
+
+# Compiled Dynamic libraries
 **/*.so
-**/*.whl
-**/*.zip
+**/*.dylib
+**/*.dll
 
-**/conan.lock
-**/openai_api_key*
+# Fortran module files
+**/*.mod
+**/*.smod
 
+# Compiled Static libraries
+**/*.lai
+**/*.la
+**/*.a
+**/*.lib
+
+# Executables
+**/*.exe
+**/*.out
+**/*.app
+
+### Python ###
+*pycache*/
+.pytest_cache/
+test_bindings.py
+.pyd
+
+### Others ###
+CMakeUserPresets.json
+CMakeFiles/
+
+bkp/
+**/build/
+
+# Ignore everything in the models folder
+models/*
+# But DO NOT ignore these two files
+!models/model_to_onnx.py
+
+libtorch*.zip
+libs/libtorch
 libs/faiss/
-models/
+
+conan.lock
+libtorch/
+extern/*
+
+**/*openai_api_key*
+
+**/build/*
+**/dist/*
+packer
+**/*.egg-info
+
+.env
+.venv/*
+.venv*/*
+.vscode/*
+.vs/*
+venv
+
