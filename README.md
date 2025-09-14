@@ -136,8 +136,8 @@ source ~/.cargo/env
 ## 6. Setting the Default Conan Profile
 
 ```bash
-chmod x+ scripts/setting_conan_profile.sh
-./scripts/setting_conan_profile.sh
+chmod x+ ./installers/setting_conan_profile.sh
+./installers/setting_conan_profile.sh
 ```
 
 ---
