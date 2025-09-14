@@ -209,7 +209,7 @@ This is a development version with an automatic pipline build system. Optimizing
 
 To compile and build, just use the provided scripts — no manual setup needed.
 
-Each module (CMAKE_LIBS, CMAKE_META, CMAKE_EMBED, CMAKE_EXTRACT, CMAKE_CHUNKS_CLEAN) has its own o.sh script, which:
+Each module (CMAKE_LIBS, CMAKE_META, CMAKE_EMBED, CMAKE_EXTRACT, CMAKE_CHUNKS_CLEAN) has its own **`sub_mod_build.sh`** script, which:
 
 - Cleans the build/ folder
 
