@@ -2,9 +2,10 @@
 set -e
 echo "PATH: $PATH"
 
+MOD="purecpp_embed"
+
 rm -fr build conan.lock
 
-#conan install . --build=missing
 conan lock create ../conanfile.py --build=missing
 conan install . --build=missing
 
@@ -25,6 +26,8 @@ if [ "$cores" -gt 1 ]; then
 else
     half=1
 fi
+
 cmake --build "$(pwd)/build/Release" --parallel "$half"
-rm -f ../Sandbox/purecpp_embed*.so
-cp ./build/Release/purecpp_embed*.so ../Sandbox/
+rm -f ../../Sandbox/$MOD*.so
+cp ./build/Release/$MOD*.so ../../Sandbox/
+

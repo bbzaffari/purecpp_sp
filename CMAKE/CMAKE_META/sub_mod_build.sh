@@ -1,7 +1,8 @@
-# #!/bin/bash
-
+#!/bin/bash
 set -e
 echo "PATH: $PATH"
+
+MOD="purecpp_meta"
 
 rm -fr build conan.lock
 
@@ -25,6 +26,7 @@ if [ "$cores" -gt 1 ]; then
 else
     half=1
 fi
+
 cmake --build "$(pwd)/build/Release" --parallel "$half"
-rm -f ../Sandbox/purecpp_meta*.so
-cp ./build/Release/purecpp_meta*.so ../Sandbox/
+rm -f ../../Sandbox/$MOD*.so
+cp ./build/Release/$MOD*.so ../../Sandbox/
