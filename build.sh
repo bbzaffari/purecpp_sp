@@ -16,9 +16,10 @@ print_module() {
 # -------------------- Function to compile a specific module --------------------
 run_module() {
     local dir="$1"
+    cd CMAKE/
     print_module "$dir"
     cd "$dir" || exit 1
-    ./o.sh
+    ./sub_mod_build.sh
     cd - > /dev/null
 }
 

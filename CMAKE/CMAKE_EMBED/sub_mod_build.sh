@@ -5,7 +5,7 @@ echo "PATH: $PATH"
 rm -fr build conan.lock
 
 #conan install . --build=missing
-conan lock create conanfile.py --build=missing
+conan lock create ../conanfile.py --build=missing
 conan install . --build=missing
 
 cmake -DCMAKE_POLICY_DEFAULT_CMP0091=NEW \
@@ -26,5 +26,5 @@ else
     half=1
 fi
 cmake --build "$(pwd)/build/Release" --parallel "$half"
-rm -f ../Sandbox/purecpp_chunks_clean*.so
-cp ./build/Release/purecpp_chunks_clean*.so ../Sandbox/
+rm -f ../Sandbox/purecpp_embed*.so
+cp ./build/Release/purecpp_embed*.so ../Sandbox/

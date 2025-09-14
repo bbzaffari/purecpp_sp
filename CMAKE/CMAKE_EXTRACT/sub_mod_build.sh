@@ -5,7 +5,7 @@ echo "PATH: $PATH"
 rm -fr build conan.lock
 
 #conan install . --build=missing
-conan lock create conanfile.py --build=missing
+conan lock create ../conanfile.py --build=missing
 conan install . --build=missing
 
 cmake -DCMAKE_POLICY_DEFAULT_CMP0091=NEW \
