@@ -115,8 +115,8 @@ chmod +x  ./installers/install_torch_ubuntu.sh
 ````
 
 ```bash
-chmod +x  ./installers/install_faiss_ubuntu.sh
-./installers/install_faiss_ubuntu.sh
+chmod +x  ./installers/install_faiss.sh
+./installers/install_faiss.sh
 ````
 
 ---
