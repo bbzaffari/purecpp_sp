@@ -16,7 +16,6 @@ This repository provides detailed guidance on how to set up the environment, con
 - [Build Instructions](#how-to-build)
   - [Compile All Modules](#compile-all-at-once)
   - [Compile Individually](#compile-one-at-a-time)
-- [Next Steps](#-next-steps)
 ---
 ---
 
