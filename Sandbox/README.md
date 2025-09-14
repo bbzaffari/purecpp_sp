@@ -3,7 +3,7 @@
 
 This repository is a **sandbox environment** for testing and prototyping.
 
-**Every time it is compiled (e.g., using the scripts `./all_cmake.sh` or `./module_cmake.sh <module>`),
+**Every time it is compiled (e.g., using the scripts `./build.sh`),
   the outputs are **redirected** to the `Sandbox/` directory.**
   
 * Here, the `.so` files (shared libraries) will be available
