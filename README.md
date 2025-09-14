@@ -67,17 +67,25 @@ cd purecpp
 ## 2. Installing dependencies
 
 Run the following commands:
-
+- Ubuntu/Debian
 ```bash
 sudo apt update && \
 sudo apt upgrade -y && \
-sudo apt install -y  build-essential nano wget \
-    curl ninja-build cmake libopenblas-dev \
-    libgflags-dev python3-dev libprotobuf-dev \
-    protobuf-compiler unzip
+sudo apt install -y \
+  build-essential wget curl \
+  ninja-build cmake libopenblas-dev \
+  libgflags-dev python3-dev libprotobuf-dev \
+  protobuf-compiler unzip libssl-dev zlib1g-dev
 ````
-
----
+- RedHat
+```bash
+yum update && 
+yum install -y \
+      gcc gcc-c++ make git curl wget \
+      ninja-build libffi-devel openssl-devel \
+      protobuf-devel gflags-devel zlib-devel \
+      openblas-devel unzip \
+````
 
 ## 3. Install python essential packages
 
