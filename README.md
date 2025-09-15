@@ -193,12 +193,12 @@ Before running the provided shell scripts, ensure they have the appropriate exec
 chmod +x ./build.sh
 ````
 
-## Compile all at once
+### Compile all at once
 ```bash
 ./build.sh all
 ````
 
-## Compile one at a time
+### Compile one at a time
 ```bash
 ./build.sh <module>
 ````
