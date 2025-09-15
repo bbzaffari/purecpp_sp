@@ -132,40 +132,39 @@ chmod +x build.sh
 
 # Docker Environment Setup 
 
-- 1. Clone the repository along with all its submodules (recursively)
+* 1. Clone the repository along with all its submodules (recursively)
 
 ```bash
 git clone --recursive https://github.com/bbzaffari/purecpp
 ```
 
-- 2. Navigate into the cloned repository folder
+* 2. Navigate into the cloned repository folder
 
 ```bash
 cd purecpp
 ```
 
-- 3. `docker build -t pure_faiss .`
+* 3. `docker build -t pure_faiss .`
 
 ```bash
 # Build a Docker image from the current directory and tag it as 'pure_faiss'
 docker build -t pure_faiss .
 ```
 
-- 4. Start a Docker container named 'env' from the 'pure_faiss' image, mounting current dir to /home
+* 4. Start a Docker container named 'env' from the 'pure_faiss' image, mounting current dir to /home
 
 ```bash
 docker run -it --name env -v "$PWD":/home pure_faiss
 ```
 
-- 5. Make all shell scripts in the scripts/ folder executable & Run the environment configuration script to set up variables, paths, or dependencies
+* 5. Make all shell scripts in the scripts/ folder executable & Run the environment configuration script to set up variables, paths, or dependencies
 
 ```bash
 chmod +x -R scripts/*.sh
 ./scripts/env_config.sh
 ```
 
-
-- 6. Make the build.sh script executable \ and Run the 'build' command or script (ensure it's defined in PATH or as a function/alias)
+* 6. Make the build.sh script executable \ and Run the 'build' command or script (ensure it's defined in PATH or as a function/alias)
 
 ```bash
 chmod +x build.sh
