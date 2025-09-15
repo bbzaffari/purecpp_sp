@@ -72,11 +72,11 @@ docker build -t pure_faiss .
 docker run -it --name env -v "$PWD":/home pure_faiss
 ```
 
-* **5.  Grant all scripts in the 'scripts/' folder execute permission and run the environment configuration script** **(in order to install FAISS, torch, configure conan)**
+* **5.  Grant all scripts in the 'installers/' folder execute permission and run the environment configuration script** **(in order to install FAISS, torch, configure conan)**
 
 ```bash
-chmod +x -R scripts/*.sh
-./scripts/env_config.sh
+chmod +x -R installers/*.sh
+./installers/env_config.sh
 ```
 
 * **6. Grant build.sh execute permission and build**
@@ -158,8 +158,8 @@ source ~/.cargo/env
 ### 5. Execute the `env_config.sh` **(in order to install FAISS, torch, configure conan)**
 
 ```bash
-chmod +x  -R ./scripts/*.sh
-./scripts/env_config.sh
+chmod +x  -R ./installers/*.sh
+./installers/env_config.sh
 ````
 
 ### 6. Grant build.sh execute permission and build
