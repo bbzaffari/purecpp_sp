@@ -106,7 +106,7 @@ pip install build conan cmake requests pybind11
 ````
 ---
 
-### 4. Execute the FAISS and torch installation script 
+### 4. Execute the `env_config.sh` **(in order to install FAISS, torch, configure conan)**
 
 ```bash
 chmod +x  -R ./scripts/*.sh
@@ -120,6 +120,13 @@ chmod +x  -R ./scripts/*.sh
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 source ~/.cargo/env
 ````
+
+### 6. Make the build.sh script executable \ and Run the 'build' command or script (ensure it's defined in PATH or as a function/alias)
+
+```bash
+chmod +x build.sh
+./build.sh all
+```
 
 ---
 ---
@@ -163,7 +170,7 @@ chmod +x -R scripts/*.sh
 
 ```bash
 chmod +x build.sh
-./build.sh
+./build.sh all
 ```
 
 ---
@@ -178,11 +185,8 @@ To compile and build, just use the provided scripts — no manual setup needed.
 Each module (CMAKE_LIBS, CMAKE_META, CMAKE_EMBED, CMAKE_EXTRACT, CMAKE_CHUNKS_CLEAN) has its own **`sub_mod_build.sh`** script, which:
 
 - Cleans the build/ folder
-
 - Installs Conan dependencies if missing
-
 - Compiles the code
-
 - Sends the .so output to the central Sandbox/ directory
 
 Before running the provided shell scripts, ensure they have the appropriate execution permissions. This step is essential to avoid permission errors during the build process, especially when working on Linux or macOS systems.
