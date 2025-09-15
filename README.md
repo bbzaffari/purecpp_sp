@@ -23,7 +23,7 @@ Designed for maximum performance and scalability, it integrates vector search, O
 
 ### Documentation
 
-For detailed explanation of features, please refer to our 🔗 [official documentation](https://docs.puredocs.org/setup)
+For detailed explanation of features, please refer to our 🔗 [official documentation](https://docs.puredocs.org/setup).
 
 ### Contributing to PureCPP
 
@@ -199,10 +199,9 @@ Sandbox/
 
 ---
 ---
----
-
 # Use pre-trained models
 
+---
 ### 🛠️ Hugging Face to **ONNX** Converter 
 
 **`models/models_to_onnx.py`**
