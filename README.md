@@ -24,7 +24,6 @@ Designed for maximum performance and scalability, it integrates vector search, O
 - [Using Pre-trained Models](#use-pre-trained-models)
   
 ---
----
 
 ### Documentation
 
@@ -43,10 +42,13 @@ If you would like to contribute, please read our 👉 [contribution guide](/comm
 - ***Python*** >= 3.8*
 - ***Conan**   >= 2*
 - ***Rust***
-
+   
+---
+---
+# Environment Setup & Build Instructions
 ---
 
-# Docker Environment Setup 
+## Docker Environment Setup 
 
 * 1. Clone the repository along with all its submodules (recursively)
 
@@ -87,7 +89,7 @@ chmod +x build.sh
 ```
 
 
-# Local Environment Setup 
+## Local Environment Setup 
 
 ### 1. Clone the Repository
 
@@ -169,10 +171,10 @@ chmod +x build.sh
 ./build.sh all
 ```
 
----
+
 ---
 
-# How to build
+## How to build
 
 This is a development version with an automatic pipline build system. Optimizing the process, making it easy to compile and test all five modules automatically in this development version.
 
@@ -209,7 +211,7 @@ Sandbox/
 └── ...
 ```
 
-
+---
 ---
 ---
 
