@@ -15,7 +15,7 @@ Designed for maximum performance and scalability, it integrates vector search, O
  related to this framework.
 - [Documentation](#-documentation)
 - [Contributing](#-contributing-to-purecpp)
-- [Minimum Requirements](#-minimum-requirements)
+- [Requirements](#-requirements)
 - [Docker Environment Setup](#docker-environment-setup)
 - [Local Environment Setup](#local-environment-setup)
 - [Build Instructions](#how-to-build)
@@ -26,22 +26,17 @@ Designed for maximum performance and scalability, it integrates vector search, O
 ---
 ---
 
-## 📖 Documentation
-For detailed installation and setup instructions, please refer to our official documentation:
+### Documentation
 
-🔗 [PureCPP Documentation](https://docs.puredocs.org/setup)
+For detailed installation and setup instructions, please refer to our 🔗 [official documentation](https://docs.puredocs.org/setup)
 
+### Contributing to PureCPP
 
-## 🚀 Contributing to PureCPP
+We welcome contributions to **PureCPP**! 
 
-We welcome contributions to **PureCPP**! If you would like to contribute, please read our contribution guide before opening an issue or submitting a pull request:
+If you would like to contribute, please read our 👉 [contribution guide](/community/CONTRIBUTING.md) before opening an issue or submitting a pull request.
 
-👉 [Contribution Guide](/community/CONTRIBUTING.md)
-
-
-## 📌 Minimum Requirements
-
-Ensure you have the following dependencies installed before building PureCPP:
+### Requirements
 
 - ***GCC/G++** >= 13.1*
 - ***CMake**   >= 3.22*
