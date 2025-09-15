@@ -11,11 +11,12 @@ This repository provides detailed guidance on how to set up the environment, con
 - [Documentation](#-documentation)
 - [Contributing](#-contributing-to-purecpp)
 - [Minimum Requirements](#-minimum-requirements)
-- [Environment Setup](#environment-setup-ubuntu--debian-for-c-and-python-development)
-- [Using Pre-trained Models](#use-pre-trained-models)
+- [Local Environment Setup](#local-environment-setup)
+- [Docker Environment Setup](#docker-environment-setup)
 - [Build Instructions](#how-to-build)
   - [Compile All Modules](#compile-all-at-once)
   - [Compile Individually](#compile-one-at-a-time)
+- [Using Pre-trained Models](#use-pre-trained-models)
 ---
 ---
 
@@ -24,7 +25,6 @@ For detailed installation and setup instructions, please refer to our official d
 
 🔗 [PureCPP Documentation](https://docs.puredocs.org/setup)
 
----
 
 ## 🚀 Contributing to PureCPP
 
@@ -32,7 +32,6 @@ We welcome contributions to **PureCPP**! If you would like to contribute, please
 
 👉 [Contribution Guide](/community/CONTRIBUTING.md)
 
----
 
 ## 📌 Minimum Requirements
 
@@ -45,7 +44,8 @@ Ensure you have the following dependencies installed before building PureCPP:
 - **Rust**
 
 ---
-# Environment Setup (Ubuntu / Debian) for C++ and Python Development
+
+# Local Environment Setup 
 
 ## 1. Clone the Repository
 
@@ -110,97 +110,65 @@ pip install build conan cmake requests pybind11
 ## 4. Execute the FAISS and torch installation script 
 
 ```bash
-chmod +x  ./installers/install_torch_ubuntu.sh
-./installers/install_torch_ubuntu.sh
-````
-
-```bash
-chmod +x  ./installers/install_faiss.sh
-./installers/install_faiss.sh
+chmod +x  -R ./scripts/*.sh
+./scripts/env_config.sh
 ````
 
 ---
 
 ## 5. Install Rust via rustup
 
-### Run rustup installer non-interactively (-y). This places cargo and rustc in /root/.cargo.
+*Run rustup installer non-interactively (-y). This places cargo and rustc in /root/.cargo & activate Rust Environment:*
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-````
-
-### Activate Rust Environment:
-```bash
 source ~/.cargo/env
 ````
----
-## 6. Setting the Default Conan Profile
-
-```bash
-chmod x+ ./installers/setting_conan_profile.sh
-./installers/setting_conan_profile.sh
-```
 
 ---
 
-# Use pre-trained models
+# Docker Environment Setup 
 
-### 🛠️ Hugging Face to **ONNX** Converter 
-
-**`models/models_to_onnx.py`**
-
-This is a unified Python script to convert Hugging Face models into the ONNX format for optimized inference.
-
-The script handles two main use cases:
-1. **Feature extraction models** (e.g., `sentence-transformers`).
-2. **Token classification models** (e.g., Named Entity Recognition - NER).
-
-It automatically creates a `models` directory (in the parent folder of the script) to store the exported ONNX models and related assets.
-
-### Requirements
-
-Before running the script, make sure you have the following Python packages installed:
+- 1. Clone the repository along with all its submodules (recursively)
 
 ```bash
-pip install torch transformers onnx onnxruntime optimum
+git clone --recursive https://github.com/bbzaffari/purecpp
 ```
 
-### 🔧 How to Use
+- 2. Navigate into the cloned repository folder
 
-| Argument          | Description                                           |
-| ----------------- | ----------------------------------------------------- |
-| `-m` / `--model`  | Hugging Face model name (e.g., `dslim/bert-base-NER`) |
-| `-o` / `--output` | Output folder name                                    |
-| `--mode`          | `feature` or `token` (default: `token`)               |
-| `--base_dir`      | Base save directory (default: `./models`)             |
+```bash
+cd purecpp
+```
+
+- 3. `docker build -t pure_faiss .`
+
+```bash
+# Build a Docker image from the current directory and tag it as 'pure_faiss'
+docker build -t pure_faiss .
+```
+
+- 4. Start a Docker container named 'env' from the 'pure_faiss' image, mounting current dir to /home
+
+```bash
+docker run -it --name env -v "$PWD":/home pure_faiss
+```
+
+- 5. Make all shell scripts in the scripts/ folder executable & Run the environment configuration script to set up variables, paths, or dependencies
+
+```bash
+chmod +x -R scripts/*.sh
+./scripts/env_config.sh
+```
+
+
+- 6. Make the build.sh script executable \ and Run the 'build' command or script (ensure it's defined in PATH or as a function/alias)
+
+```bash
+chmod +x build.sh
+./build.sh
+```
 
 ---
-
-## Examples
-
-> **In ./models/ run:**
-
-```bash
-python model_to_onnx.py -m="dbmdz/bert-large-cased-finetuned-conll03-english" -o="bert-large-cased-finetuned-conll03-english"
-```
-
-```bash
-python model_to_onnx.py -m="sentence-transformers/all-MiniLM-L6-v2" -o="sentence-transformers/all-MiniLM-L6-v2"
-```
-
-## Output
-
-```
-/models/
-  ├── model_to_onnx.py 
-  ├── sentence-transformers/all-MiniLM-L6-v2/ 
-  │    ├── model.onnx (via optimum)
-  │    └── tokenizer/ 
-  └── dslim/bert-base-NER/  
-       ├── model.onnx  
-       ├── label_map.json  
-       └── tokenizer/ 
-```
-
 ---
 
 # How to build 
@@ -244,7 +212,71 @@ Sandbox/
 ```
 
 
+---
+---
 
+# Use pre-trained models
+
+### 🛠️ Hugging Face to **ONNX** Converter 
+
+**`models/models_to_onnx.py`**
+
+This is a unified Python script to convert Hugging Face models into the ONNX format for optimized inference.
+
+The script handles two main use cases:
+1. **Feature extraction models** (e.g., `sentence-transformers`).
+2. **Token classification models** (e.g., Named Entity Recognition - NER).
+
+It automatically creates a `models` directory (in the parent folder of the script) to store the exported ONNX models and related assets.
+
+### Requirements
+
+Before running the script, make sure you have the following Python packages installed:
+
+```bash
+pip install torch transformers onnx onnxruntime optimum
+```
+
+### 🔧 How to Use
+
+| Argument          | Description                                           |
+| ----------------- | ----------------------------------------------------- |
+| `-m` / `--model`  | Hugging Face model name (e.g., `dslim/bert-base-NER`) |
+| `-o` / `--output` | Output folder name                                    |
+| `--mode`          | `feature` or `token` (default: `token`)               |
+| `--base_dir`      | Base save directory (default: `./models`)             |
+
+---
+---
+
+## Examples
+
+> **In ./models/ run:**
+
+```bash
+python model_to_onnx.py -m="dbmdz/bert-large-cased-finetuned-conll03-english" -o="bert-large-cased-finetuned-conll03-english"
+```
+
+```bash
+python model_to_onnx.py -m="sentence-transformers/all-MiniLM-L6-v2" -o="sentence-transformers/all-MiniLM-L6-v2"
+```
+
+## Output
+
+```
+/models/
+  ├── model_to_onnx.py 
+  ├── sentence-transformers/all-MiniLM-L6-v2/ 
+  │    ├── model.onnx (via optimum)
+  │    └── tokenizer/ 
+  └── dslim/bert-base-NER/  
+       ├── model.onnx  
+       ├── label_map.json  
+       └── tokenizer/ 
+```
+
+---
+---
 
 ## 📌 Next Steps
 ![Next Steps](community/release.jpg)
