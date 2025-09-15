@@ -13,11 +13,9 @@ Designed for maximum performance and scalability, it integrates vector search, O
 ## Table of Contents
 🔍 Explore [all of Bruno Bavaresco Zaffari’s contributions (explained)](https://github.com/bbzaffari/Open-Source-RAG-Engine-System-with-Modular-Vector-Processing)
  related to this framework.
-- [Documentation](#-documentation)
-- [Contributing](#-contributing-to-purecpp)
-- [Requirements](#-requirements)
-- [Docker Environment Setup](#docker-environment-setup)
-- [Local Environment Setup](#local-environment-setup)
+ -[Environment Setup & Build Instructions](#-environment-setup-&-build-instructions)
+  - [Docker Environment Setup](#docker-environment-setup)
+  - [Local Environment Setup](#local-environment-setup)
 - [Build Instructions](#how-to-build)
   - [Compile All Modules](#compile-all-at-once)
   - [Compile Individually](#compile-one-at-a-time)
