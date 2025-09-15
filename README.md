@@ -1,8 +1,11 @@
-![status](https://img.shields.io/badge/type-scratchpad-blue) ***(**SP** stands for Scratchpad):*** **This repository is Bruno’s working notepad where all structural changes are designed and documented before being pushed to the official ecosystem.**
+**This repository is Bruno’s working notepad where all structural changes are designed and documented before being pushed to the official ecosystem.**
+![status](https://img.shields.io/badge/type-scratchpad-blue) ***(**SP** stands for Scratchpad)*** 
+
 # PureCPP framework
 **PureCPP is a powerful C++ backend architecture for RAG systems.**\
-Designed for maximum performance and scalability, it integrates vector search, ONNX models, and CPU/CUDA acceleration into a seamless, python integrated framework.\
-This repository provides detailed guidance on how to set up the environment, configure dependencies with Conan, and compile the project using CMake — going beyond a simple build, it shows how to prepare a robust development pipeline.
+Designed for maximum performance and scalability, it integrates vector search, ONNX models, and CPU/CUDA acceleration into a seamless, python integrated framework.
+
+*This repository provides detailed guidance on how to set up the environment, configure dependencies with Conan and build project using CMake.*
 
 ## 📚 Table of Contents
 🔍 Explore [all of Bruno Bavaresco Zaffari’s contributions (explained)](https://github.com/bbzaffari/Open-Source-RAG-Engine-System-with-Modular-Vector-Processing)
@@ -11,12 +14,13 @@ This repository provides detailed guidance on how to set up the environment, con
 - [Documentation](#-documentation)
 - [Contributing](#-contributing-to-purecpp)
 - [Minimum Requirements](#-minimum-requirements)
-- [Local Environment Setup](#local-environment-setup)
 - [Docker Environment Setup](#docker-environment-setup)
+- [Local Environment Setup](#local-environment-setup)
 - [Build Instructions](#how-to-build)
   - [Compile All Modules](#compile-all-at-once)
   - [Compile Individually](#compile-one-at-a-time)
 - [Using Pre-trained Models](#use-pre-trained-models)
+  
 ---
 ---
 
@@ -44,6 +48,47 @@ Ensure you have the following dependencies installed before building PureCPP:
 - ***Rust***
 
 ---
+
+# Docker Environment Setup 
+
+* 1. Clone the repository along with all its submodules (recursively)
+
+```bash
+git clone --recursive https://github.com/bbzaffari/purecpp
+```
+
+* 2. Navigate into the cloned repository folder
+
+```bash
+cd purecpp
+```
+
+* 3. Build a Docker image from the current directory and tag it as 'pure_faiss'
+
+```bash
+docker build -t pure_faiss .
+```
+
+* 4. Start a Docker container named 'env' from the 'pure_faiss' image, mounting current dir to /home
+
+```bash
+docker run -it --name env -v "$PWD":/home pure_faiss
+```
+
+* 5. Make all shell scripts in the scripts/ folder executable & Run the environment configuration script to set up variables, paths, or dependencies
+
+```bash
+chmod +x -R scripts/*.sh
+./scripts/env_config.sh
+```
+
+* 6. Make the build.sh script executable \ and Run the 'build' command or script (ensure it's defined in PATH or as a function/alias)
+
+```bash
+chmod +x build.sh
+./build.sh all
+```
+
 
 # Local Environment Setup 
 
@@ -121,50 +166,6 @@ source ~/.cargo/env
 ````
 
 ### 6. Make the build.sh script executable \ and Run the 'build' command or script (ensure it's defined in PATH or as a function/alias)
-
-```bash
-chmod +x build.sh
-./build.sh all
-```
-
----
----
-
-# Docker Environment Setup 
-
-* 1. Clone the repository along with all its submodules (recursively)
-
-```bash
-git clone --recursive https://github.com/bbzaffari/purecpp
-```
-
-* 2. Navigate into the cloned repository folder
-
-```bash
-cd purecpp
-```
-
-* 3. `docker build -t pure_faiss .`
-
-```bash
-# Build a Docker image from the current directory and tag it as 'pure_faiss'
-docker build -t pure_faiss .
-```
-
-* 4. Start a Docker container named 'env' from the 'pure_faiss' image, mounting current dir to /home
-
-```bash
-docker run -it --name env -v "$PWD":/home pure_faiss
-```
-
-* 5. Make all shell scripts in the scripts/ folder executable & Run the environment configuration script to set up variables, paths, or dependencies
-
-```bash
-chmod +x -R scripts/*.sh
-./scripts/env_config.sh
-```
-
-* 6. Make the build.sh script executable \ and Run the 'build' command or script (ensure it's defined in PATH or as a function/alias)
 
 ```bash
 chmod +x build.sh
