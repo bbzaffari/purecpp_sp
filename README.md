@@ -47,7 +47,7 @@ Ensure you have the following dependencies installed before building PureCPP:
 
 # Local Environment Setup 
 
-- 1. Clone the Repository
+#### 1. Clone the Repository
 
 ```bash
 git clone --recursive https://github.com/pureai-ecosystem/purecpp.git
@@ -64,7 +64,7 @@ cd purecpp
 >
 > This will initialize and update all required Git submodules.
 
-- 2. Installing dependencies
+#### 2. Installing dependencies
 
 - **Ubuntu/Debian**
 ```bash
@@ -86,7 +86,7 @@ yum install -y \
       openblas-devel unzip \
 ````
 
-- 3. Install python essential packages
+### 3. Install python essential packages
 
 *In case you do not have a Docker environment available*, we strongly recommend that you use a Python `venv` (virtual environment) to ensure proper isolation of dependencies and reproducibility of results. This practice minimizes conflicts between global packages and project-specific requirements, fostering a cleaner and more maintainable development setup. 
 
@@ -106,14 +106,14 @@ pip install build conan cmake requests pybind11
 ````
 ---
 
-- 4. Execute the `env_config.sh` **(in order to install FAISS, torch, configure conan)**
+### 4. Execute the `env_config.sh` **(in order to install FAISS, torch, configure conan)**
 
 ```bash
 chmod +x  -R ./scripts/*.sh
 ./scripts/env_config.sh
 ````
 
-- 5. Install Rust via rustup
+### 5. Install Rust via rustup
 
 *Run rustup installer non-interactively (-y). This places cargo and rustc in /root/.cargo & activate Rust Environment:*
 ```bash
@@ -121,7 +121,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 source ~/.cargo/env
 ````
 
-- 6. Make the build.sh script executable \ and Run the 'build' command or script (ensure it's defined in PATH or as a function/alias)
+### 6. Make the build.sh script executable \ and Run the 'build' command or script (ensure it's defined in PATH or as a function/alias)
 
 ```bash
 chmod +x build.sh
