@@ -161,7 +161,7 @@ chmod +x  -R ./installers/*.sh
 
 ---
 
-## How to build
+## How to Build
 
 This is a development version with an automatic pipline build system. Optimizing the process, making it easy to compile and test all five modules automatically in this development version.
 
