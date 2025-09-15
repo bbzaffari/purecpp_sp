@@ -10,7 +10,7 @@ Designed for maximum performance and scalability, it integrates vector search, O
 
 *This repository provides detailed guidance on how to set up the environment, configure dependencies and build*
 
-## 📚 Table of Contents
+## Table of Contents
 🔍 Explore [all of Bruno Bavaresco Zaffari’s contributions (explained)](https://github.com/bbzaffari/Open-Source-RAG-Engine-System-with-Modular-Vector-Processing)
  related to this framework.
 - [Documentation](#-documentation)
@@ -246,8 +246,6 @@ pip install torch transformers onnx onnxruntime optimum
 | `--mode`          | `feature` or `token` (default: `token`)               |
 | `--base_dir`      | Base save directory (default: `./models`)             |
 
----
----
 
 ## Examples
 
