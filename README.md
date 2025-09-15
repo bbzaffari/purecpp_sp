@@ -176,7 +176,7 @@ chmod +x build.sh
 ---
 ---
 
-# How to build 
+# How to build
 
 This is a development version with an automatic pipline build system. Optimizing the process, making it easy to compile and test all five modules automatically in this development version.
 
@@ -196,14 +196,14 @@ chmod +x ./build.sh
 ````
 
 ## Compile all at once
-```
+```bash
 ./build.sh all
-```
+````
 
 ## Compile one at a time
-```
+```bash
 ./build.sh <module>
-```
+````
 
 The resulting libraries will be placed inside [`Sandbox dir`](/Sandbox) :
 
@@ -253,20 +253,18 @@ pip install torch transformers onnx onnxruntime optimum
 
 ## Examples
 
-> **In ./models/ run:**
-
 ```bash
-python model_to_onnx.py -m="dbmdz/bert-large-cased-finetuned-conll03-english" -o="bert-large-cased-finetuned-conll03-english"
+python models/model_to_onnx.py -m="dbmdz/bert-large-cased-finetuned-conll03-english" -o="bert-large-cased-finetuned-conll03-english"
 ```
 
 ```bash
-python model_to_onnx.py -m="sentence-transformers/all-MiniLM-L6-v2" -o="sentence-transformers/all-MiniLM-L6-v2"
+python models/model_to_onnx.py -m="sentence-transformers/all-MiniLM-L6-v2" -o="sentence-transformers/all-MiniLM-L6-v2"
 ```
 
 ## Output
 
 ```
-/models/
+./models/
   ├── model_to_onnx.py 
   ├── sentence-transformers/all-MiniLM-L6-v2/ 
   │    ├── model.onnx (via optimum)
