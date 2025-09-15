@@ -47,7 +47,7 @@ Ensure you have the following dependencies installed before building PureCPP:
 
 # Local Environment Setup 
 
-#### 1. Clone the Repository
+### 1. Clone the Repository
 
 ```bash
 git clone --recursive https://github.com/pureai-ecosystem/purecpp.git
@@ -64,7 +64,7 @@ cd purecpp
 >
 > This will initialize and update all required Git submodules.
 
-#### 2. Installing dependencies
+### 2. Installing dependencies
 
 - **Ubuntu/Debian**
 ```bash
@@ -104,7 +104,6 @@ Steps below to create and activate the virtual environment:
 ```bash
 pip install build conan cmake requests pybind11
 ````
----
 
 ### 4. Execute the `env_config.sh` **(in order to install FAISS, torch, configure conan)**
 
