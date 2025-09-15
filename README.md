@@ -8,7 +8,7 @@
 **PureCPP is a powerful C++ backend architecture for RAG systems.**\
 Designed for maximum performance and scalability, it integrates vector search, ONNX models, and CPU/CUDA acceleration into a seamless, python integrated framework.
 
-*This repository provides detailed guidance on how to set up the environment, configure dependencies with Conan and build project using CMake.*
+*This repository provides detailed guidance on how to set up the environment, configure dependencies and build*
 
 ## 📚 Table of Contents
 🔍 Explore [all of Bruno Bavaresco Zaffari’s contributions (explained)](https://github.com/bbzaffari/Open-Source-RAG-Engine-System-with-Modular-Vector-Processing)
