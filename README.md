@@ -14,8 +14,8 @@ Designed for maximum performance and scalability, it integrates vector search, O
 🔍 Explore [all of Bruno Bavaresco Zaffari’s contributions (explained)](https://github.com/bbzaffari/Open-Source-RAG-Engine-System-with-Modular-Vector-Processing)
  related to this framework.
  - [Environment Setup & Build Instructions](#-environment-setup-&-build-instructions)
-  - [Docker Environment Setup](#docker-environment-setup)
-  - [Local Environment Setup](#local-environment-setup)
+   - [Docker Environment Setup](#docker-environment-setup)
+   - [Local Environment Setup](#local-environment-setup)
 - [Build Instructions](#how-to-build)
   - [Compile All Modules](#compile-all-at-once)
   - [Compile Individually](#compile-one-at-a-time)
