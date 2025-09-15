@@ -27,13 +27,13 @@ Designed for maximum performance and scalability, it integrates vector search, O
 
 ### Documentation
 
-For detailed installation and setup instructions, please refer to our 🔗 [official documentation](https://docs.puredocs.org/setup)
+For detailed explanation of features, please refer to our 🔗 [official documentation](https://docs.puredocs.org/setup)
 
 ### Contributing to PureCPP
 
 We welcome contributions to **PureCPP**! 
 
-If you would like to contribute, please read our 👉 [contribution guide](/community/CONTRIBUTING.md) before opening an issue or submitting a pull request.
+If you would like to contribute, please read our 👉 [contribution guide](/community/CONTRIBUTING.md).
 
 ### Requirements
 
