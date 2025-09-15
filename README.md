@@ -1,4 +1,5 @@
 **This repository is Bruno’s working notepad where all structural changes are designed and documented before being pushed to the official ecosystem.**
+
 ![status](https://img.shields.io/badge/type-scratchpad-blue) ***(**SP** stands for Scratchpad)*** 
 
 # PureCPP framework
