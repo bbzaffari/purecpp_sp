@@ -17,8 +17,6 @@ Designed for maximum performance and scalability, it integrates vector search, O
    - [Docker Environment Setup](#docker-environment-setup)
    - [Local Environment Setup](#local-environment-setup)
 - [Build Instructions](#how-to-build)
-  - [Compile All Modules](#compile-all-at-once)
-  - [Compile Individually](#compile-one-at-a-time)
 - [Using Pre-trained Models](#use-pre-trained-models)
   
 ---
@@ -191,12 +189,12 @@ Before running the provided shell scripts, ensure they have the appropriate exec
 chmod +x ./build.sh
 ````
 
-### Compile all at once
+- Compile all at once
 ```bash
 ./build.sh all
 ````
 
-### Compile one at a time
+- Compile one at a time
 ```bash
 ./build.sh <module>
 ````
