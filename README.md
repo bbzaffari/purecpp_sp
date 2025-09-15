@@ -245,7 +245,7 @@ pip install torch transformers onnx onnxruntime optimum
 | `--base_dir`      | Base save directory (default: `./models`)             |
 
 
-## Examples
+### Examples
 
 ```bash
 python models/model_to_onnx.py -m="dbmdz/bert-large-cased-finetuned-conll03-english" -o="bert-large-cased-finetuned-conll03-english"
@@ -255,7 +255,7 @@ python models/model_to_onnx.py -m="dbmdz/bert-large-cased-finetuned-conll03-engl
 python models/model_to_onnx.py -m="sentence-transformers/all-MiniLM-L6-v2" -o="sentence-transformers/all-MiniLM-L6-v2"
 ```
 
-## Output
+### Output
 
 ```
 ./models/
