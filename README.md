@@ -79,6 +79,7 @@ chmod +x -R installers/*.sh
 
 * **6. [How to Build](#how-to-build)**
 
+---
 
 ## Local Environment Setup 
 
