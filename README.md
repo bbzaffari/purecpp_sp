@@ -201,7 +201,8 @@ chmod +x ./build.sh
 ./build.sh <module>
 ````
 
-The resulting libraries will be placed inside [`Sandbox dir`](/Sandbox) :
+The resulting libraries will be placed inside [**`Sandbox/`**](/Sandbox)
+
 
 ```
 Sandbox/
