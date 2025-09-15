@@ -37,17 +37,17 @@ We welcome contributions to **PureCPP**! If you would like to contribute, please
 
 Ensure you have the following dependencies installed before building PureCPP:
 
-- **GCC/G++** >= 13.1
-- **CMake**   >= 3.22
-- **Python*** >= 3.8
-- **Conan**   >= 2
-- **Rust**
+- ***GCC/G++** >= 13.1*
+- ***CMake**   >= 3.22*
+- ***Python*** >= 3.8*
+- ***Conan**   >= 2*
+- ***Rust***
 
 ---
 
 # Local Environment Setup 
 
-## 1. Clone the Repository
+### 1. Clone the Repository
 
 ```bash
 git clone --recursive https://github.com/pureai-ecosystem/purecpp.git
@@ -64,10 +64,9 @@ cd purecpp
 >
 > This will initialize and update all required Git submodules.
 
-## 2. Installing dependencies
+### 2. Installing dependencies
 
-### Run the following commands:
-- Ubuntu/Debian
+- **Ubuntu/Debian**
 ```bash
 sudo apt update && \
 sudo apt upgrade -y && \
@@ -77,7 +76,7 @@ sudo apt install -y \
   libgflags-dev python3-dev libprotobuf-dev \
   protobuf-compiler unzip libssl-dev zlib1g-dev
 ````
-- RedHat
+- **RedHat**
 ```bash
 yum update && 
 yum install -y \
@@ -87,7 +86,7 @@ yum install -y \
       openblas-devel unzip \
 ````
 
-## 3. Install python essential packages
+### 3. Install python essential packages
 
 *In case you do not have a Docker environment available*, we strongly recommend that you use a Python `venv` (virtual environment) to ensure proper isolation of dependencies and reproducibility of results. This practice minimizes conflicts between global packages and project-specific requirements, fostering a cleaner and more maintainable development setup. 
 
@@ -107,16 +106,14 @@ pip install build conan cmake requests pybind11
 ````
 ---
 
-## 4. Execute the FAISS and torch installation script 
+### 4. Execute the FAISS and torch installation script 
 
 ```bash
 chmod +x  -R ./scripts/*.sh
 ./scripts/env_config.sh
 ````
 
----
-
-## 5. Install Rust via rustup
+### 5. Install Rust via rustup
 
 *Run rustup installer non-interactively (-y). This places cargo and rustc in /root/.cargo & activate Rust Environment:*
 ```bash
@@ -124,6 +121,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 source ~/.cargo/env
 ````
 
+---
 ---
 
 # Docker Environment Setup 
