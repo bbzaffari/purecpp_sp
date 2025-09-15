@@ -77,12 +77,7 @@ chmod +x -R installers/*.sh
 ./installers/env_config.sh
 ```
 
-* **6. Grant build.sh execute permission and build**
-
-```bash
-chmod +x build.sh
-./build.sh all
-```
+* **6. [How to Build](#how-to-build)**
 
 
 ## Local Environment Setup 
@@ -160,12 +155,7 @@ chmod +x  -R ./installers/*.sh
 ./installers/env_config.sh
 ````
 
-### 6. Grant build.sh execute permission and build
-
-```bash
-chmod +x build.sh
-./build.sh all
-```
+### **6. [How to Build](#how-to-build)**
 
 
 ---
