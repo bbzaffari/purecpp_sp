@@ -279,8 +279,3 @@ python model_to_onnx.py -m="sentence-transformers/all-MiniLM-L6-v2" -o="sentence
 
 ---
 ---
-
-## 📌 Next Steps
-![Next Steps](community/release.jpg)
-
-Stay tuned for updates! 🚀
