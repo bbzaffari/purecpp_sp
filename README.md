@@ -14,8 +14,8 @@ Designed for maximum performance and scalability, it integrates vector search, O
 🔍 Explore [all of Bruno Bavaresco Zaffari’s contributions (explained)](https://github.com/bbzaffari/Open-Source-RAG-Engine-System-with-Modular-Vector-Processing)
  related to this framework.
  - [Environment Setup](#environment-setup)
-   - [Docker Environment Setup](#docker-environment-setup)
-   - [Local Environment Setup](#local-environment-setup)
+   - [Docker](#docker)
+   - [Local](#local)
 - [Build Instructions](#how-to-build)
 - [Using Pre-trained Models](#use-pre-trained-models)
   
@@ -44,7 +44,7 @@ If you would like to contribute, please read our 👉 [contribution guide](/comm
 # Environment Setup
 ---
 
-## Docker Environment Setup 
+## Docker
 
 * **1. Clone the repository along with all its submodules (recursively)**
 
@@ -74,13 +74,13 @@ docker run -it --name env -v "$PWD":/home pure_faiss
 > Once you've created the container using `docker run`, ***you don't need to recreate it again.***
 > Instead, follow these two simple commands to ***reuse*** the container:
 
-   > #### 1. `docker start SE`
+   > #### 1. `docker start env`
    > ```bash
    > docker start env
    > ````
-   > This command **starts an existing container** that has already been created earlier using `docker run`. **It runs **in the background** — it doesn’t attach to its terminal.**
+   > This command **starts an existing container** that has already been created earlier using `docker run`. 
    
-   > #### 2. `docker exec -it SE bash`
+   > #### 2. `docker exec -it env bash`
    > ```bash
    > docker exec -it env bash
    > ```
@@ -98,7 +98,7 @@ chmod +x -R installers/*.sh
 
 ---
 
-## Local Environment Setup 
+## Local
 
 ### 1. Clone the Repository
 
@@ -210,12 +210,14 @@ chmod +x ./build.sh
 > The resulting libraries will be placed inside [**`Sandbox/`**](/Sandbox)
 ```
 Sandbox/
+├── Resources/
 ├── purecpp_chunks_clean.cpython-312-x86_64-linux-gnu.so
 └── ...
 ```
 
 ---
 ---
+
 # Use pre-trained models
 
 ---
