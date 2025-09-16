@@ -73,20 +73,18 @@ docker run -it --name env -v "$PWD":/home pure_faiss
 > ## Note
 > Once you've created the container using `docker run`, ***you don't need to recreate it again.***
 > Instead, follow these two simple commands to ***reuse*** the container:
-> 
-> #### 1. `docker start SE`
-> ```bash
-> docker start env
-> ````
-> This command **starts an existing container** that has already been created earlier using `docker run`.
-> It runs **in the background** — it doesn’t attach to its terminal.*
-> 
-> #### 2. `docker exec -it SE bash`
-> **This command **attaches a terminal to the running container**, allowing you to interact with it just like you would with a regular Linux shell.*
-> ```bash
-> docker exec -it env bash
-> ```
 
+   > #### 1. `docker start SE`
+   > ```bash
+   > docker start env
+   > ````
+   > This command **starts an existing container** that has already been created earlier using `docker run`. **It runs **in the background** — it doesn’t attach to its terminal.**
+   
+   > #### 2. `docker exec -it SE bash`
+   > ```bash
+   > docker exec -it env bash
+   > ```
+   > **This command **attaches a terminal to the running container**, allowing you to interact with it just like you would with a regular Linux shell.**
 
 
 * **5.  Grant all scripts in the 'installers/' folder execute permission and run the environment configuration script** **(in order to install FAISS, torch, configure conan)**
