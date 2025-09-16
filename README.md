@@ -36,8 +36,6 @@ If you would like to contribute, please read our 👉 [contribution guide](/comm
 - ***GCC/G++** >= 13.1*
 - ***CMake**   >= 3.22*
 - ***Python** >= 3.8*
-- ***Conan**   >= 2*
-- ***Rust***
    
 ---
 ---
