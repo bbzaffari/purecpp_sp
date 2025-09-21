@@ -290,7 +290,7 @@ python models/model_to_onnx.py -m="sentence-transformers/all-MiniLM-L6-v2" -o="s
 ---
 ## Notebook Playground
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/bbzaffari/purecpp/blob/main/Sandbox/demo_chunk_VDB.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/bbzaffari/purecpp_sp/blob/main/Sandbox/demo_chunk_VDB.ipynb)
 ---
 ---
 ---
