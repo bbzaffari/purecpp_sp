@@ -1,7 +1,6 @@
 **This repository is Bruno’s working notepad where all structural changes are designed and documented before being pushed to the official ecosystem.**
 
 ---
-> [!NOTE]
 > Please disregard the commit history in this branch.
 > 
 > Normally, I clean it up using `git reset --soft HEAD~X` to maintain a more concise and readable history—just like I did in the forked version. This is especially useful because I tend to iterate multiple times on documentation files like the README.
@@ -13,7 +12,7 @@
 ---
 
  
-[![Status](https://img.shields.io/badge/status-stable-brightgreen?style=flat-square)](https://github.com/bbzaffari/purecpp) 👉  🔗🔗🔗🔗🔗 [Stable purecpp](https://github.com/bbzaffari/purecpp) 
+[![Status](https://img.shields.io/badge/status-stable-brightgreen?style=flat-square)](https://github.com/bbzaffari/purecpp) 👉  🔗  [Stable purecpp](https://github.com/bbzaffari/purecpp) 
 
 [![***Status***](https://img.shields.io/badge/Status-%20Refactoring%20in%20progress-orange.svg)]()
 
