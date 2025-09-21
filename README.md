@@ -1,5 +1,15 @@
 **This repository is Bruno’s working notepad where all structural changes are designed and documented before being pushed to the official ecosystem.**
 
+---
+
+> Don't look at the commit history. Normally, I would clean it up using `git reset --soft HEAD~X` to make the history more concise and clear—just like I did in the forked version, since I tend to review things like the README multiple times.
+>
+> This disorganized repository also serves as a sandbox to test commits from the remote repository while verifying dates—something the regular `.git` repo doesn't handle in the same way.
+>
+> And since there aren't many people involved, I'm testing and refactoring the build process myself to adapt the repository. Because of that, I end up running into a few issues—some related to testing, which I only catch later, and others related to compilation.
+
+---
+
 ![status](https://img.shields.io/badge/type-scratchpad-blue) 
 
  [![***Status***](https://img.shields.io/badge/Status-%20Refactoring%20in%20progress-green.svg)](https://github.com/bbzaffari/Cooling-Link-Controller)
