@@ -290,9 +290,8 @@ python models/model_to_onnx.py -m="sentence-transformers/all-MiniLM-L6-v2" -o="s
 ---
 ---
 
-## Quick Start with PIP - Stable
-```bash
- pip install purecpp_extract_dev==0.0.400 purecpp_chunks_clean_dev==0.0.400
-```
+## Notebook Playground
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/bbzaffari/purecpp/blob/main/Sandbox/demo_chunk_VDB.ipynb)
 ---
 ---
