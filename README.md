@@ -68,7 +68,7 @@ git clone --recursive https://github.com/bbzaffari/purecpp_sp
 * **2. Navigate into the cloned repository folder**
 
 ```bash
-cd purecpp
+cd purecpp_sp
 ```
 
 * **3. Build a Docker image from the current directory and tag it as 'pure_faiss'**
@@ -96,7 +96,7 @@ docker run -it --name env -v "$PWD":/home pure_faiss
 > **This command **attaches a terminal to the running container**, allowing you to interact with it just like you would with a regular Linux shell.**
 
 
-* **5. Execute the `env_config.sh** **(in order to install FAISS, torch, configure conan)**
+* **5. Execute the `env_config.sh` ** **(in order to install FAISS, torch, configure conan)**
 
 ```bash
 chmod +x -R installers/*.sh
@@ -113,7 +113,7 @@ chmod +x -R installers/*.sh
 
 ```bash
 git clone --recursive https://github.com/bbzaffari/purecpp_sp
-cd purecpp
+cd purecpp_sp
 ````
 
 > [!NOTE]
