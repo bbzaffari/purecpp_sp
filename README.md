@@ -214,7 +214,7 @@ chmod +x ./build.sh
 
 #### Compile one at a time
 ```bash
-./build.sh <module>
+./build.sh MODULE-NUMBER
 ````
 
 > The resulting libraries will be placed inside [**`Sandbox/`**](/Sandbox)
