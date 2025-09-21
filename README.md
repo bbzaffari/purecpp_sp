@@ -85,7 +85,7 @@ docker build -t pure_faiss .
 docker run -it --name env -v "$PWD":/home pure_faiss
 ```
 
-> **Note:**  
+> [!TIP]
 > Once you've created the container using `docker run`, ***you don't need to recreate it again.***
 > Instead, follow these two simple commands to ***reuse*** the container:
 > ```bash
@@ -118,7 +118,7 @@ git clone --recursive https://github.com/pureai-ecosystem/purecpp.git
 cd purecpp
 ````
 
-> **Note:**  
+> [!NOTE]
 > If you forgot to use `--recursive` when cloning the repository,  
 > make sure to run:
 >
