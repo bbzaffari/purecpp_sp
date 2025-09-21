@@ -3,7 +3,7 @@
 ![status](https://img.shields.io/badge/type-scratchpad-blue) 
 
  [![***Status***](https://img.shields.io/badge/Status-%20Refactoring%20in%20progress-green.svg)](https://github.com/bbzaffari/Cooling-Link-Controller)
-
+[![Status](https://img.shields.io/badge/status-stable-brightgreen?style=flat-square)]() -> 🔗🔗🔗🔗🔗 [Stable purecpp](https://github.com/bbzaffari/purecpp)
 # PureCPP framework
 
 ## Overview 
