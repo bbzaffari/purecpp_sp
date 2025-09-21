@@ -1,20 +1,22 @@
 **This repository is Bruno’s working notepad where all structural changes are designed and documented before being pushed to the official ecosystem.**
 
 ---
-
-> Don't look at the commit history. Normally, I would clean it up using `git reset --soft HEAD~X` to make the history more concise and clear—just like I did in the forked version, since I tend to review things like the README multiple times.
+> Please disregard the commit history in this branch.
+> 
+> Normally, I clean it up using `git reset --soft HEAD~X` to maintain a more concise and readable history—just like I did in the forked version. This is especially useful because I tend to iterate multiple times on documentation files like the README.
 >
-> This disorganized repository also serves as a sandbox to test commits from the remote repository while verifying dates—something the regular `.git` repo doesn't handle in the same way.
+> This disorganized repository also serves as a sandbox to test commits from the remote repository while verifying dates—something the regular `.git` metadata doesn't always make straightforward.
 >
-> And since there aren't many people involved, I'm testing and refactoring the build process myself to adapt the repository. Because of that, I end up running into a few issues—some related to testing, which I only catch later, and others related to compilation.
+> And since there aren't many people involved, I'm testing and refactoring the build process myself.  That means, occasionally I end up running into a few issues—some related to testing, which I only catch later, and others related to compilation.
 
 ---
 
  
 [![Status](https://img.shields.io/badge/status-stable-brightgreen?style=flat-square)](https://github.com/bbzaffari/purecpp) 👉  🔗🔗🔗🔗🔗 [Stable purecpp](https://github.com/bbzaffari/purecpp) 
 
-[![***Status***](https://img.shields.io/badge/Status-%20Refactoring%20in%20progress-orange.svg)](https://github.com/bbzaffari/Cooling-Link-Controller)
- 
+[![***Status***](https://img.shields.io/badge/Status-%20Refactoring%20in%20progress-orange.svg)]
+
+
 # PureCPP framework
 
 ## Overview 
@@ -43,6 +45,7 @@ For detailed explanation of features, please refer to our 🔗 [official documen
 We welcome contributions to **PureCPP**! 
 
 **If you would like to contribute, please read our 👉 [contribution guide](/community/CONTRIBUTING.md).**
+
 
 ### Requirements
 
@@ -283,5 +286,13 @@ python models/model_to_onnx.py -m="sentence-transformers/all-MiniLM-L6-v2" -o="s
        └── tokenizer/ 
 ```
 
+---
+---
+---
+
+## Quick Start with PIP - Stable
+```bash
+ pip install purecpp_extract_dev==0.0.400 purecpp_chunks_clean_dev==0.0.400
+```
 ---
 ---
