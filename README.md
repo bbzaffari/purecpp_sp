@@ -2,6 +2,8 @@
 
 ![status](https://img.shields.io/badge/type-scratchpad-blue) 
 
+ [![***Status***](https://img.shields.io/badge/Status-%20Refactoring%20in%20progress-green.svg)](https://github.com/bbzaffari/Cooling-Link-Controller)
+
 # PureCPP framework
 
 ## Overview 
@@ -29,7 +31,7 @@ For detailed explanation of features, please refer to our 🔗 [official documen
 
 We welcome contributions to **PureCPP**! 
 
-If you would like to contribute, please read our 👉 [contribution guide](/community/CONTRIBUTING.md).
+**If you would like to contribute, please read our 👉 [contribution guide](/community/CONTRIBUTING.md).**
 
 ### Requirements
 
@@ -188,6 +190,7 @@ Each module (CMAKE_LIBS, CMAKE_META, CMAKE_EMBED, CMAKE_EXTRACT, CMAKE_CHUNKS_CL
 Before running the provided shell scripts, ensure they have the appropriate execution permissions. This step is essential to avoid permission errors during the build process, especially when working on Linux or macOS systems.
 
 ```bash
+chmod +x ./CMAKE/sub_mod_build.sh
 chmod +x ./build.sh
 ````
 
