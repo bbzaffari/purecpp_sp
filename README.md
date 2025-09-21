@@ -98,7 +98,7 @@ docker run -it --name env -v "$PWD":/home pure_faiss
 > **This command **attaches a terminal to the running container**, allowing you to interact with it just like you would with a regular Linux shell.**
 
 
-* **5. Execute the `env_config.sh**` **(in order to install FAISS, torch, configure conan)**
+* **5. Execute the `env_config.sh** **(in order to install FAISS, torch, configure conan)**
 
 ```bash
 chmod +x -R installers/*.sh
