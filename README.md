@@ -39,7 +39,6 @@ Designed for maximum performance and scalability, it integrates vector search, O
 
 # Environment Setup
 
----
 
 ## Docker
 
