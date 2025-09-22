@@ -1,7 +1,7 @@
 
 
 ---
-**This repository is Bruno’s working notepad where all structural changes are designed and documented before being pushed to the official ecosystem.**
+**This repository is my development scratchpad, where all structural changes are designed and documented before being pushed to the official ecosystem.**
 > **Note**:
 > Please disregard the commit history in this branch.
 > 
