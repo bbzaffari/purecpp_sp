@@ -52,7 +52,7 @@ bkp/
 # Ignore everything in the models folder
 models/*
 # But DO NOT ignore these two files
-!models/model_to_onnx.py
+!models/.gitkeep
 
 libtorch*.zip
 libs/libtorch
