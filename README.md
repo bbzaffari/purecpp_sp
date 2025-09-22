@@ -10,7 +10,7 @@
 > And since there aren't many people involved, I'm testing and refactoring the build process myself.  That means, occasionally I end up running into a few issues—some related to testing, which I only catch later, and others related to compilation.
 
 ---
-
+---
  
 [![Status](https://img.shields.io/badge/status-stable-brightgreen?style=flat-square)](https://github.com/bbzaffari/purecpp) 👉  🔗  [Stable purecpp](https://github.com/bbzaffari/purecpp) 
 
@@ -27,17 +27,16 @@ Designed for maximum performance and scalability, it integrates vector search, O
 ## Table of Contents
 🔍 Explore [all of Bruno Bavaresco Zaffari’s contributions (explained)](https://github.com/bbzaffari/Open-Source-RAG-Engine-System-with-Modular-Vector-Processing)
  related to this framework.
- - [Environment Setup](#environment-setup)
+ - 1. [Environment Setup](#environment-setup)
    - [Docker](#docker)
    - [Local](#local)
-- [Build Instructions](#how-to-build)
-- [Testing Locally](#testing-locally)
+- 2. [Build Instructions](#how-to-build)
+- 3. [Testing Locally](#testing-locally)
 
 ---
 
----
----
 # Environment Setup
+
 ---
 
 ## Docker
