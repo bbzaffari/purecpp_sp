@@ -1,6 +1,8 @@
-**This repository is Bruno’s working notepad where all structural changes are designed and documented before being pushed to the official ecosystem.**
+
 
 ---
+**This repository is Bruno’s working notepad where all structural changes are designed and documented before being pushed to the official ecosystem.**
+> **Note**:
 > Please disregard the commit history in this branch.
 > 
 > Normally, I clean it up using `git reset --soft HEAD~X` to maintain a more concise and readable history—just like I did in the forked version. This is especially useful because I tend to iterate multiple times on documentation files like the README.
