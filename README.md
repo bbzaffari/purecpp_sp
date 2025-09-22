@@ -40,30 +40,30 @@ Designed for maximum performance and scalability, it integrates vector search, O
  
 ---
 
-# Environment Setup
+## Environment Setup
 
 
 ## Docker
 
-### **1. Clone the repository along with all its submodules (recursively)**
+* **1. Clone the repository along with all its submodules (recursively)**
 
 ```bash
 git clone --recursive https://github.com/bbzaffari/purecpp_sp
 ```
 
-### **2. Navigate into the cloned repository folder**
+* **2. Navigate into the cloned repository folder**
 
 ```bash
 cd purecpp_sp
 ```
 
-### **3. Build a Docker image from the current directory and tag it as 'pure_faiss'**
+* **3. Build a Docker image from the current directory and tag it as 'pure_faiss'**
 
 ```bash
 docker build -t pure_faiss .
 ```
 
-### **4. Start a Docker container named 'env' from the 'pure_faiss' image, mounting current dir to /home**
+* **4. Start a Docker container named 'env' from the 'pure_faiss' image, mounting current dir to /home**
 
 ```bash
 docker run -it --name env -v "$PWD":/home pure_faiss
@@ -83,14 +83,12 @@ docker run -it --name env -v "$PWD":/home pure_faiss
 > **This command **attaches a terminal to the running container**, allowing you to interact with it just like you would with a regular Linux shell.**
 
 
-### **5. Execute the `env_config.sh`** **(to install FAISS, PyTorch, and configure Conan)**
+* **5. Execute the `env_config.sh`** **(to install FAISS, PyTorch, and configure Conan)**
 
 ```bash
 chmod +x installers/*.sh
 ./installers/env_config.sh
 ```
-
-### **6. [How to Build](#how-to-build)**
 
 ---
 
@@ -102,7 +100,7 @@ chmod +x installers/*.sh
 > - ***CMake**   >= 3.22*
 > - ***Python** >= 3.8*
 
-### 1. Clone the Repository
+#### 1. Clone the Repository
    
 ```bash
 git clone --recursive https://github.com/bbzaffari/purecpp_sp
@@ -119,7 +117,7 @@ cd purecpp_sp
 >
 > This will initialize and update all required Git submodules.
 
-### 2. Installing dependencies
+#### 2. Installing dependencies
 
 - **Ubuntu/Debian**
 ```bash
@@ -141,7 +139,7 @@ yum install -y \
       openblas-devel unzip \
 ````
 
-### 3. Install python essential packages
+#### 3. Install python essential packages
 
 *In case you do not have a Docker environment available*, we strongly recommend that you use a Python `venv` (virtual environment) to ensure proper isolation of dependencies and reproducibility of results. This practice minimizes conflicts between global packages and project-specific requirements, fostering a cleaner and more maintainable development setup. 
 
@@ -160,7 +158,7 @@ Steps below to create and activate the virtual environment:
 pip install build conan cmake requests pybind11
 ````
 
-### 4. Install Rust via rustup
+#### 4. Install Rust via rustup
 
 *Run rustup installer non-interactively (-y). This places cargo and rustc in /root/.cargo & activate Rust Environment:*
 ```bash
@@ -168,15 +166,12 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 source ~/.cargo/env
 ````
 
-### 5. Execute the `env_config.sh` **(to install FAISS, PyTorch, and configure Conan)**
+#### 5. Execute the `env_config.sh` **(to install FAISS, PyTorch, and configure Conan)**
 
 ```bash
 chmod +x ./installers/*.sh
 ./installers/env_config.sh
-````
-
-### **6. [How to Build](#how-to-build)**
-
+```
 
 ---
 
