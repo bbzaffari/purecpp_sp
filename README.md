@@ -31,8 +31,7 @@ Designed for maximum performance and scalability, it integrates vector search, O
    - [Docker](#docker)
    - [Local](#local)
 - [Build Instructions](#how-to-build)
-- [Using Pre-trained Models](#use-pre-trained-models)
-  
+
 ---
 
 ---
