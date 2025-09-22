@@ -45,25 +45,25 @@ Designed for maximum performance and scalability, it integrates vector search, O
 
 ## Docker
 
-* **1. Clone the repository along with all its submodules (recursively)**
+### **1. Clone the repository along with all its submodules (recursively)**
 
 ```bash
 git clone --recursive https://github.com/bbzaffari/purecpp_sp
 ```
 
-* **2. Navigate into the cloned repository folder**
+### **2. Navigate into the cloned repository folder**
 
 ```bash
 cd purecpp_sp
 ```
 
-* **3. Build a Docker image from the current directory and tag it as 'pure_faiss'**
+### **3. Build a Docker image from the current directory and tag it as 'pure_faiss'**
 
 ```bash
 docker build -t pure_faiss .
 ```
 
-* **4. Start a Docker container named 'env' from the 'pure_faiss' image, mounting current dir to /home**
+### **4. Start a Docker container named 'env' from the 'pure_faiss' image, mounting current dir to /home**
 
 ```bash
 docker run -it --name env -v "$PWD":/home pure_faiss
@@ -83,14 +83,14 @@ docker run -it --name env -v "$PWD":/home pure_faiss
 > **This command **attaches a terminal to the running container**, allowing you to interact with it just like you would with a regular Linux shell.**
 
 
-* **5. Execute the `env_config.sh`** **(to install FAISS, PyTorch, and configure Conan)**
+### **5. Execute the `env_config.sh`** **(to install FAISS, PyTorch, and configure Conan)**
 
 ```bash
 chmod +x installers/*.sh
 ./installers/env_config.sh
 ```
 
-* **6. [How to Build](#how-to-build)**
+### **6. [How to Build](#how-to-build)**
 
 ---
 
