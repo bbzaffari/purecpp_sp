@@ -3,9 +3,7 @@
 ---
 **This repository is my development scratchpad, where all structural changes are designed and documented before being pushed to the official ecosystem.**
 > **Note**:
-> Please disregard the commit history in this branch.
-> 
-> Normally, I clean it up using `git reset --soft HEAD~X` to maintain a more concise and readable history—just like I did in the forked version. This is especially useful because I tend to iterate multiple times on documentation files like the README.
+> Please disregard the commit history in this repository.
 >
 > This disorganized repository also serves as a sandbox to test commits from the remote repository while verifying dates—something the regular `.git` metadata doesn't always make straightforward.
 >
