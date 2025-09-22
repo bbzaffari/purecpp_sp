@@ -17,7 +17,7 @@
 
 # PureCPP framework
 
-[![***Status***](https://img.shields.io/badge/Status-%20Refactoring%20in%20progress-orange.svg)]()
+[![***Status this***](https://img.shields.io/badge/Status-%20Refactoring%20in%20progress-orange.svg)]()
 ## Overview 
 **PureCPP is a powerful C++ backend architecture for RAG systems.**\
 Designed for maximum performance and scalability, it integrates vector search, ONNX models, and CPU/CUDA acceleration into a seamless, python integrated framework.
@@ -31,7 +31,7 @@ Designed for maximum performance and scalability, it integrates vector search, O
    - [Docker](#docker)
    - [Local](#local)
 - [Build Instructions](#how-to-build)
-- [Testing Locally](#testing-ocally)
+- [Testing Locally](#testing-locally)
 
 ---
 
@@ -67,11 +67,12 @@ docker run -it --name env -v "$PWD":/home pure_faiss
 ```
 
 > [!TIP]
+> 
 > Once you've created the container using `docker run`, ***you don't need to recreate it again.***
 > Instead, follow these two simple commands to ***reuse*** the container:
 > ```bash
 > docker start env
-> ````
+> ```
 > **This command **starts an existing container** that has already been created earlier using `docker run`.**
 > ```bash
 > docker exec -it env bash
@@ -79,10 +80,10 @@ docker run -it --name env -v "$PWD":/home pure_faiss
 > **This command **attaches a terminal to the running container**, allowing you to interact with it just like you would with a regular Linux shell.**
 
 
-* **5. Execute the `env_config.sh` ** **(in order to install FAISS, torch, configure conan)**
+* **5. Execute the `env_config.sh`** **(to install FAISS, PyTorch, and configure Conan)**
 
 ```bash
-chmod +x -R installers/*.sh
+chmod +x installers/*.sh
 ./installers/env_config.sh
 ```
 
@@ -164,10 +165,10 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 source ~/.cargo/env
 ````
 
-### 5. Execute the `env_config.sh` **(in order to install FAISS, torch, configure conan)**
+### 5. Execute the `env_config.sh` **(to install FAISS, PyTorch, and configure Conan)**
 
 ```bash
-chmod +x  -R ./installers/*.sh
+chmod +x ./installers/*.sh
 ./installers/env_config.sh
 ````
 
@@ -192,7 +193,7 @@ Each module (CMAKE_LIBS, CMAKE_META, CMAKE_EMBED, CMAKE_EXTRACT, CMAKE_CHUNKS_CL
 Before running the provided shell scripts, ensure they have the appropriate execution permissions. This step is essential to avoid permission errors during the build process, especially when working on Linux or macOS systems.
 
 ```bash
-chmod +x ./CMAKE/sub_mod_build.sh
+chmod -R +x ./CMAKE/*/sub_mod_build.sh
 chmod +x ./build.sh
 ````
 
