@@ -35,23 +35,6 @@ Designed for maximum performance and scalability, it integrates vector search, O
   
 ---
 
-### Documentation
-
-For detailed explanation of features, please refer to our 🔗 [official documentation](https://docs.puredocs.org/setup).
-
-### Contributing to PureCPP
-
-We welcome contributions to **PureCPP**! 
-
-**If you would like to contribute, please read our 👉 [contribution guide](/community/CONTRIBUTING.md).**
-
-
-### Requirements
-
-- ***GCC/G++** >= 13.1*
-- ***CMake**   >= 3.22*
-- ***Python** >= 3.8*
-   
 ---
 ---
 # Environment Setup
@@ -111,6 +94,14 @@ chmod +x -R installers/*.sh
 
 ### 1. Clone the Repository
 
+
+> Requirements
+> 
+> - ***GCC/G++** >= 13.1*
+> - ***CMake**   >= 3.22*
+> - ***Python** >= 3.8*
+
+   
 ```bash
 git clone --recursive https://github.com/bbzaffari/purecpp_sp
 cd purecpp_sp
