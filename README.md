@@ -141,9 +141,9 @@ yum install -y \
 
 #### 3. Install python essential packages
 
-*In case you do not have a Docker environment available*, we strongly recommend that you use a Python `venv` (virtual environment) to ensure proper isolation of dependencies and reproducibility of results. This practice minimizes conflicts between global packages and project-specific requirements, fostering a cleaner and more maintainable development setup. 
+*In case you do not have a Docker environment available, we strongly recommend that you use a Python `venv` (virtual environment) to ensure proper isolation of dependencies and reproducibility of results.*
 
-Steps below to create and activate the virtual environment:
+This practice minimizes conflicts between global packages and project-specific requirements. Use the steps below to create and activate the virtual environment:
 
   - Create the virtual environment (replace 'venv' with your preferred name)
     ```bash
@@ -177,9 +177,9 @@ chmod +x ./installers/*.sh
 
 ## How to Build
 
-The `build.sh` is a development version pipline, otimizing the process, making it easy to compile and test all five modules.
+The `build.sh` is a development version pipeline, that making it easier to compile and test all five modules.
 
-Before running the provided shell scripts, ensure they have the appropriate execution permissions.
+Before running the provided shell scripts, to ensure they have the execution permissions.
 ```bash
 chmod -R +x ./CMAKE/*/sub_mod_build.sh
 chmod +x ./build.sh
@@ -199,18 +199,18 @@ Each module (CMAKE_LIBS, CMAKE_META, CMAKE_EMBED, CMAKE_EXTRACT, CMAKE_CHUNKS_CL
 - Cleans the build/ folder
 - Installs Conan dependencies if missing
 - Compiles the code
-- Sends the .so output to the central Sandbox/ directory
+- Sends the purecpp_*.so output to the central  [`Sandbox/`](/Sandbox)
   
 ---
 
 ## Testing Locally
 
-The build.sh script will **place** the resulting libraries inside [`Sandbox/`](/Sandbox)
+The shared object will be **placed** inside the [`Sandbox/`](/Sandbox)
 
 ```SourceTree
 Sandbox/
     ├── Resources/
-    ├── RagPUREAI.cpython-312-x86_64-linux-gnu.so
+    ├── purecpp_*.so
     └── YOUR-TEST.py
 ```
 
