@@ -25,14 +25,16 @@ Ready to jump in? Follow this quick setup guide to get started smoothly:
 
 3. [How to build](/README.md#how-to-build)
 
-4. **Work on your feature or bugfix**, ensuring you have unit tests covering your code.
-5. **Commit** your changes, then push them to your fork.
+All set, now! It is time to **build something powerful**.
+
+1. **Work on your feature or bugfix**, ensuring you have unit tests covering your code.
+2. **Commit** your changes, then push them to your fork.
    ```bash
    git push origin your-feature-branch
    ````
-6. **Open a pull request** on GitHub.
+3. **Open a pull request** on GitHub.
 
-All set, now! It is time to **build something powerful**.
+
 
 ---
 ---
