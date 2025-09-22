@@ -31,6 +31,7 @@ Designed for maximum performance and scalability, it integrates vector search, O
    - [Docker](#docker)
    - [Local](#local)
 - [Build Instructions](#how-to-build)
+- [Testing Locally](#testing-ocally)
 
 ---
 
@@ -204,20 +205,24 @@ chmod +x ./build.sh
 ```bash
 ./build.sh MODULE-NUMBER
 ````
+---
 
-> The resulting libraries will be placed inside [**`Sandbox/`**](/Sandbox)
-```
+## Testing Locally
+
+The build.sh script will **place** the resulting libraries inside [`Sandbox/`](/Sandbox)
+
+```SourceTree
 Sandbox/
-├── Resources/
-├── purecpp_chunks_clean.cpython-312-x86_64-linux-gnu.so
-└── ...
+    ├── Resources/
+    ├── RagPUREAI.cpython-312-x86_64-linux-gnu.so
+    └── YOUR-TEST.py
 ```
----
----
+
 ## Notebook Playground
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/bbzaffari/purecpp_sp/blob/main/Sandbox/demo_chunk_VDB.ipynb)
----
+
+
 ---
 ---
 ---
