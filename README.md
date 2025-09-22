@@ -179,33 +179,30 @@ chmod +x ./installers/*.sh
 
 ## How to Build
 
-This is a development version with an automatic pipline build system. Optimizing the process, making it easy to compile and test all five modules automatically in this development version.
+The `build.sh` is a development version pipline, otimizing the process, making it easy to compile and test all five modules.
 
-To compile and build, just use the provided scripts — no manual setup needed.
-
-Each module (CMAKE_LIBS, CMAKE_META, CMAKE_EMBED, CMAKE_EXTRACT, CMAKE_CHUNKS_CLEAN) has its own **`sub_mod_build.sh`** script, which:
-
-- Cleans the build/ folder
-- Installs Conan dependencies if missing
-- Compiles the code
-- Sends the .so output to the central Sandbox/ directory
-
-Before running the provided shell scripts, ensure they have the appropriate execution permissions. This step is essential to avoid permission errors during the build process, especially when working on Linux or macOS systems.
-
+Before running the provided shell scripts, ensure they have the appropriate execution permissions.
 ```bash
 chmod -R +x ./CMAKE/*/sub_mod_build.sh
 chmod +x ./build.sh
 ````
 
-#### Compile all at once
+### Compile all at once
 ```bash
 ./build.sh all
 ````
 
-#### Compile one at a time
+### Compile one at a time
 ```bash
 ./build.sh MODULE-NUMBER
 ````
+
+Each module (CMAKE_LIBS, CMAKE_META, CMAKE_EMBED, CMAKE_EXTRACT, CMAKE_CHUNKS_CLEAN) has its own **`sub_mod_build.sh`** script, which:
+- Cleans the build/ folder
+- Installs Conan dependencies if missing
+- Compiles the code
+- Sends the .so output to the central Sandbox/ directory
+  
 ---
 
 ## Testing Locally
