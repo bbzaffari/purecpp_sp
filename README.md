@@ -92,15 +92,13 @@ chmod +x -R installers/*.sh
 
 ## Local
 
-### 1. Clone the Repository
-
-
 > Requirements
 > 
 > - ***GCC/G++** >= 13.1*
 > - ***CMake**   >= 3.22*
 > - ***Python** >= 3.8*
 
+### 1. Clone the Repository
    
 ```bash
 git clone --recursive https://github.com/bbzaffari/purecpp_sp
