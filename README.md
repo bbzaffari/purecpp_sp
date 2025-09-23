@@ -41,7 +41,7 @@ Designed for maximum performance and scalability, it integrates vector search, O
 ## Environment Setup
 ---
 
-### 1. Clone the Repository
+### First of all clone the repository
    
 ```bash
 git clone --recursive https://github.com/bbzaffari/purecpp_sp
