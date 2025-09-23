@@ -56,7 +56,7 @@ cd purecpp_sp
 > git submodule update --init --recursive
 > ```
 
-### Docker
+### **Docker**
 
 ---
 
@@ -95,7 +95,7 @@ cd purecpp_sp
 
 ---
 
-### Local
+### **Local**
 
 ---
 > Requirements
