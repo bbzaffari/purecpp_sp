@@ -39,6 +39,7 @@ Designed for maximum performance and scalability, it integrates vector search, O
 ---
 
 ## Environment Setup
+---
 
 ### 1. Clone the Repository
    
@@ -93,8 +94,8 @@ chmod +x installers/*.sh
 
 ---
 
-## Local
-
+### Local
+---
 > Requirements
 > - ***GCC/G++** >= 13.1*
 > - ***CMake**   >= 3.22*
