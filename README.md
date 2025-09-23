@@ -194,12 +194,13 @@ Each module (`CMAKE_LIBS`, `CMAKE_META`, `CMAKE_EMBED`, `CMAKE_EXTRACT`, `CMAKE_
 
 The shared object will be **placed** inside the [`Sandbox/`](/Sandbox)
 
-```SourceTree
+```
 Sandbox/
     ├── Resources/
     ├── purecpp_*.so
     └── YOUR-TEST.py
 ```
+
 > To test the Python bindings:
 > 
 > import purecpp_*
