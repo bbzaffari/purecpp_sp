@@ -1,13 +1,77 @@
-#!/bin/bash
-set -e
+
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+#-----------------------------------------
+#================= LOGGING ===============
+#-----------------------------------------
+TAG="[$(basename "${BASH_SOURCE[0]}")]"
+LINE_BRK=$'\n\n'
+SEGMENT=$'===========================================================\n'
+MOD="purecpp_extract"
+#-----------------------------------------
 echo "PATH: $PATH"
+#-----------------------------------------
+printf "$SEGMENT$SEGMENT$SEGMENT"
+printf "              Begin $TAG$LINE_BRK"
+printf "$SEGMENT"
+printf "$LINE_BRK"
+#-----------------------------------------
 
-MOD="purecpp_chunks_extract"
 
-rm -fr build conan.lock
 
-conan lock create ../conanfile.py --build=missing
-conan install . --build=missing
+# ─────────────────────────────────────────────────────────────────────────────
+# Smart core splitter for parallel builds
+# ─────────────────────────────────────────────────────────────────────────────
+
+cores=$(nproc)
+
+if [ "$cores" -gt 1 ]; then
+    half=$((cores / 2))
+else
+    half=1
+fi
+printf "$LINE_BRK"
+echo "[INFO] Detected $cores cores, using $half for parallel build."
+printf "$LINE_BRK"
+printf "$SEGMENT"
+printf "$SEGMENT"
+#-----------------------------------------
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Conan
+# ─────────────────────────────────────────────────────────────────────────────
+#-----------------------------------------
+printf "              Begin [CONAN]$LINE_BRK"
+printf "$SEGMENT"
+printf "$LINE_BRK"
+#-----------------------------------------
+
+rm -fr ./build 
+conan install ../ --build=missing -c tools.build:jobs=$half
+
+# rm -fr ./conan.lock
+# conan lock create . --build=missing -c tools.build:jobs=$half
+
+#-----------------------------------------
+#================= ENDING ================
+#-----------------------------------------
+printf "$SEGMENT"
+printf "             Finish [CONAN]\n"
+printf "$SEGMENT$SEGMENT$SEGMENT\n"
+#-----------------------------------------
+
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Build
+# ─────────────────────────────────────────────────────────────────────────────
+#-----------------------------------------
+printf "              Begin [Build]$LINE_BRK"
+printf "$SEGMENT"
+printf "$LINE_BRK"
+#-----------------------------------------
 
 cmake -DCMAKE_POLICY_DEFAULT_CMP0091=NEW \
     -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
@@ -20,13 +84,32 @@ cmake -DCMAKE_POLICY_DEFAULT_CMP0091=NEW \
     -B "$(pwd)/build/Release" \
     -G "Unix Makefiles"
 
-cores=$(nproc)
-if [ "$cores" -gt 1 ]; then
-    half=$((cores / 2))
-else
-    half=1
-fi
+cmake --build "$(pwd)/build/Release" --parallel $half
+#-----------------------------------------
+#================= ENDING ================
+#-----------------------------------------
+printf "$SEGMENT"
+printf "             Finish [Build]\n"
+printf "$SEGMENT$SEGMENT$SEGMENT\n"
+#-----------------------------------------
 
-cmake --build "$(pwd)/build/Release" --parallel "$half"
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Sending to Sandbox
+# ─────────────────────────────────────────────────────────────────────────────
+
+printf "[Last Step] Sending to Sandbox \n"
+
 rm -f ../../Sandbox/$MOD*.so
+
 cp ./build/Release/$MOD*.so ../../Sandbox/
+
+
+#-----------------------------------------
+#================= ENDING ================
+#-----------------------------------------
+printf "$SEGMENT"
+printf "             Finish $TAG\n"
+printf "$SEGMENT$SEGMENT$SEGMENT\n"
+#-----------------------------------------
