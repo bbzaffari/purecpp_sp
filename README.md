@@ -87,11 +87,11 @@ cd purecpp_sp
 > ```bash
 > docker start env
 > ```
-> **This command **starts an existing container** that has already been created earlier using `docker run`.**
+> ***This command **starts an existing container** that has already been created earlier using `docker run`.***
 > ```bash
 > docker exec -it env bash
 > ```
-> **This command **attaches a terminal to the running container**, allowing you to interact with it just like you would with a regular Linux shell.**
+> ***This command **attaches a terminal to the running container**, allowing you to interact with it just like you would with a regular Linux shell.***
 
 ---
 
