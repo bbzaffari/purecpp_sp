@@ -33,7 +33,7 @@ Designed for maximum performance and scalability, it integrates vector search, O
    - [Docker](#docker)
    - [Local](#local)
 * **2.** [Build Instructions](#how-to-build)
-* **3.** [Testing Locally](#testing-locally)
+* **3.** [Testing](#testing)
 
 ---
 
