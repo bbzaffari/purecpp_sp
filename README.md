@@ -54,8 +54,6 @@ cd purecpp_sp
 > ```bash
 > git submodule update --init --recursive
 > ```
->
-> This will initialize and update all required Git submodules.
 
 ## Docker
 
@@ -189,7 +187,6 @@ Each module (CMAKE_LIBS, CMAKE_META, CMAKE_EMBED, CMAKE_EXTRACT, CMAKE_CHUNKS_CL
 ---
 
 ## Testing 
-
 
 ### Testing Locally
 The shared object will be **placed** inside the [`Sandbox/`](/Sandbox)
