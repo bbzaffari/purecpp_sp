@@ -19,7 +19,7 @@
 
 # PureCPP framework
 
-[![***Status this***](https://img.shields.io/badge/Status-%20Refactoring%20in%20progress-orange.svg)]()
+[![***Status this***](https://img.shields.io/badge/Status%20this-%20Refactoring%20in%20progress-orange.svg)]()
 ## Overview 
 **PureCPP is a powerful C++ backend architecture for RAG systems.**\
 Designed for maximum performance and scalability, it integrates vector search, ONNX models, and CPU/CUDA acceleration into a seamless, Python-integrated framework.
