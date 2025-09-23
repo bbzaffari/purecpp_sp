@@ -191,11 +191,6 @@ Each module (`CMAKE_LIBS`, `CMAKE_META`, `CMAKE_EMBED`, `CMAKE_EXTRACT`, `CMAKE_
 
 ## Testing 
 
-> To test the Python bindings:
-> 
-> import purecpp_*
-
-### Testing Locally
 The shared object will be **placed** inside the [`Sandbox/`](/Sandbox)
 
 ```SourceTree
@@ -204,13 +199,9 @@ Sandbox/
     ├── purecpp_*.so
     └── YOUR-TEST.py
 ```
-
-
-### Testing Remotely
-
-**Notebook Playground**
-
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/bbzaffari/purecpp_sp/blob/main/Sandbox/demo_chunk_VDB.ipynb)
+> To test the Python bindings:
+> 
+> import purecpp_*
 
 
 ---
