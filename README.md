@@ -5,9 +5,9 @@
 > **Note**:
 > Please disregard the commit history in this repository.
 >
-> This disorganized repository also serves as a sandbox to test commits from the remote repository while verifying dates—something the regular `.git` metadata doesn't always make straightforward.
+> This "disorganized" repository also serves as a scratchpad for testing from the remote repository while verifying commit dates—something not always straightforward using standard .git metadata.
 >
-> And since there aren't many people involved, I'm testing and refactoring the build process myself.  That means, occasionally I end up running into a few issues—some related to testing, which I only catch later, and others related to compilation.
+> Since there aren't many people involved, I'm testing and refactoring the build process myself.  That means, occasionally I end up running into a few issues—some related to testing, which I only catch later, and others related to compilation.
 
 ---
  
@@ -180,7 +180,7 @@ chmod +x ./build.sh
 ./build.sh MODULE-NUMBER
 ````
 
-Each module (CMAKE_LIBS, CMAKE_META, CMAKE_EMBED, CMAKE_EXTRACT, CMAKE_CHUNKS_CLEAN) has its own **`sub_mod_build.sh`** script, which:
+Each module (`CMAKE_LIBS`, `CMAKE_META`, `CMAKE_EMBED`, `CMAKE_EXTRACT`, `CMAKE_CHUNKS_CLEAN`) has its own **`sub_mod_build.sh`** script, which:
 - Cleans the build/ folder
 - Installs Conan dependencies if missing
 - Compiles the code
@@ -201,7 +201,7 @@ Sandbox/
 ```
 
 
-### Testing Remotly
+### Testing Remotely
 
 **Notebook Playground**
 
