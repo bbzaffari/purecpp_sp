@@ -17,7 +17,7 @@
 ---
 ---
 
-# PureCPP framework
+# PureCPP 
 
 [![***Status this***](https://img.shields.io/badge/Status%20this-%20Refactoring%20in%20progress-orange.svg)]()
 ## Overview 
@@ -27,18 +27,18 @@ Designed for maximum performance and scalability, it integrates vector search, O
 *This repository provides detailed guidance on how to set up the environment, configure dependencies and build.*
 
 ## Table of Contents
+🔍 Explore [all of Bruno Bavaresco Zaffari’s contributions (explained)](https://github.com/bbzaffari/Open-Source-RAG-Engine-System-with-Modular-Vector-Processing)
+ related to this framework.
 * **1.** [Environment Setup](#environment-setup)
    - [Docker](#docker)
    - [Local](#local)
 * **2.** [Build Instructions](#how-to-build)
 * **3.** [Testing Locally](#testing-locally)
 
-🔍 Explore [all of Bruno Bavaresco Zaffari’s contributions (explained)](https://github.com/bbzaffari/Open-Source-RAG-Engine-System-with-Modular-Vector-Processing)
- related to this framework.
- 
 ---
 
 ## Environment Setup
+
 ---
 
 ### First of all clone the repository
@@ -95,6 +95,7 @@ chmod +x installers/*.sh
 ---
 
 ### Local
+
 ---
 > Requirements
 > - ***GCC/G++** >= 13.1*
@@ -189,6 +190,10 @@ Each module (`CMAKE_LIBS`, `CMAKE_META`, `CMAKE_EMBED`, `CMAKE_EXTRACT`, `CMAKE_
 ---
 
 ## Testing 
+
+> To test the Python bindings:
+> 
+> import purecpp_*
 
 ### Testing Locally
 The shared object will be **placed** inside the [`Sandbox/`](/Sandbox)
