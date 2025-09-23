@@ -77,7 +77,7 @@ docker run -it --name env -v "$PWD":/home purecpp_env
 chmod +x installers/*.sh
 ./installers/env_config.sh
 ```
-*to install FAISS, PyTorch, and configure Conan, and python dependencies*
+*Install FAISS, PyTorch, configure Conan, and install python essential packages*
 
 > [!CAUTION]
 > 
@@ -156,7 +156,7 @@ This practice minimizes conflicts between global packages and project-specific r
 chmod +x installers/*.sh
 ./installers/env_config.sh
 ```
-*Install FAISS, PyTorch, and configure Conan, and install python essential packages*
+*Install FAISS, PyTorch, configure Conan, and install python essential packages*
 
 ---
 
