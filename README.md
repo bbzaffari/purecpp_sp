@@ -163,9 +163,9 @@ chmod +x installers/*.sh
 
 ## How to Build
 
-***The `build.sh` is a development version pipeline, that making it easier to compile and test all five modules.***
+***The `build.sh` is a development version pipeline, that makes it easier to compile and test all five modules.***
 
-Before running the provided shell scripts, to ensure they have the execution permissions.
+Ensure the scripts have the execution permission
 ```bash
 chmod -R +x ./CMAKE/*/sub_mod_build.sh
 chmod +x ./build.sh
