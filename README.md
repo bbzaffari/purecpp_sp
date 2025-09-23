@@ -203,7 +203,7 @@ Sandbox/
 
 ### Testing Remotly
 
-#### Notebook Playground
+**Notebook Playground**
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/bbzaffari/purecpp_sp/blob/main/Sandbox/demo_chunk_VDB.ipynb)
 
