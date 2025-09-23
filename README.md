@@ -21,14 +21,15 @@
 
 [![***Status this***](https://img.shields.io/badge/Status%20this-%20Refactoring%20in%20progress-orange.svg)]()
 ## Overview 
-**PureCPP is a powerful C++ backend architecture for RAG systems.**\
+**PureCPP is a powerful C++ backend architecture for RAG systems.**
+
 Designed for maximum performance and scalability, it integrates vector search, ONNX models, and CPU/CUDA acceleration into a seamless, Python-integrated framework.
 
 *This repository provides detailed guidance on how to set up the environment, configure dependencies and build.*
 
 ## Table of Contents
-🔍 Explore [all of Bruno Bavaresco Zaffari’s contributions (explained)](https://github.com/bbzaffari/Open-Source-RAG-Engine-System-with-Modular-Vector-Processing)
- related to this framework.
+***🔍 Explore [all of Bruno Bavaresco Zaffari’s contributions (explained)](https://github.com/bbzaffari/Open-Source-RAG-Engine-System-with-Modular-Vector-Processing)
+ related to this framework.***
 * **1.** [Environment Setup](#environment-setup)
    - [Docker](#docker)
    - [Local](#local)
@@ -49,8 +50,7 @@ cd purecpp_sp
 ````
 
 > [!WARNING]
-> If you forgot to use `--recursive` when cloning the repository,  
-> make sure to run:
+> If you forgot to use `--recursive` when cloning the repository, make sure to run:
 >
 > ```bash
 > git submodule update --init --recursive
@@ -142,7 +142,7 @@ source ~/.cargo/env
 
 #### 3. Execute the `env_config.sh`
 
-**In case you do not have a Docker environment available, we strongly recommend that you use a Python `venv` (virtual environment) to ensure proper isolation of dependencies and reproducibility of results.**
+***In case you do not have a Docker environment available, we strongly recommend that you use a Python `venv` (virtual environment) to ensure proper isolation of dependencies and reproducibility of results.***
   - Create the virtual environment (replace 'venv' with your preferred name)
     ```bash
     python3 -m venv venv
