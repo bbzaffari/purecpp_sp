@@ -57,27 +57,28 @@ cd purecpp_sp
 > ```
 
 ### Docker
+
 ---
 
 * **1. Build a Docker image from the current directory and tag it as 'purecpp_env'**
 
-```bash
-docker build -t purecpp_env .
-```
+ ```bash
+ docker build -t purecpp_env .
+ ```
 
 * **2. Start a Docker container named 'env' from the 'purecpp_env' image, mounting current dir to /home**
 
-```bash
-docker run -it --name env -v "$PWD":/home purecpp_env
-```
+ ```bash
+ docker run -it --name env -v "$PWD":/home purecpp_env
+ ```
 
 * **3. Execute the `env_config.sh`**
 
-```bash
-chmod +x installers/*.sh
-./installers/env_config.sh
-```
-*Install FAISS, PyTorch, configure Conan, and install python essential packages*
+ ```bash
+ chmod +x installers/*.sh
+ ./installers/env_config.sh
+ ```
+ *This install python essential package, libtorch, FAISS, and configure Conan*
 
 > [!CAUTION]
 > 
@@ -107,25 +108,25 @@ chmod +x installers/*.sh
 #### 1. Installing dependencies
 
 - **Ubuntu/Debian**
-```bash
-sudo apt update && \
-sudo apt upgrade -y && \
-sudo apt install -y \
-  build-essential wget curl \
-  ninja-build cmake libopenblas-dev \
-  libgflags-dev python3-dev libprotobuf-dev \
-  protobuf-compiler unzip libssl-dev zlib1g-dev
-```
+ ```bash
+ sudo apt update && \
+ sudo apt upgrade -y && \
+ sudo apt install -y \
+   build-essential wget curl \
+   ninja-build cmake libopenblas-dev \
+   libgflags-dev python3-dev libprotobuf-dev \
+   protobuf-compiler unzip libssl-dev zlib1g-dev
+ ```
 
 - **Red Hat**
-```bash
-yum update && 
-yum install -y \
-      gcc gcc-c++ make git curl wget \
-      ninja-build libffi-devel openssl-devel \
-      protobuf-devel gflags-devel zlib-devel \
-      openblas-devel unzip \
-```
+ ```bash
+ yum update && 
+ yum install -y \
+       gcc gcc-c++ make git curl wget \
+       ninja-build libffi-devel openssl-devel \
+       protobuf-devel gflags-devel zlib-devel \
+       openblas-devel unzip \
+ ```
 
 #### 2. Install Rust via rustup
 
@@ -141,7 +142,7 @@ source ~/.cargo/env
 
 #### 3. Execute the `env_config.sh`
 
-*In case you do not have a Docker environment available, we strongly recommend that you use a Python `venv` (virtual environment) to ensure proper isolation of dependencies and reproducibility of results.*
+**In case you do not have a Docker environment available, we strongly recommend that you use a Python `venv` (virtual environment) to ensure proper isolation of dependencies and reproducibility of results.**
   - Create the virtual environment (replace 'venv' with your preferred name)
     ```bash
     python3 -m venv venv
@@ -151,13 +152,13 @@ source ~/.cargo/env
     ```bash
     source venv/bin/activate
     ```
-This practice minimizes conflicts between global packages and project-specific requirements. Use the steps below to create and activate the virtual environment.
+*This practice minimizes conflicts between global packages and project-specific requirements. Use the steps below to create and activate the virtual environment.*
 
 ```bash
 chmod +x installers/*.sh
 ./installers/env_config.sh
 ```
-*Install FAISS, PyTorch, configure Conan, and install python essential packages*
+*This install python essential package, libtorch, FAISS, and configure Conan*
 
 ---
 
