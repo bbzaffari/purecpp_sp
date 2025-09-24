@@ -1,17 +1,14 @@
 
 
+
+ 
+[![Status](https://img.shields.io/badge/status-stable-brightgreen?style=flat-square)](https://github.com/bbzaffari/purecpp) 👉  🔗  [Stable purecpp](https://github.com/bbzaffari/purecpp) 
 ---
 **This repository is my development scratchpad, where all structural changes are designed and documented before being pushed to the official ecosystem.**
 > **Note**:
 > Please disregard the commit history in this repository.
->
-> This "disorganized" repository also serves as a scratchpad for testing from the remote repository while verifying commit dates—something not always straightforward using standard .git metadata.
->
-> Since there aren't many people involved, I'm testing and refactoring the build process myself.  That means, occasionally I end up running into a few issues—some related to testing, which I only catch later, and others related to compilation.
 
 ---
- 
-[![Status](https://img.shields.io/badge/status-stable-brightgreen?style=flat-square)](https://github.com/bbzaffari/purecpp) 👉  🔗  [Stable purecpp](https://github.com/bbzaffari/purecpp) 
 
 ---
 ---
