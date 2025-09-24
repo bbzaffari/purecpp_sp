@@ -196,9 +196,11 @@ Sandbox/
     └── YOUR-TEST.py
 ```
 
-> To test the Python bindings:
-> 
-> import purecpp_*
+To test the Python bindings:
+
+```python
+import purecpp_MODULE
+```
 
 
 ---
