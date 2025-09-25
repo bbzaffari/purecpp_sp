@@ -1,16 +1,23 @@
-#LIBS certo
 cmake_minimum_required(VERSION 3.22)
-project(purecpp_libs VERSION 1.0)
+project(purecpp_chunks_clean VERSION 1.0)
 
-add_definitions(-D_GLIBCXX_USE_CXX11_ABI=1)
-
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CUDA_STANDARD 20)
+ 
+set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CUDA_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS ON) 
 # set(CMAKE_CXX_EXTENSIONS OFF) 
 set(CMAKE_BUILD_TYPE "Release")
 
+# ─────────────────────────────────────────────────────────────────────────────
+#------- Path to FAISS -------
+# ─────────────────────────────────────────────────────────────────────────────
+#...
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+#------- Compiler Specific flags -------
+# ─────────────────────────────────────────────────────────────────────────────
 if(CMAKE_CXX_COMPILER_ID MATCHES "MSVC")# Flags específicas do MSVC
     #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /std:c++latest")
     set(CMAKE_TOOLCHAIN_FILE ${CMAKE_BINARY_DIR}/generators/conan_toolchain.cmake)
@@ -23,23 +30,29 @@ else() # Flags para G++/Clang ou G++/GNU em Linux
     set(CMAKE_TOOLCHAIN_FILE ${CMAKE_BINARY_DIR}/Release/generators/conan_toolchain.cmake)
     # message(STATUS "\n\n\n\n\n\n\n\n\n\n------------------------> variaveis presentes antes do RELEASE: ${CMAKE_CXX_FLAGS}")
     # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC  -Wall -Wextra -Wpedantic") # Debug
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -fopenmp -pthread ")
-    set(CMAKE_CXX_FLAGS_RELEASE "-O0 -std=c++23") #-flto?  -fvisibility=hidden?
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -fopenmp -pthread")
+    set(CMAKE_CXX_FLAGS_RELEASE "-O0 -std=c++23") #-flto?
     # set(CMAKE_CXX_FLAGS_RELEASE "-O2 -DNDEBUG")
     # message(STATUS "\n\n\n\n\n\n\n\n\n\n------------------------> variaveis presentes depois do RELEASE: ${CMAKE_CXX_FLAGS}\n\n\n\n\n\n\n\n\n\n")
 endif()
 
-#-------------Options-------------------
+
+# ─────────────────────────────────────────────────────────────────────────────
+#------- Options -------
+# ─────────────────────────────────────────────────────────────────────────────
+
 option(CURL_STATIC_LINKING "Set to ON to build libcurl with static linking." OFF)
 
 if(CURL_STATIC_LINKING)
     message("-DCURL_STATICLIB [added]")
     add_definitions(-DCURL_STATICLIB)
 endif()
-#-------------Options-------------------
 
-#------------ Find Python 
-set(Python3_FIND_SHARED OFF)#Precisa sera?
+
+# ─────────────────────────────────────────────────────────────────────────────
+#------- Find Python  -------
+# ─────────────────────────────────────────────────────────────────────────────
+set(Python3_FIND_SHARED OFF)# Need it?
 find_package(Python3 REQUIRED COMPONENTS Interpreter Development.Module)
 
 if(CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
@@ -49,64 +62,71 @@ endif()
 
 include_directories(${Python3_INCLUDE_DIRS})
 
-#------------ Find Pybind11# N sei se é preciso no windows, mas n sera essse mesmo caminho
-# N sei se é preciso no windows, mas n sera essse mesmo caminho
 
+# ─────────────────────────────────────────────────────────────────────────────
+#------- Find Pybind11 -------
+# ─────────────────────────────────────────────────────────────────────────────
 message(STATUS "---------------------------------------\n")
 if(Python3_VERSION_MAJOR EQUAL 3 AND Python3_VERSION_MINOR EQUAL 8)
-    message(STATUS "Python 3.8 detectado!")
+    message(STATUS "Python 3.8 detected!!")
     set(pybind11_DIR "/opt/python/cp38-cp38/lib/python3.8/site-packages/pybind11/share/cmake/pybind11")
     # add_definitions(-DPy_LIMITED_API=0x03080000)
 
 elseif(Python3_VERSION_MAJOR EQUAL 3 AND Python3_VERSION_MINOR EQUAL 9)
-    message(STATUS "Python 3.9 detectado!")
+    message(STATUS "Python 3.9 detected!!")
     set(pybind11_DIR "/opt/python/cp39-cp39/lib/python3.9/site-packages/pybind11/share/cmake/pybind11")
     # add_definitions(-DPy_LIMITED_API=0x03090000)
 
 elseif(Python3_VERSION_MAJOR EQUAL 3 AND Python3_VERSION_MINOR EQUAL 10)
-    message(STATUS "Python 3.10 detectado!")
+    message(STATUS "Python 3.10 detected!!")
     set(pybind11_DIR "/opt/python/cp310-cp310/lib/python3.10/site-packages/pybind11/share/cmake/pybind11")
     # add_definitions(-DPy_LIMITED_API=0x030A0000)
 
 elseif(Python3_VERSION_MAJOR EQUAL 3 AND Python3_VERSION_MINOR EQUAL 11)
-    message(STATUS "Python 3.11 detectado!")
+    message(STATUS "Python 3.11 detected!!")
     set(pybind11_DIR "/opt/python/cp311-cp311/lib/python3.11/site-packages/pybind11/share/cmake/pybind11")
     # add_definitions(-DPy_LIMITED_API=0x030B0000)
 
 elseif(Python3_VERSION_MAJOR EQUAL 3 AND Python3_VERSION_MINOR EQUAL 12)
-    message(STATUS "Python 3.12 detectado!")
+    message(STATUS "Python 3.12 detected!!")
     set(pybind11_DIR "/opt/python/cp312-cp312/lib/python3.12/site-packages/pybind11/share/cmake/pybind11")
     # add_definitions(-DPy_LIMITED_API=0x030C0000)
 
 elseif(Python3_VERSION_MAJOR EQUAL 3 AND Python3_VERSION_MINOR EQUAL 13)
-    message(STATUS "Python 3.13 detectado!")
+    message(STATUS "Python 3.13 detected!")
     set(pybind11_DIR "/opt/python/cp313-cp313/lib/python3.13/site-packages/pybind11/share/cmake/pybind11")
     # add_definitions(-DPy_LIMITED_API=0x030D0000)
 
 else()
-    message(STATUS "Versão do Python não especificada nos if's anteriores!")
-    # Configuração padrão ou outra ação
+    message(STATUS "Python version not specified in previous if's!")
+    # Default setting or other action
     
 endif()
 
-
 find_package(pybind11 REQUIRED)
 
-#------------ Find other dependencies
-find_package(pdfium REQUIRED)          # Biblioteca para manipulação de PDFs
-find_package(OpenMP REQUIRED)          # OpenMP primeiro, pois pode ser usado por outros pacotes
-find_package(ICU REQUIRED)             # Biblioteca de internacionalização
-find_package(miniz REQUIRED)           # Biblioteca de compressão
-find_package(rapidxml REQUIRED)        # Parser XML
-find_package(beauty REQUIRED)          # HTTP Server (geralmente independente)
-find_package(lexbor REQUIRED)          # Biblioteca de parsing HTML
-find_package(re2 REQUIRED)             # Biblioteca de regex eficiente
-find_package(nlohmann_json REQUIRED)   # Biblioteca de JSON (não tem dependências)
-#find_package(fmt REQUIRED)            # Biblioteca de formatação de strings em casos aonde n tem format em compiladores mais antigos
-find_package(CURL REQUIRED)            # Biblioteca para requisições HTTP
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+#------- Find other dependencies -------
+# ─────────────────────────────────────────────────────────────────────────────
+find_package(pdfium REQUIRED)         
+find_package(OpenMP REQUIRED)         
+find_package(ICU REQUIRED)            
+find_package(miniz REQUIRED)           
+find_package(rapidxml REQUIRED)       
+find_package(beauty REQUIRED)          
+find_package(lexbor REQUIRED)         
+find_package(re2 REQUIRED)            
+find_package(nlohmann_json REQUIRED)  
+#find_package(fmt REQUIRED)            
+find_package(CURL REQUIRED)            
 find_package(Threads REQUIRED)         
 
+# ─────────────────────────────────────────────────────────────────────────────
 #------- Protobuf -------
+# ─────────────────────────────────────────────────────────────────────────────
+
 find_package(Protobuf REQUIRED)
 # message(STATUS "---------------------------------------\n")
 # message(STATUS "------------------------> Protobuf_FOUND: ${Protobuf_FOUND}")
@@ -141,17 +161,32 @@ find_package(onnxruntime REQUIRED)     # Pode depender de protobuf (verifique se
 # message(STATUS "------------------------> Protobuf_PROTOC_EXECUTABLE: ${Protobuf_PROTOC_EXECUTABLE}")
 # message(STATUS "------------------------> Protobuf_LITE_LIBRARIES: ${Protobuf_LITE_LIBRARIES}")
 # message(STATUS "\n --------------------------------------- ")
-#------- Torch -------
-#---
-#------- Torch -------
 
-#------- Torch -------
-# .
-# .
-# .
-#------- Torch -------
+# ───────────────────────────────────────────────────────────────────────
+#------- Discover the directory Current Python site-packages -------
+# ──────────────────────────────────────────────────────────────────────────────
+# We will use sysconfig to be more robust across multiple Python versions.
 
-#------- Configuração do RPATH/RUNPATH/LIBRARY_PATH -------
+execute_process(
+    COMMAND "${Python3_EXECUTABLE}" -c
+        "import sysconfig; import pathlib; site_packages = sysconfig.get_paths()['purelib']; print(str(pathlib.Path(site_packages).resolve()))"
+    OUTPUT_VARIABLE PYTHON_SITE_PACKAGES
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+# set(_TORCH_REL_PATH "dependencias_libs/d_libs/libtorch/cpu")
+# set(Torch_DIR "${CMAKE_SOURCE_DIR}/../../libs/libtorch/cpu/share/cmake/Torch")
+ 
+# message(STATUS "------------------------> Encontrado site-packages do Python em: ${PYTHON_SITE_PACKAGES}")
+
+# ─────────────────────────────────────────────────────────────────────────────
+#------- Torch -------
+# ─────────────────────────────────────────────────────────────────────────────
+#...
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+#------- RPATH -------
+# ─────────────────────────────────────────────────────────────────────────────
 set(CMAKE_BUILD_RPATH
     "${PYTHON_SITE_PACKAGES}/*/d_libs/libtorch/cpu/lib"
     "\$ORIGIN/../purecpp_libs.libs"
@@ -159,13 +194,19 @@ set(CMAKE_BUILD_RPATH
     "\$ORIGIN/../purecpp_libs.libs"
     "\$ORIGIN/purecpp_libs.libs"
     "\$ORIGIN/d_libs/libtorch/cpu/lib"
+
+    "${CMAKE_SOURCE_DIR}/../../libs/libtorch/cpu/lib"
     "${CMAKE_SOURCE_DIR}/../libs/libtorch/cpu/lib"
     "${CMAKE_SOURCE_DIR}/libs/libtorch/cpu/lib"
+
+    "\$ORIGIN/../../libs/libtorch/cpu/lib"
     "\$ORIGIN/../libs/libtorch/cpu/lib"
     "\$ORIGIN/libs/libtorch/cpu/lib"
+
     "\$ORIGIN:/usr/bin/protoc"
     "/usr/lib/x86_64-linux-gnu"
     "/usr/lib64"
+
     "\$ORIGIN/"
     "\$ORIGIN/../purecpp_chunks_clean/d_libs/libtorch/cpu/lib"
 )
@@ -174,40 +215,69 @@ set(CMAKE_INSTALL_RPATH
     "\$ORIGIN/../purecpp_libs.libs"
     "\$ORIGIN/../purecpp_libs.libs"
     "\$ORIGIN/d_libs/libtorch/cpu/lib"
+    "${CMAKE_SOURCE_DIR}/../../libs/libtorch/cpu/lib"
     "${CMAKE_SOURCE_DIR}/../libs/libtorch/cpu/lib"
     "${CMAKE_SOURCE_DIR}/libs/libtorch/cpu/lib"
+
+    "\$ORIGIN/../../libs/libtorch/cpu/lib"
     "\$ORIGIN/../libs/libtorch/cpu/lib"
     "\$ORIGIN/libs/libtorch/cpu/lib"
+
     "\$ORIGIN:/usr/bin/protoc"
     "/usr/lib/x86_64-linux-gnu"
     "/usr/lib64"
+
     "\$ORIGIN/"
     "\$ORIGIN/../purecpp_chunks_clean/d_libs/libtorch/cpu/lib"
 )
+
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,--enable-new-dtags")
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 #------- Configuração do RPATH/RUNPATH/LIBRARY_PATH -------
 
-# ----- Fontes do projeto -----
-# set(RagPUREAI_BINDING_SRCS  "${CMAKE_SOURCE_DIR}/../src/binding_libs.cpp")
+
+# ─────────────────────────────────────────────────────────────────────────────
+#------- Tokenizers -------
+# ─────────────────────────────────────────────────────────────────────────────
+#...
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+#------- OpenAI C++ bindings -------
+# ─────────────────────────────────────────────────────────────────────────────
+#...
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# ----- Project sources -----
+# ─────────────────────────────────────────────────────────────────────────────
+
 set(RagPUREAI_BINDING_SRCS  "binding_libs.cpp")
 set(RagPUREAI_IMPL_SRCS
-    "${CMAKE_SOURCE_DIR}/../libs/StringUtils/StringUtils.cpp"
+    "${CMAKE_SOURCE_DIR}/../../libs/StringUtils/StringUtils.cpp"
 )
-# -------------------------------------------------------------------------------
-# Biblioteca (código C++ "normal", sem pybind11).
+
+# ─────────────────────────────────────────────────────────────────────────────
+#------- RagPUREAI Library -------
+# ─────────────────────────────────────────────────────────────────────────────
+
 add_library(RagPUREAILib STATIC ${RagPUREAI_IMPL_SRCS})
 
 target_include_directories(RagPUREAILib PUBLIC
     # ${CURL_INCLUDE_DIRS}   
-    "${CMAKE_SOURCE_DIR}/../libs/RagException"
-    "${CMAKE_SOURCE_DIR}/../libs/ThreadSafeQueue"
-    "${CMAKE_SOURCE_DIR}/../libs/CommonStructs"
-    "${CMAKE_SOURCE_DIR}/../libs/StringUtils"
-    "${CMAKE_SOURCE_DIR}/../libs/FileUtils"  
-    "${CMAKE_SOURCE_DIR}/../libs/MemoryUtils"
+    "${CMAKE_SOURCE_DIR}/../../libs/RagException"
+    "${CMAKE_SOURCE_DIR}/../../libs/ThreadSafeQueue"
+    "${CMAKE_SOURCE_DIR}/../../libs/CommonStructs"
+    "${CMAKE_SOURCE_DIR}/../../libs/StringUtils"
+    "${CMAKE_SOURCE_DIR}/../../libs/FileUtils"  
+    "${CMAKE_SOURCE_DIR}/../../libs/MemoryUtils"
     ${CURL_INCLUDE_DIRS}   
 )
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Link libraries with RagPUREAILib
+# ─────────────────────────────────────────────────────────────────────────────
 
 target_link_libraries(RagPUREAILib PUBLIC
     # 🔹 Bibliotecas principais (core)
@@ -232,19 +302,18 @@ target_link_libraries(RagPUREAILib PUBLIC
     # 🔹 Bibliotecas dinâmicas e Python
     ${Python3_LIBRARIES}  # Python deve vir no final para evitar conflito de símbolos
 )
-# -------------------------------------------------------------------------------
-# Módulo Python via pybind11 (gera .so/.pyd para 'import' no Python)
-pybind11_add_module(purecpp_libs ${RagPUREAI_BINDING_SRCS})
 
-# set_target_properties(purecpp_libs PROPERTIES
-#     CXX_VISIBILITY_PRESET hidden
-#     VISIBILITY_INLINES_HIDDEN ON
-#     # SUFFIX ".abi3.so"
-# )
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Link libraries with RagPUREAILib
+# ─────────────────────────────────────────────────────────────────────────────
+
+pybind11_add_module(purecpp_libs ${RagPUREAI_BINDING_SRCS})
 
 target_link_libraries(purecpp_libs PUBLIC RagPUREAILib)
 
-# if(BUILD_APPS)
-#     message(STATUS "Building apps")
-#     add_subdirectory(apps)
-# endif()
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+#---------------- DEBUG MESSAGES
+# ─────────────────────────────────────────────────────────────────────────────
