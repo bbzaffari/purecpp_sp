@@ -1,19 +1,20 @@
 
 ---
 
-# Use pre-trained models
+# Download pre-trained models
 
 ### 🛠️ Hugging Face to **ONNX** Converter 
 
 **`models/models_to_onnx.py`**
 
-This is a unified Python script to convert Hugging Face models into the ONNX format for optimized inference.
+This is a unified Python script to convert Hugging Face models into the **ONNX** format for optimized inference.
 
 The script handles two main use cases:
+
 1. **Feature extraction models** (e.g., `sentence-transformers`).
 2. **Token classification models** (e.g., Named Entity Recognition - NER).
 
-It automatically creates a `models` directory (in the parent folder of the script) to store the exported ONNX models and related assets.
+It automatically downloads the model and organizes the exported files in a structured subdirectory.
 
 ### Requirements
 

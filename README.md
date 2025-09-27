@@ -1,20 +1,29 @@
 
-**This repository is my development scratchpad, where all structural changes are designed and documented before being pushed to the official ecosystem.**
 
-[![Status](https://img.shields.io/badge/status-stable-brightgreen?style=flat-square)](https://github.com/bbzaffari/purecpp) 👉  🔗  [Stable purecpp](https://github.com/bbzaffari/purecpp) 
+
+
 
 > **Note**:
 > Please disregard the commit history in this repository.
+**This repository is my development scratchpad, where all structural changes are designed and documented before being pushed to the official ecosystem.**
 
 
+---
+
+[![Status](https://img.shields.io/badge/status-stable-brightgreen?style=flat-square)](https://github.com/bbzaffari/purecpp) 👉  🔗  [Stable purecpp](https://github.com/bbzaffari/purecpp) 
 
 ---
 ---
 ---
+- **[Quick Start ↗](https://docs.puredocs.org/setup)**
+- **[Contributing to PureCPP ↗](docs/CONTRIBUTING.md)**
+- **[Download Pre-trained Models ↗](./models/README.md)**
+
 
 # PureCPP 
 
 [![***Status this***](https://img.shields.io/badge/Status%20this-%20Refactoring%20in%20progress-orange.svg)]()
+
 ## Overview 
 **PureCPP is a powerful C++ backend architecture for RAG systems.**
 
@@ -30,6 +39,8 @@ Designed for maximum performance and scalability, it integrates vector search, O
    - [Local](#local)
 * **2.** [Build Instructions](#how-to-build)
 * **3.** [Testing](#testing)
+
+
 
 ---
 
@@ -147,7 +158,9 @@ source ~/.cargo/env
     ```bash
     source venv/bin/activate
     ```
-*This practice minimizes conflicts between global packages and project-specific requirements. Use the steps below to create and activate the virtual environment.*
+*This practice minimizes conflicts between global packages and project-specific requirements.* 
+
+**Then run `env_config.sh` script**
 
 ```bash
 chmod +x installers/*.sh
