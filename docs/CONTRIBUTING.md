@@ -37,6 +37,15 @@ All set, now! It is time to **build something powerful**.
 
 
 ---
+
+
+## Community Discord
+[![Join us on Discord](https://img.shields.io/discord/123456789012345678?label=discord&logo=discord&style=flat-square)](https://discord.gg/8eF9v78Ndv)
+ Ask questions! 
+ Get support! 
+ Collaborate with fellow contributors and users! 
+
+---
 ---
 
 ## ⚡ What to Contribute?  
