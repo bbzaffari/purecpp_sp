@@ -9,42 +9,32 @@ Want to contribute? Whether you're creating new integrations, improving performa
 ---
 
 ## ✨ Steps to Contribute
-
-Make sure you have the following:
-- ***GCC/G++ 13.1***
-- ***CMake 3.22+***
-- ***Conan 2***
-- ***Rust***
-- ***Python 3.8+***
   
-Ready to jump in? Follow this quick setup guide to get started smoothly:
+**Ready to jump in? Follow this quick setup guide to get started smoothly**
 
-1. **Fork** the repo and clone your fork.
+* **1.** **Fork** the repo and clone your fork.
+* **2.**  [Environment setup](/README.md#environment-setup-ubuntu--debian-for-c-and-python-development)
+* **3.**  [How to build](/README.md#how-to-build)
 
-2. [Environment setup](/README.md#environment-setup-ubuntu--debian-for-c-and-python-development)
+**All set! Now... it is time to build something powerful**.
 
-3. [How to build](/README.md#how-to-build)
-
-All set, now! It is time to **build something powerful**.
-
-1. **Work on your feature or bugfix**, ensuring you have unit tests covering your code.
-2. **Commit** your changes, then push them to your fork.
+* **1.**  **Work on your feature or bugfix**, ensuring you have unit tests covering your code.
+* **2.** **Commit** your changes, then push them to your fork.
    ```bash
    git push origin your-feature-branch
    ````
-3. **Open a pull request** on GitHub.
+* **3.**  **Open a pull request** on GitHub.
 
 
 
 ---
+---
 
-
-## Community Discord
-[![Join us on Discord](https://img.shields.io/discord/123456789012345678?label=discord&logo=discord&style=flat-square)](https://discord.gg/8eF9v78Ndv)
- Ask questions! 
- Get support! 
- Collaborate with fellow contributors and users! 
-
+## Community Discord [![Join us on Discord ](https://img.shields.io/badge/Join_Us_On_Discord-5865F2?logo=discord&logoColor=white&style=for-the-badge)](https://discord.gg/8eF9v78Ndv)
+- Ask questions and get support 
+- Share feedback and suggestions 
+- Connect with the team and other users
+  
 ---
 ---
 
@@ -125,12 +115,6 @@ Keep coding at full speed! 🏎️💻
 
 Thank You! Gracias! 謝謝! 감사해요! ありがとう! Спасибо! Obrigado!
 
----
-
-## [![Join us on Discord ](https://img.shields.io/badge/Join_Us_On_Discord-5865F2?logo=discord&logoColor=white&style=for-the-badge)](https://discord.gg/8eF9v78Ndv)
-- Ask questions and get support 
-- Share feedback and suggestions 
-- Connect with the team and other users 
 
 ---
 ---
