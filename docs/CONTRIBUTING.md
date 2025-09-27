@@ -127,20 +127,10 @@ Thank You! Gracias! 謝謝! 감사해요! ありがとう! Спасибо! Obrig
 
 ---
 
-## 🤝 Join Our Discord Community
-
-Have questions? Need help? Want to share ideas or give feedback?
-
-👉 **[Click here to join our Discord server!](https://discord.gg/8eF9v78Ndv)**  
-Come chat with contributors, developers, and users like you — we’re building together!
-
-
-
-# [![Join us on Discord](https://img.shields.io/badge/Join_Us_On_Discord-5865F2?logo=discord&logoColor=white&style=for-the-badge)](https://discord.gg/8eF9v78Ndv)
-- Ask questions and get support 🤔
-- Share feedback and suggestions 💡
-- Discuss ideas and roadmap 🧠
-- Connect with the team and other users 🌱
+## [![Join us on Discord ](https://img.shields.io/badge/Join_Us_On_Discord-5865F2?logo=discord&logoColor=white&style=for-the-badge)](https://discord.gg/8eF9v78Ndv)
+- Ask questions and get support 
+- Share feedback and suggestions 
+- Connect with the team and other users 
 
 ---
 ---
