@@ -21,7 +21,7 @@ Want to contribute? Whether you're creating new integrations, improving performa
 * **1.**  **Work on your feature or bugfix**, ensuring you have unit tests covering your code.
 * **2.** **Commit** your changes, then push them to your fork.
    ```bash
-   git push origin your-feature-branch
+   git push origin YOUR-FEATURE-BRANCH
    ````
 * **3.**  **Open a pull request** on GitHub.
 
