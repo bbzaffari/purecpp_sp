@@ -127,8 +127,13 @@ Thank You! Gracias! 謝謝! 감사해요! ありがとう! Спасибо! Obrig
 
 ---
 
-## Community Discord
-Join our community [Discord](https://discord.gg/8eF9v78Ndv) to ask questions, get support, and collaborate with fellow contributors and users.
+## 🤝 Join Our Discord Community
+
+Have questions? Need help? Want to share ideas or give feedback?
+
+👉 **[Click here to join our Discord server!](https://discord.gg/8eF9v78Ndv)**  
+Come chat with contributors, developers, and users like you — we’re building together!
+
 
 ---
 ---
