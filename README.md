@@ -41,7 +41,6 @@ Designed for maximum performance and scalability, it integrates vector search, O
 * **3.** [Testing](#testing)
 
 
-
 ---
 
 ## Environment Setup
@@ -53,7 +52,7 @@ Designed for maximum performance and scalability, it integrates vector search, O
 ```bash
 git clone --recursive https://github.com/bbzaffari/purecpp_sp
 cd purecpp_sp
-````
+```
 
 > [!WARNING]
 > If you forgot to use `--recursive` when cloning the repository, make sure to run:
@@ -78,13 +77,13 @@ cd purecpp_sp
  docker run -it --name env -v "$PWD":/home purecpp_env
  ```
 
-* **3. Execute the `env_config.sh`**
+* **3. Run the `env_config.sh`**
 
  ```bash
  chmod +x installers/*.sh
  ./installers/env_config.sh
  ```
- *This script automates the setup of Python essentials, including LibTorch, FAISS, and configures Conan for dependency management.*
+*This script automates the setup. Installing Python essentials, LibTorch, FAISS, and configuring Conan profile.*
 
 > [!CAUTION]
 > 
@@ -166,7 +165,7 @@ source ~/.cargo/env
 chmod +x installers/*.sh
 ./installers/env_config.sh
 ```
-*This script automates the setup of Python essentials, including LibTorch, FAISS, and configures Conan for dependency management.*
+*This script automates the setup. Installing Python essentials, LibTorch, FAISS, and configuring Conan profile.*
 
 ---
 
