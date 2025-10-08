@@ -1,7 +1,9 @@
 #pragma once
+#include <span>
 #include <tuple>
 #include <string>
 #include <vector>
+#include <optional>
 #include "CommonStructs.h"
 #include "ChunkCommons/ChunkCommons.h"
 #include "ChunkDefault/ChunkDefault.h"
@@ -15,7 +17,7 @@ namespace Chunk {
             RAGLibrary::Document query_doc = {},
             const Chunk::ChunkDefault* chunks = nullptr,
             std::optional<size_t> pos = std::nullopt,
-            float threshold = 0
+            float threshold = 0.5
         );
         ~ChunkQuery() = default;     
         // ======================================================================================================================================
@@ -37,20 +39,21 @@ namespace Chunk {
         //-------------------------------------------------------------
         std::vector<float> getEmbedQuery(void) const;
         // ======================================================================================================================================
-        std::string StrQ(int index = -1); // Resposta formatada
+        std::string StrQ(int index = -1); // Formatted response
         // ======================================================================================================================================
     private:
-        // Atributos pertensentes apenas ao query
+        // Attributes belonging only to the query
         RAGLibrary::Document m_query_doc;
         std::vector<float> m_emb_query;
         std::string m_query;
+        float m_threshold;
 
         size_t m_n_chunk = 0;
         size_t m_pos = 0;
         size_t m_dim = 0;
         size_t m_n = 0;
 
-        // trechos recuperados
+        // Retrieve chunks
         std::vector<std::tuple<std::string, float, int>> m_retrieve_list; 
         size_t quant_retrieve_list = 0;
 
