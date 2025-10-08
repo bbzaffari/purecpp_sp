@@ -47,26 +47,12 @@ Chunk::ChunkQuery::ChunkQuery(
     }
 }
 
-
+// Setters ===============================================================================================
 void Chunk::ChunkQuery::setThreshold(float t) {
     m_threshold = validateThreshold(t);
 }
 
-float Chunk::validateThreshold(float t) {
-    if (!std::isfinite(t)) {
-        throw std::invalid_argument("Threshold must be a finite number.");
-    }
-    // FP tolerance
-    if (t > 1.0f && t <= 1.0f + 1e-6f) t = 1.0f;
-    if (t < -1.0f && t >= -1.0f - 1e-6f) t = -1.0f;
-
-    if (t < -1.0f || t > 1.0f) {
-        throw std::invalid_argument("Threshold must be in range [-1.0, 1.0].");
-    }
-    return t;
-}
-
-void Chunk::ChunkQuery::setChunks(const Chunk::ChunkDefault& chunks, size_t pos) {
+void Chunk::ChunkQuery::setChunks(const Chunk::ChunkDefault& chunks, size_t pos) { ///This makes sure the query and chunk embeddings are always aligned to the same model and memory layout — critical for accurate similarity comparisons.
     if (!chunks.isInitialized())
         throw std::invalid_argument("No class.");
 
@@ -81,6 +67,8 @@ void Chunk::ChunkQuery::setChunks(const Chunk::ChunkDefault& chunks, size_t pos)
     if (!vdb)
         throw std::invalid_argument("No element in this position.");
 
+    // If the model has changed and a query already exists,
+    // regenerate the query embedding using the new model.
     if (m_vdb && m_vdb->model != vdb->model && !m_query.empty()) {
         m_emb_query.clear();
         auto docs = Chunk::Embeddings({ RAGLibrary::Document({}, m_query)}, vdb->model);
@@ -91,7 +79,8 @@ void Chunk::ChunkQuery::setChunks(const Chunk::ChunkDefault& chunks, size_t pos)
     }
 
     //------------------------------------------------------------------------------------------------------
-    // Create views via span
+    // Create vector "views" for all embeddings in this vdb.
+    // Each span points to one embedding in the flat buffer (flatVD).
     if (!m_chunk_embedding.empty()) m_chunk_embedding.clear();
     m_vdb = vdb; 
     m_chunk_embedding.reserve(m_vdb->n);
@@ -101,31 +90,38 @@ void Chunk::ChunkQuery::setChunks(const Chunk::ChunkDefault& chunks, size_t pos)
     }
     if (m_chunk_embedding.empty()) throw std::runtime_error("Unable to create window");
     //------------------------------------------------------------------------------------------------------
+    // Save metadata and references
     m_n_chunk =vdb->n;
     m_dim = vdb->dim;
     m_pos = pos;
     m_chunks_list = &chunks.getChunks(); 
     m_chunks = &chunks;
+    // Reset the query-related data
     m_query_doc = {};  //clear
     m_emb_query.clear();
 
+    // Generate a new embedding for the text query (m_query)
     RAGLibrary::Document result;
     if(m_vdb!=nullptr){
-        try{
-            auto results = Chunk::Embeddings({ RAGLibrary::Document({}, m_query) }, m_vdb->model);// sempre retorna algo 
+        try{// Always create embedding for the current query text using the active model
+            auto results = Chunk::Embeddings({ RAGLibrary::Document({}, m_query) }, m_vdb->model);
             result = validateEmbeddingResult(results);
         }
         catch(const std::exception& e){
             throw;
         }
+        // Save the embedding and update query metadata
         m_emb_query = result.embedding.value(); 
         m_n = 1;
         m_query_doc = result;
         m_query_doc.metadata["model"] = m_vdb->model;
     }
 }
+//========================================================================================================
 
-RAGLibrary::Document Chunk::ChunkQuery::Query(std::string query, const Chunk::ChunkDefault* temp_chunks, std::optional<size_t> pos){
+//========================================================================================================
+RAGLibrary::Document 
+Chunk::ChunkQuery::Query(std::string query, const Chunk::ChunkDefault* temp_chunks, std::optional<size_t> pos){
     if (query.empty() || query.size() < 5) {
         throw std::invalid_argument("Query string is empty.");
     }
@@ -163,8 +159,9 @@ RAGLibrary::Document Chunk::ChunkQuery::Query(std::string query, const Chunk::Ch
 
 
 // Version that directly receives a Document
-RAGLibrary::Document Chunk::ChunkQuery::Query(RAGLibrary::Document query_doc, const Chunk::ChunkDefault* temp_chunks, std::optional<size_t> pos) {
-    if (query_doc.page_content.empty()) {
+RAGLibrary::Document 
+Chunk::ChunkQuery::Query(RAGLibrary::Document query_doc, const Chunk::ChunkDefault* temp_chunks, std::optional<size_t> pos) {
+    if (query_doc.page_content.empty()) { 
         throw std::invalid_argument("Query document is empty.");
     }
 
@@ -204,7 +201,9 @@ RAGLibrary::Document Chunk::ChunkQuery::Query(RAGLibrary::Document query_doc, co
     return this->m_query_doc;
 }
 //======================================================================================================
-std::vector<std::tuple<std::string, float, int>> Chunk::ChunkQuery::Retrieve(float threshold, const Chunk::ChunkDefault* temp_chunks, std::optional<size_t> pos) {
+
+std::vector<std::tuple<std::string, float, int>> 
+Chunk::ChunkQuery::Retrieve(float threshold, const Chunk::ChunkDefault* temp_chunks, std::optional<size_t> pos) {
     // Validation of input parameters -----------------------------------------------------------------------
     if (m_emb_query.empty()) throw std::runtime_error("Query not yet initialized.");
     if (threshold < -1.0f || threshold > 1.0f) throw std::invalid_argument("Threshold out of bound [-1,1].");
@@ -275,6 +274,7 @@ std::vector<std::tuple<std::string, float, int>> Chunk::ChunkQuery::Retrieve(flo
     quant_retrieve_list = int(m_retrieve_list.size()); //int quant_retrieve_list = static_cast<int>(m_retrieve_list.size());
     return m_retrieve_list;
 }
+//========================================================================================================
 
 // Formatted ===========================================================================================
 
@@ -341,3 +341,19 @@ std::vector<std::tuple<std::string, float, int>> Chunk::ChunkQuery::getRetrieveL
 }
 
 //======================================================================================================
+
+// Helpers =============================================================================================
+float Chunk::validateThreshold(float t) {
+    if (!std::isfinite(t)) {
+        throw std::invalid_argument("Threshold must be a finite number.");
+    }
+    // FP tolerance
+    if (t > 1.0f && t <= 1.0f + 1e-6f) t = 1.0f;
+    if (t < -1.0f && t >= -1.0f - 1e-6f) t = -1.0f;
+
+    if (t < -1.0f || t > 1.0f) {
+        throw std::invalid_argument("Threshold must be in range [-1.0, 1.0].");
+    }
+    return t;
+}
+//========================================================================================================
