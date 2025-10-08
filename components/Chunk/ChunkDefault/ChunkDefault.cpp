@@ -119,7 +119,8 @@ std::vector<RAGLibrary::Document> Chunk::ChunkDefault::ProcessSingleDocument(RAG
     return documents;
 }
 
-const std::vector<RAGLibrary::Document>& Chunk::ChunkDefault::ProcessDocuments(std::optional<std::vector<RAGLibrary::Document>> items_opt, int max_workers)
+const std::vector<RAGLibrary::Document>& 
+Chunk::ChunkDefault::ProcessDocuments(std::optional<std::vector<RAGLibrary::Document>> items_opt, int max_workers)
 {   
     if (this->initialized_)
         throw std::invalid_argument("Chunks list already initialized.");
@@ -171,6 +172,7 @@ const std::vector<RAGLibrary::Document>& Chunk::ChunkDefault::ProcessDocuments(s
 
     return this->chunks;
 }
+
 //PRINTS======================================================================================
 void Chunk::ChunkDefault::LogEmbeddingStats(std::string model, std::string vendor , size_t dim, size_t n, size_t flatVD_size) const{
     std::cout << "╔═════════════════════════════════════════════════════════════════════════════════════╗\n";

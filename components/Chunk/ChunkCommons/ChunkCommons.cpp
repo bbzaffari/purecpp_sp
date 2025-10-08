@@ -118,13 +118,18 @@ std::vector<float> Chunk::MeanPooling(const std::vector<float> &token_embeddings
     return pooled_embeddings;
 }
 
-void Chunk::NormalizeEmbeddings(std::vector<float> &embeddings)
+void Chunk::NormalizeEmbeddings(std::vector<float>& e)
 {
-    float norm = std::sqrt(std::inner_product(embeddings.begin(), embeddings.end(), embeddings.begin(), 0.0f));
-    for (float &value : embeddings)
-    {
-        value /= norm;
-    }
+    // Compute L2 norm using double for better precision
+    const double norm = std::sqrt(std::inner_product(
+        e.begin(), e.end(), e.begin(), 0.0 /* init */, std::plus<>(),
+        [](float x) { return static_cast<double>(x) * x; }
+    ));
+
+    if (norm <= 1e-12) return; // Avoid division by zero or NaN
+
+    const float inv = 1.0f / static_cast<float>(norm);
+    for (auto& v : e) v *= inv;
 }
 
 std::vector<std::vector<float>> Chunk::EmbeddingModelBatch(const std::vector<std::string> &chunks, const std::string &model, const int batch_size)
@@ -235,51 +240,79 @@ at::Tensor Chunk::toTensor(std::vector<std::vector<float>> &vect)
     return tensor;
 }
 
-std::vector<std::string> Chunk::SplitText(std::string inputs, const int overlap, const int chunk_size)
+
+std::vector<std::string>
+Chunk::SplitText(std::string inputs, int overlap, int chunk_size)
 {
-    size_t step = size_t(chunk_size - overlap);
-    size_t chunk_sizes = (size_t)std::ceil((long double)inputs.size() / (long double)(step));
+    // if (chunk_size <= 0) throw std::invalid_argument("chunk_size <= 0");
+    // if (overlap < 0)     throw std::invalid_argument("overlap < 0");
+    // if (overlap >= chunk_size)
+    //     throw std::invalid_argument("overlap must be < chunk_size");
 
-    std::vector<std::string> chunks(chunk_sizes);
-    for (size_t i = 0; i < chunk_sizes; ++i)
-    {
-        size_t start_index = i * step;
-        size_t end_index = start_index + chunk_size;
-        if (end_index >= inputs.size())
-        {
-            end_index = inputs.size();
-        }
-        chunks[i] = inputs.substr(start_index, end_index - start_index);
+    const size_t step = size_t(chunk_size - overlap);
+    const size_t n_chunks = (inputs.empty() ? 0 :
+        (inputs.size() + step - 1) / step);
+
+    std::vector<std::string> chunks;
+    chunks.reserve(n_chunks);
+
+    for (size_t i = 0; i < n_chunks; ++i) {
+        size_t start = i * step;
+        size_t end   = std::min(start + size_t(chunk_size), inputs.size());
+        chunks.emplace_back(inputs.substr(start, end - start));
     }
-
     return chunks;
 }
 
-std::vector<std::string> Chunk::SplitTextByCount(const std::string &input, int overlap, int count_threshold, const std::shared_ptr<re2::RE2> regex)
+
+
+std::vector<std::string>
+Chunk::SplitTextByCount(const std::string& input, int overlap,
+                        int count_threshold, const std::shared_ptr<re2::RE2> regex)
 {
-    std::vector<std::string> chunks;
+    // Sanity checks to ensure parameters are valid
+    // if (!regex) throw std::invalid_argument("regex null");
+    // if (count_threshold <= 0) throw std::invalid_argument("count_threshold <= 0");
+    // if (overlap < 0) throw std::invalid_argument("overlap < 0");
+
+    // Vector to store regex matches as StringPiece views over the original input
     std::vector<re2::StringPiece> matches;
 
-    re2::StringPiece text(input);
-    re2::StringPiece match;
+    // Copy of input used by RE2 to consume matches
+    re2::StringPiece text(input), m;
 
-    while (re2::RE2::FindAndConsume(&text, *regex, &match))
-    {
-        matches.push_back(match);
+    // Extract all regex matches from the input and store them
+    while (re2::RE2::FindAndConsume(&text, *regex, &m)) {
+        matches.push_back(m);
     }
 
-    size_t start_idx = size_t(0);
-    for (int i = 0; i < matches.size(); i += count_threshold)
-    {
-        size_t j = i + count_threshold;
-        size_t end_idx = text.size() + 1;
-        if (j < matches.size())
-        {
-            end_idx = (matches[j - 1].data() - input.data()) + matches[j - 1].size();
+    std::vector<std::string> chunks;
+    size_t start_idx = 0;
+
+    // Process matches in groups of 'count_threshold'
+    for (int i = 0; i < (int)matches.size(); i += count_threshold) {
+        const int j = std::min(i + count_threshold, (int)matches.size());
+
+        // Compute the end index of the current chunk
+        size_t end_idx = input.size();
+        if (j > 0) {
+            const auto& last = matches[j - 1];
+            // Calculate offset using pointer arithmetic relative to input base
+            end_idx = (size_t)(last.data() - input.data()) + last.size();
         }
-        chunks.push_back(std::string(text.substr(start_idx, end_idx - start_idx)));
-        start_idx = end_idx > overlap ? size_t(end_idx - overlap) : size_t(0);
+
+        // Defensive check: ensure end is never before start
+        if (end_idx < start_idx) end_idx = start_idx;
+
+        // Extract substring chunk and add it to the result
+        chunks.emplace_back(input.substr(start_idx, end_idx - start_idx));
+
+        // Move start index forward, with optional overlap between chunks
+        start_idx = (end_idx > (size_t)overlap) ? (end_idx - (size_t)overlap) : 0;
     }
+
+    // Fallback: if no regex matches found, return the whole input as one chunk
+    if (chunks.empty()) chunks.emplace_back(input);
 
     return chunks;
 }

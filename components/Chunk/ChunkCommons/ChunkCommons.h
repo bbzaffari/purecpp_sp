@@ -32,7 +32,7 @@ namespace Chunk
     };
     
     //===============================================================================================    
-        extern inline const std::unordered_map<std::string, std::vector<std::string>> EmbeddingModel = {
+        inline const std::unordered_map<std::string, std::vector<std::string>> EmbeddingModel = {
             {"openai", {"text-embedding-ada-002", "text-embedding-3-small", "..."}},
             {"huggingface", {"bge-small", "bge-large"}},
             {"cohere", {"embed-english-light-v3.0"}}
@@ -40,11 +40,11 @@ namespace Chunk
  
         inline void PrintEmbeddingModels() {
         std::cout << "╔══════════════════════════════════════════════════════════╗\n";
-        std::cout << "║               📦 Available Embedding Models              \n";
+        std::cout << "║                 Available Embedding Models              \n";
         std::cout << "╠══════════════════════════════════════════════════════════╣\n";
 
         for (const auto& [vendor, models] : EmbeddingModel) {
-            std::cout << "║ 🔸 Vendor: " << vendor << "\n";
+            std::cout << "║   Vendor: " << vendor << "\n";
             for (const auto& model : models) {
                 std::cout << "║    └── " << model << "\n";
             }
@@ -123,7 +123,5 @@ namespace Chunk
 
     std::vector<std::string> SplitText(std::string inputs, const int overlap, const int chunk_size);
     std::vector<std::string> SplitTextByCount(const std::string &input, int overlap, int count_threshold, const std::shared_ptr<re2::RE2> regex);
-    
-    // void InitAPIKey();// Inicialização separada da chave
-    // std::vector<RAGLibrary::Document> Embeddings(const std::vector<RAGLibrary::Document>& list);
+
 }

@@ -83,7 +83,7 @@ cd purecpp_sp
  chmod +x installers/*.sh
  ./installers/env_config.sh
  ```
-*This script automates the setup. Installing Python essentials, LibTorch, FAISS, and configuring Conan profile.*
+*This script automates the setup. Installing Python essentials, LibTorch, FAISS, and configuring Conan profile.d*
 
 > [!CAUTION]
 > 
