@@ -17,14 +17,19 @@
 
 // #define DEBUG // Uncomment to enable debug messages
 
+
 Chunk::ChunkQuery::ChunkQuery(
-        std::string query,
-        RAGLibrary::Document query_doc,
-        const Chunk::ChunkDefault* chunks,
-        std::optional<size_t> pos,
-        float threshold
-): m_query(std::move(query)), m_query_doc(std::move(query_doc))
+    std::string query,
+    RAGLibrary::Document query_doc,
+    const Chunk::ChunkDefault* chunks,
+    std::optional<size_t> pos,
+    float threshold
+)
+: m_query(std::move(query))
+, m_query_doc(std::move(query_doc))
+, m_threshold(validateThreshold(threshold))
 {
+
     if (pos.has_value() && chunks != nullptr) {
         try{
             setChunks(*chunks, pos.value()); 
@@ -35,12 +40,30 @@ Chunk::ChunkQuery::ChunkQuery(
     }
     // else cout<<"Invalid";
 
-    if (!query.empty()) {
-        Query(query);
-    } 
-    else if (!query_doc.page_content.empty()) {
-        Query(query_doc);
+    if (!m_query.empty()) {
+        Query(m_query);
+    } else if (!m_query_doc.page_content.empty()) {
+        Query(m_query_doc);
     }
+}
+
+
+void Chunk::ChunkQuery::setThreshold(float t) {
+    m_threshold = validateThreshold(t);
+}
+
+float Chunk::validateThreshold(float t) {
+    if (!std::isfinite(t)) {
+        throw std::invalid_argument("Threshold must be a finite number.");
+    }
+    // FP tolerance
+    if (t > 1.0f && t <= 1.0f + 1e-6f) t = 1.0f;
+    if (t < -1.0f && t >= -1.0f - 1e-6f) t = -1.0f;
+
+    if (t < -1.0f || t > 1.0f) {
+        throw std::invalid_argument("Threshold must be in range [-1.0, 1.0].");
+    }
+    return t;
 }
 
 void Chunk::ChunkQuery::setChunks(const Chunk::ChunkDefault& chunks, size_t pos) {
@@ -68,7 +91,7 @@ void Chunk::ChunkQuery::setChunks(const Chunk::ChunkDefault& chunks, size_t pos)
     }
 
     //------------------------------------------------------------------------------------------------------
-    //Criar views via span
+    // Create views via span
     if (!m_chunk_embedding.empty()) m_chunk_embedding.clear();
     m_vdb = vdb; 
     m_chunk_embedding.reserve(m_vdb->n);
@@ -103,9 +126,10 @@ void Chunk::ChunkQuery::setChunks(const Chunk::ChunkDefault& chunks, size_t pos)
 }
 
 RAGLibrary::Document Chunk::ChunkQuery::Query(std::string query, const Chunk::ChunkDefault* temp_chunks, std::optional<size_t> pos){
-    if (query.empty() || query.size()<5) {
+    if (query.empty() || query.size() < 5) {
         throw std::invalid_argument("Query string is empty.");
     }
+    
     if (pos.has_value()){
         if (temp_chunks != nullptr) setChunks(*temp_chunks, pos.value());
         else if(m_chunks != nullptr) setChunks(*m_chunks, pos.value());
@@ -138,7 +162,7 @@ RAGLibrary::Document Chunk::ChunkQuery::Query(std::string query, const Chunk::Ch
 }
 
 
-// Versão que recebe diretamente um Document
+// Version that directly receives a Document
 RAGLibrary::Document Chunk::ChunkQuery::Query(RAGLibrary::Document query_doc, const Chunk::ChunkDefault* temp_chunks, std::optional<size_t> pos) {
     if (query_doc.page_content.empty()) {
         throw std::invalid_argument("Query document is empty.");
@@ -191,9 +215,9 @@ std::vector<std::tuple<std::string, float, int>> Chunk::ChunkQuery::Retrieve(flo
         else throw std::invalid_argument("Position was provided, but no chunk context (temp_chunks or m_chunks) was set.");
     }
 
-    // Vetor temporário de (texto, score, índice)
+    // Temporary array of (text, score, index)
     std::vector<std::tuple<std::string, float, int>> scored_hits;
-    // Tensor da query
+    // Query Tensor
     auto query_tensor = torch::from_blob(
         const_cast<float*>(m_emb_query.data()),
         {int64_t(m_emb_query.size())}, torch::kFloat32
@@ -217,7 +241,7 @@ std::vector<std::tuple<std::string, float, int>> Chunk::ChunkQuery::Retrieve(flo
             float dot_p = torch::dot(query_tensor, chunk_tensor).item<float>();
             float sim = dot_p / (norm_q * norm_c);
 
-            if (sim >= threshold) {// armazena (conteúdo, similaridade, índice original)
+            if (sim >= threshold) {//stores (content, similarity, original index)
                 local_hits.emplace_back(
                     //const auto& doc = (*this->chunks_list)[i];
                     //std::cout << doc.page_content << std::endl;,
@@ -235,7 +259,7 @@ std::vector<std::tuple<std::string, float, int>> Chunk::ChunkQuery::Retrieve(flo
         );
     }
 
-    // ordena decrescentemente por similaridade (get<1>)
+    // sort descending by similarity (get<1>)
     std::sort(
         scored_hits.begin(),
         scored_hits.end(),
@@ -244,17 +268,17 @@ std::vector<std::tuple<std::string, float, int>> Chunk::ChunkQuery::Retrieve(flo
         }
     );
 
-    // atualiza estado e retorna
+    // update state and return
     m_retrieve_list   = std::move(scored_hits);
     quant_retrieve_list = int(m_retrieve_list.size()); //int quant_retrieve_list = static_cast<int>(m_retrieve_list.size());
     return m_retrieve_list;
 }
 
-// Formated P ===========================================================================================
+// Formatted ===========================================================================================
 
 std::string Chunk::ChunkQuery::StrQ(int index) {
     if (index == -1) {
-        index = quant_retrieve_list; // usa o valor interno aqui
+        index = quant_retrieve_list; // use the internal value here
     }
     const int n = static_cast<int>(m_retrieve_list.size());
     if (index < 0 || index >= n) {
@@ -291,7 +315,7 @@ const std::vector<RAGLibrary::Document>& Chunk::ChunkQuery::getChunksList() cons
     return *m_chunks_list;
 }
 
-// Retorna o par (modelo de embedding, nome do modelo) usados na instância
+// Returns the (embedding model, model name) pair used in the instance
 std::string Chunk::ChunkQuery::getMod(void) const {
     return { this->m_vdb->model };
 }
