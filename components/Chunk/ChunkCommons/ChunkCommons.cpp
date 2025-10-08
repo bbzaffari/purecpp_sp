@@ -120,13 +120,14 @@ std::vector<float> Chunk::MeanPooling(const std::vector<float> &token_embeddings
 
 void Chunk::NormalizeEmbeddings(std::vector<float>& e)
 {
-    // Compute L2 norm using double for better precision
+    // Usa double para precisão numérica
     const double norm = std::sqrt(std::inner_product(
-        e.begin(), e.end(), e.begin(), 0.0 /* init */, std::plus<>(),
-        [](float x) { return static_cast<double>(x) * x; }
+        e.begin(), e.end(), e.begin(), 0.0, std::plus<>(),
+        [](float x, float y) { return static_cast<double>(x) * y; }
     ));
 
-    if (norm <= 1e-12) return; // Avoid division by zero or NaN
+    if (norm <= 1e-12)
+        return; // Evita divisão por zero
 
     const float inv = 1.0f / static_cast<float>(norm);
     for (auto& v : e) v *= inv;

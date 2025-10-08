@@ -343,7 +343,7 @@ std::vector<std::tuple<std::string, float, int>> Chunk::ChunkQuery::getRetrieveL
 //======================================================================================================
 
 // Helpers =============================================================================================
-float Chunk::validateThreshold(float t) {
+float Chunk::ChunkQuery::validateThreshold(float t) {
     if (!std::isfinite(t)) {
         throw std::invalid_argument("Threshold must be a finite number.");
     }
