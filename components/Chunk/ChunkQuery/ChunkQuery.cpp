@@ -225,6 +225,7 @@ std::vector<std::tuple<std::string, float, int>> Chunk::ChunkQuery::Retrieve(flo
     // auto query_tensor = torch::tensor(m_emb_query, torch::kFloat32); -> ?
 
     float norm_q = torch::norm(query_tensor).item<float>();
+    if (norm_q == 0.0f) throw std::runtime_error("Zero-norm query embedding.");
 
     #pragma omp parallel
     {
@@ -238,6 +239,7 @@ std::vector<std::tuple<std::string, float, int>> Chunk::ChunkQuery::Retrieve(flo
             );
 
             float norm_c = torch::norm(chunk_tensor).item<float>();
+            if (norm_c == 0.0f) continue;
             float dot_p = torch::dot(query_tensor, chunk_tensor).item<float>();
             float sim = dot_p / (norm_q * norm_c);
 
@@ -316,9 +318,11 @@ const std::vector<RAGLibrary::Document>& Chunk::ChunkQuery::getChunksList() cons
 }
 
 // Returns the (embedding model, model name) pair used in the instance
-std::string Chunk::ChunkQuery::getMod(void) const {
-    return { this->m_vdb->model };
+std::string Chunk::ChunkQuery::getMod() const {
+    if (!m_vdb) throw std::runtime_error("VDB not set.");
+    return m_vdb->model;
 }
+
 
 std::tuple<size_t, size_t, size_t> Chunk::ChunkQuery::getPar(void) const {
     return { this->m_n, this->m_dim, this->m_n_chunk };
@@ -328,10 +332,12 @@ std::vector<float> Chunk::ChunkQuery::getEmbedQuery(void) const {
     return m_emb_query;
 }
 
-std::vector<std::tuple<std::string, float, int>> Chunk::ChunkQuery::getRetrieveList(void) const {
-    if(this->m_retrieve_list.size() == 0)
-        std::cout<<"Empty Retrive List\n";
+std::vector<std::tuple<std::string, float, int>> Chunk::ChunkQuery::getRetrieveList() const {
+    if (m_retrieve_list.empty()) {
+        std::cout << "Empty Retrieve List\n";
         return {};
-    return this->m_retrieve_list;
+    }
+    return m_retrieve_list;
 }
+
 //======================================================================================================
