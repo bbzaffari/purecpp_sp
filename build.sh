@@ -1,6 +1,13 @@
 #!/bin/bash
 
-# -------------------- Function to print a formatted module header --------------------
+#====================== COLORS =====================
+GREEN='\033[0;32m'
+CYAN='\033[0;36m'
+YELLOW='\033[1;33m'
+RED='\033[0;31m'
+RESET='\033[0m'
+
+# -- Function to print a formatted module header --
 print_module() {
     local module="$1"
     local title="MODULE ${module}"
@@ -13,7 +20,7 @@ print_module() {
     echo "$separator"
 }
 
-# -------------------- Function to compile a specific module --------------------
+# --- Function to compile a specific module ---
 run_module() {
     local dir="$1"
     cd CMAKE/
@@ -47,14 +54,15 @@ if [ "$1" = "all" ]; then
     done
     END_TIME=$(date +%s)
     ELAPSED_TIME=$((END_TIME - START_TIME))
-    
+
+    echo -e "$CYAN"
     echo ""
     echo "============================================================"
-    echo "Total execution time: ${ELAPSED_TIME} seconds"
+    echo "      Total build time: ${ELAPSED_TIME} s"
     echo "============================================================"
     echo "       ALL MODULES COMPILED SUCCESSFULLY!"
     echo "============================================================"
-
+    echo -e "$RESET"
 else
     case "$1" in
         [1-5])
@@ -63,13 +71,15 @@ else
         
             END_TIME=$(date +%s)
             ELAPSED_TIME=$((END_TIME - START_TIME))
-            
+
+            echo -e "$CYAN"
             echo ""
             echo "============================================================"
-            echo "Total execution time: ${ELAPSED_TIME} seconds"
+            echo "       Total build time: ${ELAPSED_TIME} s"
             echo "============================================================"
-            echo "       ALL MODULES COMPILED SUCCESSFULLY!"
+            echo "       $modules MODULE COMPILED SUCCESSFULLYa!"
             echo "============================================================"
+            echo -e "$RESET"
             ;;
         *)
             echo "Invalid argument: '$1'"
