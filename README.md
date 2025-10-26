@@ -176,7 +176,7 @@ chmod +x installers/*.sh
 
 Ensure the scripts have the execution permission
 ```bash
-chmod -R +x ./CMAKE/*/sub_mod_build.sh
+chmod -R +x ./CMAKE/sub_mod_build.sh
 chmod +x ./build.sh
 ````
 
