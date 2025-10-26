@@ -32,7 +32,7 @@
 #include "FileUtilsLocal.h"
 #include "CommonStructs.h"
 
-#include "../components/MetadataExtractor/Document.h"
+#include "Document.h"
 #include "IMetadataExtractor.h"
 #include "MetadataExtractor.h"
 #include "MetadataRegexExtractor/IMetadataRegexExtractor.h"

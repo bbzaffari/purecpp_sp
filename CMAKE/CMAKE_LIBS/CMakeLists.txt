@@ -9,15 +9,15 @@ set(CMAKE_CXX_EXTENSIONS ON)
 # set(CMAKE_CXX_EXTENSIONS OFF) 
 set(CMAKE_BUILD_TYPE "Release")
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #------- Path to FAISS -------
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #...
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #------- Compiler Specific flags -------
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 if(CMAKE_CXX_COMPILER_ID MATCHES "MSVC")# Flags específicas do MSVC
     #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /std:c++latest")
     set(CMAKE_TOOLCHAIN_FILE ${CMAKE_BINARY_DIR}/generators/conan_toolchain.cmake)
@@ -37,9 +37,9 @@ else() # Flags para G++/Clang ou G++/GNU em Linux
 endif()
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #------- Options -------
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 
 option(CURL_STATIC_LINKING "Set to ON to build libcurl with static linking." OFF)
 
@@ -49,9 +49,9 @@ if(CURL_STATIC_LINKING)
 endif()
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #------- Find Python  -------
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 set(Python3_FIND_SHARED OFF)# Need it?
 find_package(Python3 REQUIRED COMPONENTS Interpreter Development.Module)
 
@@ -63,9 +63,9 @@ endif()
 include_directories(${Python3_INCLUDE_DIRS})
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #------- Find Pybind11 -------
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 message(STATUS "---------------------------------------\n")
 if(Python3_VERSION_MAJOR EQUAL 3 AND Python3_VERSION_MINOR EQUAL 8)
     message(STATUS "Python 3.8 detected!!")
@@ -107,9 +107,9 @@ find_package(pybind11 REQUIRED)
 
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #------- Find other dependencies -------
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 find_package(pdfium REQUIRED)         
 find_package(OpenMP REQUIRED)         
 find_package(ICU REQUIRED)            
@@ -123,9 +123,9 @@ find_package(nlohmann_json REQUIRED)
 find_package(CURL REQUIRED)            
 find_package(Threads REQUIRED)         
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #------- Protobuf -------
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 
 find_package(Protobuf REQUIRED)
 # message(STATUS "---------------------------------------\n")
@@ -164,7 +164,7 @@ find_package(onnxruntime REQUIRED)     # Pode depender de protobuf (verifique se
 
 # ───────────────────────────────────────────────────────────────────────
 #------- Discover the directory Current Python site-packages -------
-# ──────────────────────────────────────────────────────────────────────────────
+# ────────────────────────────────────────────────────────────
 # We will use sysconfig to be more robust across multiple Python versions.
 
 execute_process(
@@ -177,15 +177,16 @@ execute_process(
  
 # message(STATUS "------------------------> Encontrado site-packages do Python em: ${PYTHON_SITE_PACKAGES}")
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #------- Torch -------
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #...
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #------- RPATH -------
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
+#------- RPATH/RUNPATH/LIBRARY_PATH Configuration -------
 set(CMAKE_BUILD_RPATH
     "${PYTHON_SITE_PACKAGES}/*/d_libs/libtorch/cpu/lib"
     "\$ORIGIN/../purecpp_libs.libs"
@@ -232,33 +233,33 @@ set(CMAKE_INSTALL_RPATH
 
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,--enable-new-dtags")
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
-#------- Configuração do RPATH/RUNPATH/LIBRARY_PATH -------
+#------- RPATH/RUNPATH/LIBRARY_PATH Configuration -------
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #------- Tokenizers -------
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #...
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #------- OpenAI C++ bindings -------
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #...
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 # ----- Project sources -----
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 
 set(RagPUREAI_BINDING_SRCS  "binding_libs.cpp")
 set(RagPUREAI_IMPL_SRCS
     "${CMAKE_SOURCE_DIR}/../../libs/StringUtils/StringUtils.cpp"
 )
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #------- RagPUREAI Library -------
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 
 add_library(RagPUREAILib STATIC ${RagPUREAI_IMPL_SRCS})
 
@@ -274,45 +275,44 @@ target_include_directories(RagPUREAILib PUBLIC
 )
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 # Link libraries with RagPUREAILib
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 
 target_link_libraries(RagPUREAILib PUBLIC
-    # 🔹 Bibliotecas principais (core)
-    pdfium::pdfium
-    icu::icu
-    miniz::miniz
-    rapidxml::rapidxml
-    beauty::beauty
-    lexbor::lexbor_static
-    # 🔹 Bibliotecas matemáticas e otimização
-    OpenMP::OpenMP_CXX
-    Threads::Threads 
-    # 🔹 Bibliotecas auxiliares e utilitárias
-    #fmt::fmt
-    re2::re2
-    protobuf::libprotobuf  # ONNX e tokenizers podem precisar disso
-    nlohmann_json::nlohmann_json
-    # 🔹 Bibliotecas externas importantes
-    onnxruntime::onnxruntime
-    # 🔹 Bibliotecas de rede e IO
-    CURL::libcurl
-    # 🔹 Bibliotecas dinâmicas e Python
-    ${Python3_LIBRARIES}  # Python deve vir no final para evitar conflito de símbolos
+        # 🔹 Core Libraries
+        pdfium::pdfium
+        icu::icu
+        miniz::miniz
+        rapidxml::rapidxml
+        beauty::beauty
+        lexbor::lexbor_static
+        # 🔹 Math and Optimization Libraries
+        OpenMP::OpenMP_CXX
+        Threads::Threads
+        # 🔹 Auxiliary and Utility Libraries
+        #fmt::fmt
+        re2::re2
+        protobuf::libprotobuf # ONNX and tokenizers may need this
+        nlohmann_json::nlohmann_json
+        # 🔹 Important External Libraries
+        onnxruntime::onnxruntime
+        # 🔹 Networking and IO Libraries
+        CURL::libcurl
+        # 🔹 Dynamic Libraries and Python
+        ${Python3_LIBRARIES} # Python must come at the end to avoid symbol conflicts
 )
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 # Link libraries with RagPUREAILib
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 
 pybind11_add_module(purecpp_libs ${RagPUREAI_BINDING_SRCS})
 
 target_link_libraries(purecpp_libs PUBLIC RagPUREAILib)
 
 
-
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #---------------- DEBUG MESSAGES
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────

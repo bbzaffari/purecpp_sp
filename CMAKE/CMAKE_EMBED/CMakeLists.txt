@@ -9,37 +9,34 @@ set(CMAKE_CXX_EXTENSIONS ON)
 # set(CMAKE_CXX_EXTENSIONS OFF) 
 set(CMAKE_BUILD_TYPE "Release")
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #------- Path to FAISS -------
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #...
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #------- Compiler Specific flags -------
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 if(CMAKE_CXX_COMPILER_ID MATCHES "MSVC")# Flags específicas do MSVC
     #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /std:c++latest")
     set(CMAKE_TOOLCHAIN_FILE ${CMAKE_BINARY_DIR}/generators/conan_toolchain.cmake)
-    # message(STATUS "\n\n\n\n\n\n\n\n\n\n------------------------> MICROSOFT\n\n\n\n\n\n\n\n\n\n")
     #set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /Od")
     set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /Od /EHsc /MP /openmp /MD")
     #set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /fPIC /EHsc /Ox /DNDEBUG")
 else() # Flags para G++/Clang ou G++/GNU em Linux
     # Mantém as flags de otimização e adiciona -std=c++23
     set(CMAKE_TOOLCHAIN_FILE ${CMAKE_BINARY_DIR}/Release/generators/conan_toolchain.cmake)
-    # message(STATUS "\n\n\n\n\n\n\n\n\n\n------------------------> variaveis presentes antes do RELEASE: ${CMAKE_CXX_FLAGS}")
     # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC  -Wall -Wextra -Wpedantic") # Debug
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -fopenmp -pthread")
     set(CMAKE_CXX_FLAGS_RELEASE "-O0 -std=c++23") #-flto?
     # set(CMAKE_CXX_FLAGS_RELEASE "-O2 -DNDEBUG")
-    # message(STATUS "\n\n\n\n\n\n\n\n\n\n------------------------> variaveis presentes depois do RELEASE: ${CMAKE_CXX_FLAGS}\n\n\n\n\n\n\n\n\n\n")
 endif()
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #------- Options -------
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 
 option(CURL_STATIC_LINKING "Set to ON to build libcurl with static linking." OFF)
 
@@ -49,9 +46,9 @@ if(CURL_STATIC_LINKING)
 endif()
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #------- Find Python  -------
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 set(Python3_FIND_SHARED OFF)# Need it?
 find_package(Python3 REQUIRED COMPONENTS Interpreter Development.Module)
 
@@ -63,9 +60,9 @@ endif()
 include_directories(${Python3_INCLUDE_DIRS})
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #------- Find Pybind11 -------
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 message(STATUS "---------------------------------------\n")
 if(Python3_VERSION_MAJOR EQUAL 3 AND Python3_VERSION_MINOR EQUAL 8)
     message(STATUS "Python 3.8 detected!!")
@@ -107,9 +104,9 @@ find_package(pybind11 REQUIRED)
 
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #------- Find other dependencies -------
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 find_package(pdfium REQUIRED)         
 find_package(OpenMP REQUIRED)         
 find_package(ICU REQUIRED)            
@@ -124,26 +121,12 @@ find_package(CURL REQUIRED)
 find_package(Threads REQUIRED)          
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #------- Protobuf -------
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 
 find_package(Protobuf REQUIRED)
-# message(STATUS "---------------------------------------\n")
-# message(STATUS "------------------------> Protobuf_FOUND: ${Protobuf_FOUND}")
-# message(STATUS "------------------------> Protobuf_VERSION: ${Protobuf_VERSION}")
-# message(STATUS "------------------------> Protobuf_INCLUDE_DIRS: ${Protobuf_INCLUDE_DIRS}")
-# message(STATUS "------------------------> Protobuf_LIBRARIES: ${Protobuf_LIBRARIES}")
-# message(STATUS "------------------------> Protobuf_PROTOC_EXECUTABLE: ${Protobuf_PROTOC_EXECUTABLE}")
-# message(STATUS "------------------------> Protobuf_LITE_LIBRARIES: ${Protobuf_LITE_LIBRARIES}")
-# message(STATUS "\n --------------------------------------- ")
-# include_directories(${Protobuf_INCLUDE_DIRS})#A principio o target Protobuf_INCLUDE_DIRS n existe, mas n sei se é necessario
-# message(STATUS "\n\n\n\n\n\n\n\n\n\n\n\n\n\nTargets disponíveis: ")
-# get_property(_TARGETS DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY BUILDSYSTEM_TARGETS)
-# foreach(target ${_TARGETS})
-#     message(STATUS "  - ${target}")
-# endforeach()
-# message(STATUS "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n--------------------------------------- ")
+
 if(CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
     link_directories(${Protobuf_LIBRARY_DIRS})
     include_directories(C:/vcpkg/packages/protobuf_x64-windows/include)
@@ -153,19 +136,11 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
     endif()
 endif()
 
-find_package(onnxruntime REQUIRED)     # Pode depender de protobuf (verifique se precisa!)
-# message(STATUS "---------------------------------------\n")
-# message(STATUS "------------------------> Protobuf_FOUND: ${Protobuf_FOUND}")
-# message(STATUS "------------------------> Protobuf_VERSION: ${Protobuf_VERSION}")
-# message(STATUS "------------------------> Protobuf_INCLUDE_DIRS: ${Protobuf_INCLUDE_DIRS}")
-# message(STATUS "------------------------> Protobuf_LIBRARIES: ${Protobuf_LIBRARIES}")
-# message(STATUS "------------------------> Protobuf_PROTOC_EXECUTABLE: ${Protobuf_PROTOC_EXECUTABLE}")
-# message(STATUS "------------------------> Protobuf_LITE_LIBRARIES: ${Protobuf_LITE_LIBRARIES}")
-# message(STATUS "\n --------------------------------------- ")
+find_package(onnxruntime REQUIRED)     
 
-# ───────────────────────────────────────────────────────────────────────
-#------- Discover the directory Current Python site-packages -------
-# ──────────────────────────────────────────────────────────────────────────────
+# ────────────────────────────────────────────────────────────
+# --- Discover the directory Current Python site-packages ----
+# ────────────────────────────────────────────────────────────
 # We will use sysconfig to be more robust across multiple Python versions.
 
 execute_process(
@@ -175,18 +150,15 @@ execute_process(
     OUTPUT_STRIP_TRAILING_WHITESPACE
 )
 
-# message(STATUS "------------------------> Encontrado site-packages do Python em: ${PYTHON_SITE_PACKAGES}")
-
-
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #------- Torch -------
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 # ....
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #------- RPATH -------
-# ─────────────────────────────────────────────────────────────────────────────
-#------- Configuração do RPATH/RUNPATH/LIBRARY_PATH -------> Ajustar rpath para encontrar as bibliotecas do Torch
+# ───────────────────────────────────────────────────────────
+#------- RPATH/RUNPATH/LIBRARY_PATH Configuration -------
 
 set(CMAKE_BUILD_RPATH
     "${PYTHON_SITE_PACKAGES}/*/d_libs/libtorch/cpu/lib"
@@ -234,28 +206,28 @@ set(CMAKE_INSTALL_RPATH
 
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,--enable-new-dtags")
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
-#------- Configuração do RPATH/RUNPATH/LIBRARY_PATH -------
+#------- RPATH/RUNPATH/LIBRARY_PATH Configuration -------
 message(STATUS "\n\n\n\n------------------------> Caminho previsto para TORCH_CXX_FLAGS: ${TORCH_CXX_FLAGS}\n\n\n\n")
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #------- Tokenizers -------
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 
 set(TOKENIZERS_PATH "${CMAKE_SOURCE_DIR}/../../libs/tokenizers-cpp")
 add_subdirectory(${TOKENIZERS_PATH} tokenizers EXCLUDE_FROM_ALL)
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #------- OpenAI C++ bindings -------
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 
 set(OPENAI_CPP_PATH "${CMAKE_SOURCE_DIR}/../../libs/openai-cpp/")
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 # ----- Project sources -----
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 
-set(RagPUREAI_BINDING_SRCS  binding_embed.cpp) # Para compilar o binding.cpp
+set(RagPUREAI_BINDING_SRCS  binding_embed.cpp)
 
 set(RagPUREAI_IMPL_SRCS
     ${CMAKE_SOURCE_DIR}/../../libs/StringUtils/StringUtils.cpp
@@ -265,9 +237,9 @@ set(RagPUREAI_IMPL_SRCS
 )
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #------- RagPUREAI Library -------
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 
 add_library(RagPUREAILib STATIC ${RagPUREAI_IMPL_SRCS})
 
@@ -282,7 +254,7 @@ target_include_directories(RagPUREAILib PUBLIC #.h
     #C:/vcpkg/packages/protobuf_x64-windows/include
     ${CURL_INCLUDE_DIRS}
 
-    ${OPEANAI_CPP_PATH}/include
+    ${OPENAI_CPP_PATH}/include
 
     # ${TORCH_INCLUDE_DIRS}
 
@@ -294,9 +266,9 @@ target_include_directories(RagPUREAILib PUBLIC #.h
     
 )
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 # Link libraries with RagPUREAILib
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 
 target_link_libraries(RagPUREAILib PUBLIC
     pdfium::pdfium
@@ -319,18 +291,18 @@ target_link_libraries(RagPUREAILib PUBLIC
 )
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #---------------- Pybind11 Module
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 
 pybind11_add_module(purecpp_embed ${RagPUREAI_BINDING_SRCS})
 
 target_link_libraries(purecpp_embed PRIVATE RagPUREAILib)
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #---------------- DEBUG MESSAGES
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #${CMAKE_SOURCE_DIR})
 
 message(STATUS "---------------------------------------\n")

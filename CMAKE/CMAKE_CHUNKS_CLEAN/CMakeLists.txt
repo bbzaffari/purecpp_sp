@@ -11,9 +11,9 @@ set(CMAKE_BUILD_TYPE "Release")
 
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #------- Path to FAISS -------
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 set(FAISS_ROOT "${CMAKE_BINARY_DIR}/../../../../libs/faiss")
 set(FAISS_INCLUDE_DIR "${FAISS_ROOT}/faiss")
 set(FAISS_LIB_DIR "${FAISS_ROOT}/build/faiss") # Must contain libfaiss.a
@@ -24,9 +24,9 @@ set_target_properties(faiss PROPERTIES
     INTERFACE_INCLUDE_DIRECTORIES "${FAISS_INCLUDE_DIR}"
 )
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #------- Compiler Specific flags -------
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 if(CMAKE_CXX_COMPILER_ID MATCHES "MSVC")# MSVC-specific flags
     set(CMAKE_TOOLCHAIN_FILE ${CMAKE_BINARY_DIR}/generators/conan_toolchain.cmake)
     set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /Od /EHsc /MP /openmp /MD")
@@ -37,9 +37,9 @@ else() # Flags for G++/Clang or G++/GNU on Linux
     set(CMAKE_CXX_FLAGS_RELEASE "-O0 -std=c++23") 
 endif()
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #------- Options -------
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 option(CURL_STATIC_LINKING "Set to ON to build libcurl with static linking." OFF)
 
 if(CURL_STATIC_LINKING)
@@ -48,9 +48,9 @@ if(CURL_STATIC_LINKING)
 endif()
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #------- Find Python  -------
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 set(Python3_FIND_SHARED OFF)# Need it?
 find_package(Python3 REQUIRED COMPONENTS Interpreter Development.Module)
 
@@ -61,9 +61,9 @@ endif()
 
 include_directories(${Python3_INCLUDE_DIRS})
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #------- Find Pybind11 -------
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 message(STATUS "---------------------------------------\n")
 if(Python3_VERSION_MAJOR EQUAL 3 AND Python3_VERSION_MINOR EQUAL 8)
     message(STATUS "Python 3.8 detected!!")
@@ -102,9 +102,9 @@ else()
 endif()
 find_package(pybind11 REQUIRED)
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #------- Find other dependencies -------
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 find_package(pdfium REQUIRED)         
 find_package(OpenMP REQUIRED)         
 find_package(ICU REQUIRED)            
@@ -118,9 +118,9 @@ find_package(nlohmann_json REQUIRED)
 find_package(CURL REQUIRED)            
 find_package(Threads REQUIRED)    
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #------- Protobuf -------
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 
 find_package(Protobuf REQUIRED)
 # message(STATUS "---------------------------------------\n")
@@ -157,9 +157,10 @@ find_package(onnxruntime REQUIRED)     # Pode depender de protobuf (verifique se
 # message(STATUS "------------------------> Protobuf_LITE_LIBRARIES: ${Protobuf_LITE_LIBRARIES}")
 # message(STATUS "\n --------------------------------------- ")
 
-# ───────────────────────────────────────────────────────────────────────
-#------- Discover the directory Current Python site-packages -------
-# ──────────────────────────────────────────────────────────────────────────────
+
+# ────────────────────────────────────────────────────────────
+# --- Discover the directory Current Python site-packages ----
+# ────────────────────────────────────────────────────────────
 # We will use sysconfig to be more robust across multiple Python versions.
 
 execute_process(
@@ -173,9 +174,9 @@ execute_process(
 # message(STATUS "------------------------> Encontrado site-packages do Python em: ${PYTHON_SITE_PACKAGES}")
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #------- Torch -------
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 # set(_TORCH_REL_PATH "dependencias_libs/d_libs/libtorch/cpu")
 set(Torch_DIR "${CMAKE_SOURCE_DIR}/../../libs/libtorch/cpu/share/cmake/Torch")
 # message(STATUS "------------------------> Caminho previsto para Torch_DIR: ${Torch_DIR}")
@@ -188,10 +189,10 @@ link_directories("${CMAKE_SOURCE_DIR}/../../libs/libtorch/cpu/lib")
 
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #------- RPATH -------
-# ─────────────────────────────────────────────────────────────────────────────
-#------- Configuração do RPATH/RUNPATH/LIBRARY_PATH -------> Ajustar rpath para encontrar as bibliotecas do Torch
+# ───────────────────────────────────────────────────────────
+#------- RPATH/RUNPATH/LIBRARY_PATH Configuration -------
 
 set(CMAKE_BUILD_RPATH
      "${PYTHON_SITE_PACKAGES}/*/d_libs/libtorch/cpu/lib"
@@ -242,27 +243,27 @@ set(CMAKE_INSTALL_RPATH
 
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,--enable-new-dtags")
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
-#------- Configuração do RPATH/RUNPATH/LIBRARY_PATH -------
+#------- RPATH/RUNPATH/LIBRARY_PATH Configuration -------
 message(STATUS "\n\n\n\n------------------------> Caminho previsto para TORCH_CXX_FLAGS: ${TORCH_CXX_FLAGS}\n\n\n\n")
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #------- Tokenizers -------
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 
 set(TOKENIZERS_PATH "${CMAKE_SOURCE_DIR}/../../libs/tokenizers-cpp")
 add_subdirectory(${TOKENIZERS_PATH} tokenizers EXCLUDE_FROM_ALL)
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #------- OpenAI C++ bindings -------
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 
 set(OPENAI_CPP_PATH "${CMAKE_SOURCE_DIR}/../../libs/openai-cpp/")
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 # ----- Project sources -----
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 
 set(RagPUREAI_BINDING_SRCS  binding_chunks_clean.cpp) 
 
@@ -283,9 +284,9 @@ set(RagPUREAI_IMPL_SRCS
 )
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #------- RagPUREAI Library -------
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 
 add_library(RagPUREAILib STATIC ${RagPUREAI_IMPL_SRCS})
 
@@ -320,10 +321,9 @@ target_include_directories(RagPUREAILib PUBLIC #.h
     ${CMAKE_SOURCE_DIR}/../../libs/faiss/
 )
 
-
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 # Link libraries with RagPUREAILib
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 link_directories(${FAISS_LIB_DIR})
 
 target_link_libraries(RagPUREAILib PUBLIC
@@ -349,23 +349,15 @@ target_link_libraries(RagPUREAILib PUBLIC
 )
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #---------------- Pybind11 Module
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 
 pybind11_add_module(purecpp_chunks_clean ${RagPUREAI_BINDING_SRCS})
 
 target_link_libraries(purecpp_chunks_clean PRIVATE RagPUREAILib)
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────
 #---------------- DEBUG MESSAGES
-# ─────────────────────────────────────────────────────────────────────────────
-#${CMAKE_SOURCE_DIR})
-
-message(STATUS "---------------------------------------\n")
-# message(STATUS "------------------------> CURL_INCLUDE_DIRS: ${CURL_INCLUDE_DIRS}")
-# message(STATUS "------------------------> OPENAI_CPP_PATH: ${OPENAI_CPP_PATH}/include")
-# message(STATUS "------------------------> OPENAI_CPP_PATH: ${OPENAI_CPP_PATH}")
-# message(STATUS "------------------------> TORCH_INCLUDE_DIRS: ${TORCH_INCLUDE_DIRS}/include")
-message(STATUS "---------------------------------------> FAISS_LIB_DIR: ${FAISS_LIB_DIR}")
+# ───────────────────────────────────────────────────────────
