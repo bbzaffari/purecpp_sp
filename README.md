@@ -25,7 +25,6 @@ Designed for maximum performance and scalability, it integrates vector search, O
 
 *This repository provides detailed guidance on how to set up the environment, configure dependencies and build.*
 
-- **[Download Pre-trained Models ↗](./models/README.md)**
   
 ## Table of Contents
 ***🔍 Explore [all of Bruno Bavaresco Zaffari’s contributions (explained)](https://github.com/bbzaffari/Open-Source-RAG-Engine-System-with-Modular-Vector-Processing)
@@ -210,7 +209,8 @@ To test the Python bindings:
 import purecpp_MODULE
 ```
 
-
+---
+- **[Download Pre-trained Models ↗](./models/README.md)**
 ---
 ---
 ---
