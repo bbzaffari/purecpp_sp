@@ -34,7 +34,7 @@ if [ "$#" -eq 0 ]; then
     echo "  3 => ${modules[2]}"
     echo "  4 => ${modules[3]}"
     echo "  5 => ${modules[4]}"
-    echo " all => run all modules"
+    echo "  all => run all modules"
     echo "-----------------------------------"
     exit 1
 fi
@@ -58,18 +58,19 @@ if [ "$1" = "all" ]; then
 else
     case "$1" in
         [1-5])
-        START_TIME=$(date +%s)
+            START_TIME=$(date +%s)
             run_module "${modules[$(( $1 - 1 ))]}"
-            ;;
-        END_TIME=$(date +%s)
-        ELAPSED_TIME=$((END_TIME - START_TIME))
         
-        echo ""
-        echo "============================================================"
-        echo "Total execution time: ${ELAPSED_TIME} seconds"
-        echo "============================================================"
-        echo "       ALL MODULES COMPILED SUCCESSFULLY!"
-        echo "============================================================"
+            END_TIME=$(date +%s)
+            ELAPSED_TIME=$((END_TIME - START_TIME))
+            
+            echo ""
+            echo "============================================================"
+            echo "Total execution time: ${ELAPSED_TIME} seconds"
+            echo "============================================================"
+            echo "       ALL MODULES COMPILED SUCCESSFULLY!"
+            echo "============================================================"
+            ;;
         *)
             echo "Invalid argument: '$1'"
             echo "Please use a number between 1 and 5, or 'all'"
