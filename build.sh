@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euo pipefail
+
 #====================== COLORS =====================
 GREEN='\033[0;32m'
 CYAN='\033[0;36m'
@@ -77,7 +79,7 @@ else
             echo "============================================================"
             echo "       Total build time: ${ELAPSED_TIME} s"
             echo "============================================================"
-            echo "       $modules MODULE COMPILED SUCCESSFULLYa!"
+            echo "       ${modules[$(( $1 - 1 ))]} MODULE COMPILED SUCCESSFULLY!"
             echo "============================================================"
             echo -e "$RESET"
             ;;
