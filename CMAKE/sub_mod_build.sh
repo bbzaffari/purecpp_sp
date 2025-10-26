@@ -131,11 +131,21 @@ log_end "  $TAG COMPILING $MOD"
 
 normal_log "Sending to Sandbox \n" "$GREEN" 3
 
-rm -f ../../Sandbox/purecpp_*.so
-cp ./build/Release/purecpp_*.so ../../Sandbox/
+declare -A module_map=(
+    ["CMAKE_LIBS"]="libs"
+    ["CMAKE_META"]="meta"
+    ["CMAKE_EMBED"]="embed"
+    ["CMAKE_EXTRACT"]="extract"
+    ["CMAKE_CHUNKS_CLEAN"]="chunk_clean"
+)
+
+target_name="${module_map[$MOD]}"
+
+rm -f "../../Sandbox/purecpp_${target_name}.so"
+cp "./build/Release/purecpp_${target_name}"* "../../Sandbox/"
+
 normal_log "Step completed." "$GREEN" 0
 #-----------------------------------------
-
 
 log_end "     $TAG "
 # ──────────────────────────────────────────────────────────────
