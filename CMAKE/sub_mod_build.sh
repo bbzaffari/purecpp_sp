@@ -136,7 +136,7 @@ declare -A module_map=(
     ["CMAKE_META"]="meta"
     ["CMAKE_EMBED"]="embed"
     ["CMAKE_EXTRACT"]="extract"
-    ["CMAKE_CHUNKS_CLEAN"]="chunk_clean"
+    ["CMAKE_CHUNKS_CLEAN"]="chunks_clean"
 )
 
 target_name="${module_map[$MOD]}"

@@ -35,7 +35,7 @@ namespace Chunk {
         RAGLibrary::Document getQuery(void) const;
         std::string getMod(void) const;
         void setChunks(const Chunk::ChunkDefault& chunks, size_t pos);
-        void Chunk::ChunkQuery::setThreshold(float t);
+        void setThreshold(float t);
         //-------------------------------------------------------------
         std::vector<float> getEmbedQuery(void) const;
         // ======================================================================================================================================
@@ -64,7 +64,7 @@ namespace Chunk {
         
         // =====================================================================================================================================
         std::vector<std::span<const float>> m_chunk_embedding;    
-        float Chunk::validateThreshold(float t);
+        float validateThreshold(float t);
         // =====================================================================================================================================
         inline RAGLibrary::Document validateEmbeddingResult(const std::vector<RAGLibrary::Document>& results) {
             if (results.empty() || !results[0].embedding.has_value()) {
