@@ -15,9 +15,7 @@
 ---
 ---
 ---
-- **[Quick Start ↗](https://docs.puredocs.org/setup)**
-- **[Contributing to PureCPP ↗](docs/CONTRIBUTING.md)**
-- **[Download Pre-trained Models ↗](./models/README.md)**
+
 
 
 # PureCPP 
@@ -30,7 +28,10 @@
 Designed for maximum performance and scalability, it integrates vector search, ONNX models, and CPU/CUDA acceleration into a seamless, Python-integrated framework.
 
 *This repository provides detailed guidance on how to set up the environment, configure dependencies and build.*
-
+- **[Quick Start ↗](https://docs.puredocs.org/setup)**
+- **[Contributing to PureCPP ↗](docs/CONTRIBUTING.md)**
+- **[Download Pre-trained Models ↗](./models/README.md)**
+  
 ## Table of Contents
 ***🔍 Explore [all of Bruno Bavaresco Zaffari’s contributions (explained)](https://github.com/bbzaffari/Open-Source-RAG-Engine-System-with-Modular-Vector-Processing)
  related to this framework.***
