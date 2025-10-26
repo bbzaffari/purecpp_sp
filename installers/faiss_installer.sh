@@ -17,7 +17,7 @@ SEGMENT="===========================================================\n"
 log_start() {
     local section="$1"
     printf "${CYAN}${SEGMENT}${SEGMENT}${SEGMENT}"
-    printf " Begin [$section] ${TAG}${LINE_BRK}"
+    printf " Begin: [$section] ${TAG}${LINE_BRK}"
     printf "${SEGMENT}${RESET}"
 }
 
@@ -26,6 +26,31 @@ log_end() {
     printf "${YELLOW}${SEGMENT}"
     printf "             Finish [$section]${LINE_BRK}"
     printf "${SEGMENT}${SEGMENT}${SEGMENT}${RESET}"
+}
+
+normal_log() {
+    local message="$1"
+    local color="$RESET"
+
+    if [ $# -ge 2 ]; then
+        color="$2"
+    fi
+
+    if [ $# -ge 3 ]; then
+        repeat="$3"
+    fi
+
+    # Repeat SEGMENT lines to frame the message visually
+
+    for ((i = 0; i < repeat; i++)); do
+        echo -e "${color}${SEGMENT}${RESET}"
+    done
+
+    echo -e "${color}   $message${LINE_BRK}${RESET}"
+
+    for ((i = 0; i < repeat; i++)); do
+        echo -e "${color}${SEGMENT}${RESET}"
+    done
 }
 #==========================================
 
@@ -138,13 +163,17 @@ log_end "VERIFY BUILD"
 
 
 #──────────────────────────────────────────
-log_start "LINKING INSTRUCTIONS"
 
+log_end "FAISS INSTALLATION"
+#──────────────────────────────────────────
+
+
+echo -e "$CYAN"
+echo "LINKING INSTRUCTIONS"
 echo ""
 echo "You can now link FAISS in your C++ project using:"
 echo ""
-echo '  include_directories(${CMAKE_SOURCE_DIR}/libs/faiss/faiss)'
+echo '  include_directories(${CMAKE_SOURCE_DIR}/libs/faiss/faiss) '
 echo '  link_directories(${CMAKE_SOURCE_DIR}/libs/faiss/build/faiss)'
 echo '  target_link_libraries(your_target PRIVATE faiss)'
-
-log_end "LINKING INSTRUCTIONS"
+echo -e "$RESET"

@@ -16,7 +16,7 @@ SEGMENT="===========================================================\n"
 log_start() {
     local section="$1"
     printf "${CYAN}${SEGMENT}${SEGMENT}${SEGMENT}"
-    printf "              Begin [$section] ${TAG}${LINE_BRK}"
+    printf "      Begin: [$section] ${TAG}${LINE_BRK}"
     printf "${SEGMENT}${RESET}"
 }
 
@@ -32,7 +32,7 @@ log_end() {
 #──────────────────────────────────────────
 log_start "CONAN DETECT"
 
-echo "[INFO] Running: conan profile detect --force"
+echo -e "$GREEN[INFO] Running: conan profile detect --force$RESET"
 conan profile detect --force
 
 log_end "CONAN DETECT"
@@ -44,10 +44,10 @@ log_start "LOCATE PROFILE DIR"
 PROFILE_DIR=$(find . -type d -wholename "*/.conan2/profiles" | head -n 1 || true)
 if [ -z "$PROFILE_DIR" ]; then
     PROFILE_DIR="$HOME/.conan2/profiles"
-    echo "[INFO] Defaulting to: $PROFILE_DIR"
+    echo -e "$GREEN[INFO] Defaulting to: $PROFILE_DIR$RESET"
     mkdir -p "$PROFILE_DIR"
 else
-    echo "[INFO] Found profile dir at: $PROFILE_DIR"
+    echo -e "$GREEN[INFO] Found profile dir at: $PROFILE_DIR$RESET"
 fi
 
 log_end "LOCATE PROFILE DIR"
@@ -69,7 +69,7 @@ compiler.version=11
 os=Linux
 EOF
 
-echo "[INFO] Profile written to: $DEFAULT_PROFILE"
+echo -e "$GREEN[INFO] Profile written to: $DEFAULT_PROFILE$RESET"
 
 log_end "WRITE PROFILE"
 
@@ -77,7 +77,9 @@ log_end "WRITE PROFILE"
 #──────────────────────────────────────────
 log_start "VERIFY PROFILE"
 
-echo "[INFO] Displaying contents of: $DEFAULT_PROFILE"
+echo -e "$GREEN[INFO] Displaying contents of: $DEFAULT_PROFILE"
+echo -e "$CYAN"
 cat "$DEFAULT_PROFILE"
+echo -e "$RESET"
 
 log_end "VERIFY PROFILE"

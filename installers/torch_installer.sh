@@ -16,7 +16,7 @@ SEGMENT="===========================================================\n"
 log_start() {
     local section="$1"
     printf "${CYAN}${SEGMENT}${SEGMENT}${SEGMENT}"
-    printf "      Begin [$section] ${TAG}${LINE_BRK}"
+    printf "      Begin: [$section] ${TAG}${LINE_BRK}"
     printf "${SEGMENT}${RESET}"
 }
 

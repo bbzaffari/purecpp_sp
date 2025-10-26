@@ -34,7 +34,7 @@ log_end() {
 log_start "ENV SETUP SCRIPT"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-echo "[INFO] Resolved SCRIPT_DIR: $SCRIPT_DIR"
+echo -e "$GREEN[INFO] Resolved SCRIPT_DIR: $SCRIPT_DIR$RESET"
 
 
 pip install build conan cmake requests pybind11
