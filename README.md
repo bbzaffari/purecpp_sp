@@ -9,10 +9,6 @@
 
 
 ---
-
-[![Status](https://img.shields.io/badge/status-stable-brightgreen?style=flat-square)](https://github.com/bbzaffari/purecpp) 👉  🔗  [Stable purecpp](https://github.com/bbzaffari/purecpp) 
-
----
 ---
 ---
 
@@ -20,7 +16,7 @@
 
 # PureCPP 
 
-[![***Status this***](https://img.shields.io/badge/Status%20this-%20Refactoring%20in%20progress-orange.svg)]()
+[![Status](https://img.shields.io/badge/status-stable-brightgreen?style=flat-square)]()
 
 ## Overview 
 **PureCPP is a powerful C++ backend architecture for RAG systems.**
@@ -29,7 +25,6 @@ Designed for maximum performance and scalability, it integrates vector search, O
 
 *This repository provides detailed guidance on how to set up the environment, configure dependencies and build.*
 - **[Quick Start ↗](https://docs.puredocs.org/setup)**
-- **[Contributing to PureCPP ↗](docs/CONTRIBUTING.md)**
 - **[Download Pre-trained Models ↗](./models/README.md)**
   
 ## Table of Contents
