@@ -18,8 +18,7 @@ run_module() {
     local dir="$1"
     cd CMAKE/
     print_module "$dir"
-    cd "$dir" || exit 1
-    ./sub_mod_build.sh
+    ./sub_mod_build.sh "$dir"
     cd - > /dev/null
 }
 
@@ -67,3 +66,96 @@ else
             ;;
     esac
 fi
+
+
+
+
+
+
+
+
+
+# #!/usr/bin/env bash
+# set -euo pipefail
+# cd src/
+
+# #================= COLORS =================
+# GREEN='\033[0;32m'
+# CYAN='\033[0;36m'
+# YELLOW='\033[1;33m'
+# RESET='\033[0m'
+
+# #================= FORMATTING =============
+# LINE_BRK=$'\n\n'
+# SEGMENT="===========================================================\n"
+# TAG="[$(basename "${BASH_SOURCE[0]}")]"
+
+# #================= LOGGER FUNCS ===========
+# log_start() {
+#     local section="$1"
+#     printf "${CYAN}${SEGMENT}${SEGMENT}${SEGMENT}"
+#     printf "              Begin [$section] ${TAG}${LINE_BRK}"
+#     printf "${SEGMENT}${RESET}"
+# }
+
+# log_end() {
+#     local section="$1"
+#     printf "${YELLOW}${SEGMENT}"
+#     printf "             Finish [$section]${LINE_BRK}"
+#     printf "${SEGMENT}${SEGMENT}${SEGMENT}${RESET}"
+# }
+# #==========================================
+
+
+# #──────────────────────────────────────────
+# log_start "CORE SPLITTER"
+
+# cores=$(nproc)
+# half=$(( cores > 1 ? cores / 2 : 1 ))
+
+# printf "$LINE_BRK"
+# echo "[INFO] Detected $cores cores, using $half for parallel build."
+# printf "$LINE_BRK"
+
+# log_end "CORE SPLITTER"
+
+
+# #──────────────────────────────────────────
+# log_start "CONAN"
+
+# rm -fr ./build 
+# conan install . --build=missing -c tools.build:jobs=$half
+# # rm -fr ./conan.lock
+# # conan lock create . --build=missing -c tools.build:jobs=$half
+
+# log_end "CONAN"
+
+
+# #──────────────────────────────────────────
+# log_start "BUILD"
+
+# cmake -DCMAKE_POLICY_DEFAULT_CMP0091=NEW \
+#     -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
+#     -DBUILD_SHARED_LIBS=OFF \
+#     -D_GLIBCXX_USE_CXX11_ABI=1 \
+#     -DSPM_USE_BUILTIN_PROTOBUF=OFF \
+#     -DCMAKE_BUILD_TYPE=Release \
+#     -DCMAKE_TOOLCHAIN_FILE=generators/conan_toolchain.cmake \
+#     -S "$(pwd)" \
+#     -B "$(pwd)/build/Release" \
+#     -G "Unix Makefiles"
+
+# cmake --build "$(pwd)/build/Release" --parallel $half
+
+# log_end "BUILD"
+
+
+# #──────────────────────────────────────────
+# log_start "SANDBOX DEPLOY"
+
+# printf "[INFO] Sending built .so to Sandbox folder...$LINE_BRK"
+# rm -f ../Sandbox/*.so
+# cp ./build/Release/RagPUREAI.cpython*.so ../Sandbox/
+
+# log_end "SANDBOX DEPLOY"
+
