@@ -10,30 +10,48 @@
 #include <algorithm>
 #include <string>
 #include <cctype>
+#include <tuple>
+#include <span>
+#include <iostream>
+#include <stdexcept>
 #include "EmbeddingOpenAI.h"
 namespace Chunk
 {
+
+/**
+ * @brief Represents a flattened embedding dataset with vendor/model metadata.
+ *
+ * It supports both direct access (public fields) and safe helper methods.
+ */
     struct vdb_data {
-        std::vector<float> flatVD;
-        std::string vendor;
-        std::string model;
-        size_t dim = 0;
-        size_t n = 0;
-        //----------------------------------------------------
-        inline const std::tuple<size_t, size_t>  getPar(void) const{return { n, dim };}; 
-        inline std::pair<std::string, std::string>getEmbPar(void) const{return { vendor , model };}; 
-        inline const float* getVDpointer(void) const{
-            if (flatVD.empty()) {
-                std::cout << "[Info] Empty Vector Data Base\n";
-                return {};
-            }
-            return flatVD.data();
-        }; 
+        // --- Public Data Members ---
+        std::vector<float> flatVD;   ///< Flattened vector data (size = n * dim)
+        std::string vendor;          ///< Embedding provider (e.g., "OpenAI")
+        std::string model;           ///< Model name (e.g., "text-embedding-ada-002")
+        size_t dim = 0;              ///< Dimension of each embedding vector
+        size_t n = 0;                ///< Number of embedding vectors
+
+        // --- Constructors ---
+        vdb_data() = default;  ///< Default constructor
+
+        /**
+         * @brief Constructs a vdb_data instance with given parameters.
+         * @throws std::invalid_argument if flatVD.size() != n * dim
+         */
+        vdb_data(std::vector<float> data, std::string vdr, std::string mdl, size_t d, size_t count);
+
+        // --- Member Functions ---
+        std::tuple<size_t, size_t> getPar() const noexcept;
+        std::pair<std::string, std::string> getEmbPar() const noexcept;
+        const float* getVDpointer() const;
+        std::span<const float> getView() const;
+        bool empty() const noexcept;
+        size_t totalSize() const noexcept;
     };
-    
+
     //===============================================================================================    
         inline const std::unordered_map<std::string, std::vector<std::string>> EmbeddingModel = {
-            {"openai", {"text-embedding-ada-002", "text-embedding-3-small", "..."}},
+            {"openai", {"text-embedding-ada-002", "text-embedding-3-small", "text-embedding-3-large"}},
             {"huggingface", {"bge-small", "bge-large"}},
             {"cohere", {"embed-english-light-v3.0"}}
         };

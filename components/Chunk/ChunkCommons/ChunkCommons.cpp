@@ -18,6 +18,71 @@
 
 using namespace Chunk;
 
+//-----------------------------------------------------------------------------------------------------------
+
+/**
+ * @brief Parameterized constructor that validates data size.
+ */
+Chunk::vdb_data::vdb_data(std::vector<float> data, std::string vdr, std::string mdl, size_t d, size_t count)
+    : flatVD(std::move(data)), vendor(std::move(vdr)), model(std::move(mdl)), dim(d), n(count)
+{
+    if (flatVD.size() != dim * n) {
+        throw std::invalid_argument("flatVD size mismatch with n * dim");
+    }
+}
+
+/**
+ * @brief Returns (n, dim) as a tuple representing the dataset shape.
+ */
+std::tuple<size_t, size_t> Chunk::vdb_data::getPar() const noexcept {
+    return { n, dim };
+}
+
+/**
+ * @brief Returns (vendor, model) metadata as a pair of strings.
+ */
+std::pair<std::string, std::string> Chunk::vdb_data::getEmbPar() const noexcept {
+    return { vendor, model };
+}
+
+/**
+ * @brief Returns a raw pointer to the underlying float buffer.
+ * @note Prints a warning message if the buffer is empty.
+ */
+const float* Chunk::vdb_data::getVDpointer() const {
+    if (flatVD.empty()) {
+        std::cerr << "[Info] Empty Vector Data Base\n";
+        return nullptr;
+    }
+    return flatVD.data();
+}
+
+/**
+ * @brief Returns a span view over the embedding buffer.
+ * @note Provides a modern, bounds-safe view without copying data.
+ */
+std::span<const float> Chunk::vdb_data::getView() const {
+    if (flatVD.empty()) {
+        std::cerr << "[Info] Empty Vector Data Base\n";
+        return {};
+    }
+    return { flatVD.data(), flatVD.size() };
+}
+
+/**
+ * @brief Checks whether the embedding data is empty.
+ */
+bool Chunk::vdb_data::empty() const noexcept {
+    return flatVD.empty();
+}
+
+/**
+ * @brief Returns the total number of floats stored in flatVD.
+ */
+size_t Chunk::vdb_data::totalSize() const noexcept {
+    return flatVD.size();
+}
+//-----------------------------------------------------------------------------------------------------------
 std::vector<RAGLibrary::Document> Chunk::Embeddings(const std::vector<RAGLibrary::Document>& list, std::string model)
 {     
     std::vector<RAGLibrary::Document> emb;
