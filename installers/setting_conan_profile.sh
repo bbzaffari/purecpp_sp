@@ -1,42 +1,64 @@
-#!/bin/bash
-
+#!/usr/bin/env bash
 set -euo pipefail
 
-#-----------------------------------------
-#================= LOGGIN ================
-#-----------------------------------------
+#================= COLORS =================
+GREEN='\033[0;32m'
+CYAN='\033[0;36m'
+YELLOW='\033[1;33m'
+RESET='\033[0m'
+
+#================= FORMATTING =============
 TAG="[$(basename "${BASH_SOURCE[0]}")]"
-LINE_BRK="\n\n"
+LINE_BRK=$'\n\n'
 SEGMENT="===========================================================\n"
 
-printf "$SEGMENT$SEGMENT$SEGMENT"
-printf "                   $TAG$LINE_BRK"
-#-----------------------------------------
+#================= LOGGER FUNCS ===========
+log_start() {
+    local section="$1"
+    printf "${CYAN}${SEGMENT}${SEGMENT}${SEGMENT}"
+    printf "              Begin [$section] ${TAG}${LINE_BRK}"
+    printf "${SEGMENT}${RESET}"
+}
 
-#-----------------------------------------
-printf "$SEGMENT"
-printf "$TAG conan profile detect --force\n"
+log_end() {
+    local section="$1"
+    printf "${YELLOW}${SEGMENT}"
+    printf "             Finish [$section]${LINE_BRK}"
+    printf "${SEGMENT}${SEGMENT}${SEGMENT}${RESET}"
+}
+#==========================================
+
+
+#──────────────────────────────────────────
+log_start "CONAN DETECT"
+
+echo "[INFO] Running: conan profile detect --force"
 conan profile detect --force
-#-----------------------------------------
 
-#-----------------------------------------
-printf "$LINE_BRK$SEGMENT"
-printf "$TAG Finding\n"
+log_end "CONAN DETECT"
+
+
+#──────────────────────────────────────────
+log_start "LOCATE PROFILE DIR"
 
 PROFILE_DIR=$(find . -type d -wholename "*/.conan2/profiles" | head -n 1 || true)
-[ -z "$PROFILE_DIR" ] && PROFILE_DIR="$HOME/.conan2/profiles" && mkdir -p "$PROFILE_DIR"
+if [ -z "$PROFILE_DIR" ]; then
+    PROFILE_DIR="$HOME/.conan2/profiles"
+    echo "[INFO] Defaulting to: $PROFILE_DIR"
+    mkdir -p "$PROFILE_DIR"
+else
+    echo "[INFO] Found profile dir at: $PROFILE_DIR"
+fi
 
-printf "$TAG Found at $PROFILE_DIR\n"
-
-#-----------------------------------------
-
-#-----------------------------------------
-printf "$LINE_BRK$SEGMENT"
-printf "$TAG Writing default profile$LINE_BRK"
+log_end "LOCATE PROFILE DIR"
 
 
-# Old Setup (New was set to compiler.cppstd=20 and compiler.version=13. But was resulting in issues.)
-cat << EOF > "$PROFILE_DIR/default"
+#──────────────────────────────────────────
+log_start "WRITE PROFILE"
+
+DEFAULT_PROFILE="$PROFILE_DIR/default"
+
+cat << EOF > "$DEFAULT_PROFILE"
 [settings]
 arch=x86_64
 build_type=Release
@@ -47,22 +69,15 @@ compiler.version=11
 os=Linux
 EOF
 
-printf "$LINE_BRK$SEGMENT"
-#-----------------------------------------
+echo "[INFO] Profile written to: $DEFAULT_PROFILE"
 
-printf "$TAG Profile created in: $PROFILE_DIR/default\n"
-printf "$TAG Checking: cat < $PROFILE_DIR/default $LINE_BRK"
+log_end "WRITE PROFILE"
 
-cat < $PROFILE_DIR/default
-printf "$LINE_BRK"
 
-printf "$SEGMENT\n"
+#──────────────────────────────────────────
+log_start "VERIFY PROFILE"
 
-printf "\nHard-check with: cat < $PROFILE_DIR/default$LINE_BRK"
+echo "[INFO] Displaying contents of: $DEFAULT_PROFILE"
+cat "$DEFAULT_PROFILE"
 
-#-----------------------------------------
-#================= ENDING ================
-#-----------------------------------------
-printf "$SEGMENT$SEGMENT$SEGMENT"
-printf "\n\n\n\n\n".
-#-----------------------------------------
+log_end "VERIFY PROFILE"
