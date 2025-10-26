@@ -16,7 +16,7 @@
 
 # PureCPP 
 
-[![Status](https://img.shields.io/badge/status-stable-brightgreen?style=flat-square)]()
+[![Status](https://img.shields.io/badge/Status-Stable-brightgreen?style=flat-square)]()
 
 ## Overview 
 **PureCPP is a powerful C++ backend architecture for RAG systems.**
@@ -24,7 +24,7 @@
 Designed for maximum performance and scalability, it integrates vector search, ONNX models, and CPU/CUDA acceleration into a seamless, Python-integrated framework.
 
 *This repository provides detailed guidance on how to set up the environment, configure dependencies and build.*
-- **[Quick Start ↗](https://docs.puredocs.org/setup)**
+
 - **[Download Pre-trained Models ↗](./models/README.md)**
   
 ## Table of Contents
@@ -171,7 +171,7 @@ chmod +x installers/*.sh
 
 Ensure the scripts have the execution permission
 ```bash
-chmod -R +x ./CMAKE/sub_mod_build.sh
+chmod +x ./CMAKE/sub_mod_build.sh
 chmod +x ./build.sh
 ````
 
