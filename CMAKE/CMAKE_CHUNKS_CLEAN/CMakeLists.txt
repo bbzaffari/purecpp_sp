@@ -168,8 +168,7 @@ execute_process(
     OUTPUT_VARIABLE PYTHON_SITE_PACKAGES
     OUTPUT_STRIP_TRAILING_WHITESPACE
 )
-# set(_TORCH_REL_PATH "dependencias_libs/d_libs/libtorch/cpu")
-set(Torch_DIR "${CMAKE_SOURCE_DIR}/../../libs/libtorch/cpu/share/cmake/Torch")
+
  
 # message(STATUS "------------------------> Encontrado site-packages do Python em: ${PYTHON_SITE_PACKAGES}")
 
@@ -177,7 +176,8 @@ set(Torch_DIR "${CMAKE_SOURCE_DIR}/../../libs/libtorch/cpu/share/cmake/Torch")
 # ─────────────────────────────────────────────────────────────────────────────
 #------- Torch -------
 # ─────────────────────────────────────────────────────────────────────────────
-
+# set(_TORCH_REL_PATH "dependencias_libs/d_libs/libtorch/cpu")
+set(Torch_DIR "${CMAKE_SOURCE_DIR}/../../libs/libtorch/cpu/share/cmake/Torch")
 # message(STATUS "------------------------> Caminho previsto para Torch_DIR: ${Torch_DIR}")
 find_package(Torch REQUIRED)# Encontrar o Torch
  
