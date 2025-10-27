@@ -27,8 +27,7 @@ Designed for maximum performance and scalability, it integrates vector search, O
 
   
 ## Table of Contents
-***🔍 Explore [all of Bruno Bavaresco Zaffari’s contributions (explained)](https://github.com/bbzaffari/Open-Source-RAG-Engine-System-with-Modular-Vector-Processing)
- related to this framework.***
+***Explore [all of Bruno Bavaresco Zaffari’s contributions (explained)🔍](https://github.com/bbzaffari/Open-Source-RAG-Engine-System-with-Modular-Vector-Processing)***
 * **1.** [Environment Setup](#environment-setup)
    - [Docker](#docker)
    - [Local](#local)
@@ -78,7 +77,7 @@ cd purecpp_sp
  chmod +x installers/*.sh
  ./installers/env_config.sh
  ```
-*This script automates the setup. Installing Python essentials, LibTorch, FAISS, and configuring Conan profile.d*
+*This script automates the setup. Installing Python essentials, LibTorch, FAISS, and configuring Conan profile.*
 
 > [!CAUTION]
 > 
