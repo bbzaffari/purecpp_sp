@@ -182,12 +182,16 @@ chmod +x ./build.sh
 ```bash
 ./build.sh MODULE-NUMBER
 ````
-
-Each module (`CMAKE_LIBS`, `CMAKE_META`, `CMAKE_EMBED`, `CMAKE_EXTRACT`, `CMAKE_CHUNKS_CLEAN`) has its own **`sub_mod_build.sh`** script, which:
+ 
+The **sub_mod_build.sh** script delegates the build to the selected `CMAKE_MODULE`, and then it:
 - Cleans the build/ folder
-- Installs Conan dependencies if missing
+- Installs Conan dependencies, if missing
 - Compiles the code
 - Sends the purecpp_*.so output to the central  [`Sandbox/`](/Sandbox)
+
+> [!NOTE]
+> First build: ~600s (installs dependencies).  
+> Next builds: ~30s.
   
 ---
 
