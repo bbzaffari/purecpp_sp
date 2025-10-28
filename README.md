@@ -214,9 +214,7 @@ import purecpp_MODULE
 
 ---
 - **[Download Pre-trained Models ↗](./models/README.md)**
-- **[Forked repository ↗](https://github.com/bbzaffari/purecpp)**
-- [![Forked repository ↗](https://img.shields.io/badge/-Forked-repository-↗-blue?style=flat-square)](https://github.com/bbzaffari/purecpp)
-- [![Forks](https://img.shields.io/github/forks/bbzaffari/purecpp?style=flat-square)](https://github.com/bbzaffari/purecpp/network/members)
+-  [![Forked from bbzaffari/purecpp](https://img.shields.io/badge/Forked-from%20bbzaffari%2Fpurecpp-blue?style=flat-square)](https://github.com/bbzaffari/purecpp)
 
 ---
 ---
