@@ -1,18 +1,4 @@
-
-
-
-
-
-> **Note**:
-> Please disregard the commit history in this repository.
-**This repository is my development scratchpad, where all structural changes are designed and documented before being pushed to the official ecosystem.**
-
-
 ---
----
----
-
-
 
 # PureCPP 
 
@@ -211,6 +197,13 @@ To test the Python bindings:
 ```python
 import purecpp_MODULE
 ```
+
+---
+
+
+> **Note**:
+> Please disregard the commit history in this repository.
+**This repository is my development scratchpad, where all structural changes are designed and documented before being pushed to the official ecosystem.**
 
 ---
 - **[Download Pre-trained Models ↗](./models/README.md)**
