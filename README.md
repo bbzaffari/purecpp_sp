@@ -209,7 +209,7 @@ import purecpp_MODULE
 
 ---
 - **[Docs ↗](https://docs.puredocs.org/setup)**
-- **[![](https://img.shields.io/badge/-Forked%20repository↗-blue?style=flat-square)](https://github.com/bbzaffari/purecpp)***
+- **[![](https://img.shields.io/badge/-Forked%20repository↗-blue?style=flat-square)](https://github.com/bbzaffari/purecpp)**
 - **[Download Pre-trained Models ↗](./models/README.md)**
 
 ---
