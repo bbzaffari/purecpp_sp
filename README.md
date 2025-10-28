@@ -208,8 +208,8 @@ import purecpp_MODULE
 **This repository is my development scratchpad, where all structural changes are designed and documented before being pushed to the official ecosystem.**
 
 ---
-- **[Download Pre-trained Models ↗](./models/README.md)**
 -  [![](https://img.shields.io/badge/-Forked%20repository↗-blue?style=flat-square)](https://github.com/bbzaffari/purecpp)
+- **[Download Pre-trained Models ↗](./models/README.md)**
 
 ---
 ---
