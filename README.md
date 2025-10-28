@@ -182,8 +182,8 @@ chmod +x ./build.sh
 ```bash
 ./build.sh MODULE-NUMBER
 ````
- 
-The **sub_mod_build.sh** script delegates the build to the selected `CMAKE_MODULE`, and then it:
+
+This, by calling the **sub_mod_build.sh**, delegates the build to the selected `CMAKE_MODULE`, and then it:
 - Cleans the build/ folder
 - Installs Conan dependencies, if missing
 - Compiles the code
