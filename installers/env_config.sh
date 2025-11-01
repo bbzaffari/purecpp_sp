@@ -16,7 +16,7 @@ SEGMENT="===========================================================\n"
 log_start() {
     local section="$1"
     printf "${CYAN}${SEGMENT}${SEGMENT}${SEGMENT}"
-    printf "    Begin [$section] ${TAG}${LINE_BRK}"
+    printf "    Begin: [$section] ${TAG}${LINE_BRK}"
     printf "${SEGMENT}${RESET}"
 }
 
@@ -36,18 +36,16 @@ log_start "ENV SETUP SCRIPT"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 echo -e "$GREEN[INFO] Resolved SCRIPT_DIR: $SCRIPT_DIR$RESET"
 
-
+log_start "PIP"
 pip install build conan cmake requests pybind11
+
 
 "$SCRIPT_DIR/setting_conan_profile.sh"
 
-
 "$SCRIPT_DIR/torch_installer.sh"
-
 
 "$SCRIPT_DIR/faiss_installer.sh"
 #-----------------------------------------
-
 
 
 #──────────────────────────────────────────
