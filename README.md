@@ -83,7 +83,8 @@ cd purecpp_sp
 ---
 
 ### **Local**
-
+<details>
+<summary>Installation steps</summary>
 ---
 > Requirements
 > - ***GCC/G++** >= 13.1*
@@ -148,7 +149,7 @@ chmod +x installers/*.sh
 ./installers/env_config.sh
 ```
 *This script automates the setup. Installing Python essentials, LibTorch, FAISS, and configuring Conan profile.*
-
+</details>
 ---
 
 ## How to Build
