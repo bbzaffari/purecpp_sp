@@ -45,6 +45,8 @@ cd purecpp_sp
 
 ### **Docker**
 
+<details>
+<summary>Docker installation steps </summary>
 ---
 
 * **1. Build a Docker image from the current directory and tag it as 'purecpp_env'**
@@ -80,11 +82,13 @@ cd purecpp_sp
 > ```
 > ***This command **attaches a terminal to the running container**, allowing you to interact with it just like you would with a regular Linux shell.***
 
+</details>
+
 ---
 
 ### **Local**
 <details>
-<summary>Installation steps</summary>
+<summary> Local installation steps</summary>
   
 ---
 
