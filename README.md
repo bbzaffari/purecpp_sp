@@ -46,7 +46,9 @@ cd purecpp_sp
 ### **Docker**
 
 <details>
+  
 <summary>Docker installation steps </summary>
+
 ---
 
 * **1. Build a Docker image from the current directory and tag it as 'purecpp_env'**
